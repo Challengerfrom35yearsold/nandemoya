@@ -1,0 +1,2 @@
+class CustomerInquiryThread < ApplicationRecord
+end

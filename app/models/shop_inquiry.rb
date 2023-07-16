@@ -1,0 +1,2 @@
+class ShopInquiry < ApplicationRecord
+end

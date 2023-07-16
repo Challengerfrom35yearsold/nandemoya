@@ -1,0 +1,2 @@
+class WhatYouWant < ApplicationRecord
+end
