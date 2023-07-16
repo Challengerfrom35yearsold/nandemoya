@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class Shop::SessionsController < Devise::SessionsController
+
+  before_action :shop_state, only: [:create]
+
+  def after_sign_in_path_for(resource)
+    shop_path
+  end
+
+  def after_sign_out_path_for(resource)
+    shop_path
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -24,4 +35,14 @@ class Shop::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  protected
+
+  def shop_state
+    @shop = Shop.find_by(email: params[:shop][:email])
+    return if !@shop
+    if @shop.valid_password?(params[:shop][:password]) && @shop.is_deleted
+      redirect_to new_shop_registration_path
+    end
+  end
 end

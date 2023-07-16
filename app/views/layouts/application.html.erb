@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <header>
+      <% if request.path.match(/\/admin(\/)?/) %>
+        <%= render 'layouts/header_admin' %>
+      <% elsif request.path.match(/\/customer(\/)?/) %>
+        <%= render 'layouts/header_customer' %>
+      <% else %>
+        <%= render 'layouts/header_shop' %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

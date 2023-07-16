@@ -1,0 +1,52 @@
+<nav class="navbar navbar-light">
+  <a class="navbar-brand p-3" href="/">LOGO</a>
+  <ul class="nav justify-content-end p-3">
+    <% if shop_signed_in? %>
+      <div class="pr-5">
+      こんにちは<%= current_shop.shop_name %>さん！
+      </div>
+      <li class="nav-item pr-3">
+        <%= link_to(shop_my_page_path) do %>
+          マイページ
+        <% end %>
+      </li>
+      <li class="nav-item pr-3">
+        <%= link_to(shop_items_path) do %>
+          商品一覧
+        <% end %>
+      </li>
+      <li class="nav-item pr-3">
+        <%= link_to(shop_orders_path) do %>
+          注文履歴一覧
+        <% end %>
+      </li>
+      <li class="nav-item pr-3">
+        <%= link_to(shop_admin_inquiries_path) do %>
+          お問い合わせ
+        <% end %>
+      </li>
+      <li class="nav-item pr-3">
+        <%= link_to(destroy_shop_session_path, method: :delete) do %>
+          ログアウト
+        <% end %>
+      </li>
+    <% else %>
+      <li class="nav-item pr-3">
+        <%= link_to(shop_about_path) do %>
+          About
+        <% end %>
+      </li>
+      <li class="nav-item pr-3">
+        <%= link_to(new_shop_registration_path) do %>
+          新規登録
+        <% end %>
+      </li>
+      <li class="nav-item pr-3">
+        <%= link_to(new_shop_session_path) do %>
+          ログイン
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+<div class="d-flex justify-content-end pr-5">キーワード検索</div>

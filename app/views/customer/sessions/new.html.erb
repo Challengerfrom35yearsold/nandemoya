@@ -1,26 +1,53 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container px-1">
+  <div class="row">
+    <div class="col-md-3 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">ログイン</h3>
     </div>
-  <% end %>
+  </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="row">
+    <div class="col-md-6 mb-2 d-flex align-items-center justify-content-center">
+      <h5>会員の方はこちらからログイン</h3>
+    </div>
+  </div>
+
+<%= form_with model: @customer, url: customer_session_path do |f| %>
+
+  <div class="row">
+    <div class="col-md-2 offset-md-2 mb-2">
+      <%= f.label :メールアドレス %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sumple@example.com", size: "50", class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 offset-md-2 mb-2">
+      <%= f.label :パスワード %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.password_field :password, autocomplete: "current-password", size: "50", class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 offset-md-4 mb-3 ">
+      <%= f.submit "ログイン", class:"btn btn-primary btn-block" %>
+    </div>
   </div>
 <% end %>
+</div>
 
-<%= render "customer/shared/links" %>
+<div class="container px-1">
+  <div class="row">
+    <div class="col-md-6 mb-2 d-flex align-items-center justify-content-center">
+      <h5>会員登録がお済みでない方</h5>　<br />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mb-2">
+      <%= render "customer/shared/links" %>から新規登録を行ってください。
+    </div>
+  </div>
+</div>

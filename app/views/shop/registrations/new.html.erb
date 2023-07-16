@@ -1,29 +1,114 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "shops/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">新規会員登録</h3>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <%= form_with model: @shop, url: shop_registration_path do |f| %>
+  <%= render "shop/shared/error_messages", resource: resource %>
+
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :ショップ名 %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.text_field :shop_name, placeholder: "令和電気", class: "rounded" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :フリガナ %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.text_field :shop_name_kana, placeholder: "レイワデンキ", class: "rounded" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :ジャンル名 %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.text_field :genre_id, placeholder: "電気店", class: "rounded" %>
+    </div>
   </div>
-<% end %>
 
-<%= render "shop/shared/links" %>
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :メールアドレス %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.email_field :email, placeholder: "sumple@example.com", class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :"郵便番号(ハイフンなし)" %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.text_field :postal_code, placeholder: "0000000", class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :住所 %>
+    </div>
+    <div class="col-md-8 mb-2">
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: "75", class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :"電話番号(ハイフンなし)" %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.text_field :telephone_number, placeholder: "00000000000", class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :パスワード %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.password_field :password, class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <%= f.label :"パスワード(確認用)" %>
+    </div>
+    <div class="col-md-2 mb-2">
+      <%= f.password_field :password_confirmation, class: "rounded" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 offset-md-4 mb-3 ">
+      <%= f.submit "新規登録", class:"btn btn-success btn-block" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="container px-1">
+  <div class="row">
+    <div class="col-md-5 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">既に登録済みの方</h3>　<br />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 offset-md-1 ">
+      <%= render "shop/shared/links" %>からログインしてください。
+    </div>
+  </div>
+</div>

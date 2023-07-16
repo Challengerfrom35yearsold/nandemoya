@@ -14,16 +14,17 @@ class DeviseCreateShops < ActiveRecord::Migration[6.1]
       ## Rememberable
       t.datetime :remember_created_at
 
+      t.integer :genre_id, null: false
       t.string :shop_name, null: false
       t.string :shop_name_kana, null: false
       t.string :postal_code, null: false
       t.string :address, null: false
       t.string :telephone_number, null: false
       t.boolean :is_deleted, null: false, default: false
-      t.string :about_shipping_cost, null: false
-      t.string :about_personal_information, null: false
-      t.string :about_payment, null: false
-      t.string :about_inquiry, null: false
+      t.string :about_shipping_cost
+      t.string :about_personal_information
+      t.string :about_payment
+      t.string :about_inquiry
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
