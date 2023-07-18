@@ -1,2 +1,86 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-3 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">
+        <%= @customer.last_name + @customer.first_name %>さんの会員詳細
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      会員ID
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.id %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      氏名
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.last_name %>&nbsp;<%=@customer.first_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      フリガナ
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.last_name_kana %>&nbsp;<%= @customer.first_name_kana %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      郵便番号
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.postal_code %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      住所
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      電話番号
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.telephone_number %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      メールアドレス
+    </div>
+    <div class="col-md-5 mb-2">
+      <%= @customer.email %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      会員ステータス
+    </div>
+    <div class="col-md-5 mb-2">
+      <% if @customer.is_deleted == false %>
+        <p class="text-success">有効</p>
+      <% else %>
+        <p class="text-secondary">退会</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 offset-md-2 ">
+      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class:"btn btn-success btn-block" %>
+    </div>
+    <div class="col-md-3 offset-md-1 ">
+      <%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+</div>

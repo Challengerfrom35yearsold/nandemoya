@@ -1,2 +1,38 @@
-<h1>Customer::Addresses#new</h1>
-<p>Find me in app/views/customer/addresses/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">配送先登録</h3>
+    </div>
+  </div>
+
+  <%= form_with model: @address,url: addresses_path,method: :post  do |f| %>
+  <div class="row">
+    <div class="col-md-3 mb-2">
+      宛先
+    </div>
+    <div class="col-md-3 mb-2">
+      <%= f.text_field :name, placeholder: "令和道子", class: "rounded" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mb-2">
+      郵便番号(ハイフンなし)
+    </div>
+    <div class="col-md-3 mb-2">
+      <%= f.text_field :postal_code, placeholder: "0000000", class: "rounded" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mb-2">
+      住所
+    </div>
+    <div class="col-md-3 mb-2">
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: "60", class: "rounded" %>
+    </div>
+  </div>
+
+    <div class="col-md-3 mb-2 offset-md-2">
+      <%= f.submit '新規登録', class:"btn btn-success btn-block" %>
+    </div>
+  <% end %>
+</div>

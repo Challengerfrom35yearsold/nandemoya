@@ -1,2 +1,85 @@
-<h1>Shop::Shops#show</h1>
-<p>Find me in app/views/shop/shops/show.html.erb</p>
+<div class="container px-1">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">マイページ</h3>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="col-md-2 pb-3">登録情報</h3>
+    <div class="col-md-3 pb-3">
+      <%= link_to "編集する", shop_my_page_information_edit_path, class:"btn btn-success btn-block" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered col-md-9 mb-4">
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        ショップ名
+      </td>
+      <td>
+        <%= @shop.shop_name %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        フリガナ
+      </td>
+      <td>
+        <%= @shop.shop_name_kana %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        ジャンル
+      </td>
+      <td>
+        <%= @shop.genre_id %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        郵便番号
+      </td>
+      <td>
+        <%= @shop.postal_code %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        住所
+      </td>
+      <td>
+        <%= @shop.address %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        電話番号
+      </td>
+      <td>
+        <%= @shop.telephone_number %>
+      </td>
+    </tbody>
+    <tbody>
+      <td>
+        メールアドレス
+      </td>
+      <td>
+        <%= @shop.email %>
+      </td>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "ショップページを見る", shop_shop_page_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "DM登録会員一覧を見る", shop_favorite_shops_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+
+</div>

@@ -14,10 +14,10 @@
     <header>
       <% if request.path.match(/\/admin(\/)?/) %>
         <%= render 'layouts/header_admin' %>
-      <% elsif request.path.match(/\/customer(\/)?/) %>
-        <%= render 'layouts/header_customer' %>
-      <% else %>
+      <% elsif request.path.match(/\/shop(\/)?/) %>
         <%= render 'layouts/header_shop' %>
+      <% else %>
+        <%= render 'layouts/header_customer' %>
       <% end %>
     </header>
     <%= yield %>

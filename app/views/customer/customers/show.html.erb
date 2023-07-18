@@ -1,2 +1,96 @@
-<h1>Customer::Customers#show</h1>
-<p>Find me in app/views/customer/customers/show.html.erb</p>
+<div class="container px-1">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">マイページ</h3>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="col-md-2 pb-3">登録情報</h3>
+    <div class="col-md-3 pb-3">
+      <%= link_to "編集する", customers_information_edit_path, class:"btn btn-success btn-block" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered col-md-9 mb-4">
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        氏名
+      </td>
+      <td>
+        <%= @customer.last_name %>
+        <%= @customer.first_name %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        カナ
+      </td>
+      <td>
+        <%= @customer.last_name_kana %>
+        <%= @customer.first_name_kana %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        郵便番号
+      </td>
+      <td>
+        <%= @customer.postal_code %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        住所
+      </td>
+      <td>
+        <%= @customer.address %>
+      </td>
+    </tbody>
+    <tbody>
+      <td style="background-color: #c1c7cd !important;">
+        電話番号
+      </td>
+      <td>
+        <%= @customer.telephone_number %>
+      </td>
+    </tbody>
+    <tbody>
+      <td>
+        メールアドレス
+      </td>
+      <td>
+        <%= @customer.email %>
+      </td>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "配送先一覧を見る", addresses_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "ほしいもの一覧を見る", what_you_wants_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "お気に入りショップ一覧を見る", favorite_shops_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "注文履歴一覧を見る", orders_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 pb-3">
+      <%= link_to "レビュー一覧を見る", reviews_path, class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+</div>
