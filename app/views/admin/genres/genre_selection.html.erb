@@ -1,2 +1,13 @@
-<h1>Admin::Genres#genre_selection</h1>
-<p>Find me in app/views/admin/genres/genre_selection.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-5 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">ジャンル編集</h3>
+    </div>
+  </div>
+  <div class="col-md-4 mb-2">
+    <%= link_to '商品ジャンル一覧',  admin_item_genres_path, class:"btn btn-success btn-block" %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to 'ショップジャンル一覧',  admin_shop_genres_path, class:"btn btn-success btn-block" %>
+  </div>
+</div>

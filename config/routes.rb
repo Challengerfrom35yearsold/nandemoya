@@ -101,7 +101,7 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :edit, :show, :update]
 
-    get 'genre_selection' => 'genres#genre_selectiont'
+    get 'genre_selection' => 'genres#genre_selection'
 
     resources :item_genres, only: [:index, :edit, :create, :update]
 
