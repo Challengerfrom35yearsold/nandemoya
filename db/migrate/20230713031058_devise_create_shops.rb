@@ -14,7 +14,7 @@ class DeviseCreateShops < ActiveRecord::Migration[6.1]
       ## Rememberable
       t.datetime :remember_created_at
 
-      t.integer :genre_id, null: false
+      t.integer :shop_genre_id, null: false
       t.string :shop_name, null: false
       t.string :shop_name_kana, null: false
       t.string :postal_code, null: false

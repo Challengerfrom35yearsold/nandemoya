@@ -1,2 +1,50 @@
-<h1>Shop::Items#index</h1>
-<p>Find me in app/views/shop/items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">商品一覧</h3>
+    </div>
+    <div class="col-md-2 mb-2 offset-md-6">
+      <%= link_to"新規登録", new_shop_item_path, class:"btn btn-success btn-block" %>
+    </div>
+  </div>
+
+  <table class="table" style="border-bottom: solid 2px;">
+    <thead>
+      <tr>
+        <th style="background-color: #c1c7cd !important;">商品ID</th>
+        <th style="background-color: #c1c7cd !important;">商品名</th>
+        <th style="background-color: #c1c7cd !important;">税抜価格</th>
+        <th style="background-color: #c1c7cd !important;">ジャンル</th>
+        <th style="background-color: #c1c7cd !important;">ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <td style="border: none;">
+          <%= item.id %>
+        </td>
+        <td style="border: none;">
+          <%= link_to "#{item.name}", shop_item_path(item.id) %>
+        </td>
+        <td style="border: none;">
+          <%= item.price.to_s(:delimited) %>
+        </td>
+        <td style="border: none;">
+          <%= item.item_genre.name %>
+        </td>
+        <td style="border: none;">
+          <% if item.is_active == true %>
+            <p class="text-success">販売中</p>
+          <% else %>
+            <p class="text-secondary">販売停止中</p>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="col-md-7 mt-4 offset-md-5">
+    <%= paginate @items %>
+  </div>
+</div>

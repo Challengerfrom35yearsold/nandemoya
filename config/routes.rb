@@ -99,10 +99,10 @@ Rails.application.routes.draw do
     patch 'shop_page/information' => 'shops#shop_page_update'
     resources :shops, only: [:index, :edit, :show, :update]
 
+    get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items'
     resources :items, only: [:index, :edit, :show, :update]
 
     get 'genre_selection' => 'genres#genre_selection'
-
     resources :item_genres, only: [:index, :edit, :create, :update]
 
     resources :shop_genres, only: [:index, :edit, :create, :update]

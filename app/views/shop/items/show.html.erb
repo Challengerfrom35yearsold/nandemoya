@@ -1,2 +1,80 @@
-<h1>Shop::Items#show</h1>
-<p>Find me in app/views/shop/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-5 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">商品詳細</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <% @item.get_item_images(200,200).each do |image| %>
+        <div class="mb-2"><%= image_tag image %></div>
+      <% end %>
+    </div>
+    <div class="col-md-9">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>商品ID</h5>
+        </div>
+        <div class="col-md-3">
+          <h5><%= @item.id %></h5>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>商品名</h5>
+        </div>
+        <div class="col-md-3">
+          <h5><%= @item.name %></h5>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>ジャンル</h5>
+        </div>
+        <div class="col-md-3">
+          <h5><%= @item_genre.name %></h5>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>商品説明</h5>
+        </div>
+        <div class="col-md-3">
+          <h5><%= @item.introduction %></h5>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>税抜価格</h5>
+        </div>
+        <div class="col-md-3">
+          <h5><%= @item.price.to_s(:delimited) %>円</h5>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>税込価格</h5>
+        </div>
+        <div class="col-md-3">
+          <h5><%= @item.with_tax_price.to_s(:delimited) %>円</h5>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h5>販売ステータス</h5>
+        </div>
+        <div class="col-md-3">
+          <% if @item.is_active = true %>
+            <h5 class="text-success">販売中</h5>
+          <% else %>
+            <h5 class="text-secondary">販売停止中</h5>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-5 offset-md-2">
+        <%= link_to "編集する", edit_shop_item_path, class:"btn btn-success btn-block" %>
+        <%= link_to "レビューを見る", shop_reviews_path, class:"btn btn-success btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>

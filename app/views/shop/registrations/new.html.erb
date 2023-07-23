@@ -31,7 +31,7 @@
       <%= f.label :ジャンル名 %>
     </div>
     <div class="col-md-2 mb-2">
-      <%= f.text_field :genre_id, placeholder: "電気店", class: "rounded" %>
+      <%= f.select :shop_genre_id, options_from_collection_for_select(ShopGenre.all, :id, :name), { include_blank: '選択してください'}, class: "form-control" %>
     </div>
   </div>
 

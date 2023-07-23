@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "genre_id", null: false
+    t.integer "item_genre_id", null: false
     t.integer "shop_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "genre_id", null: false
+    t.integer "shop_genre_id", null: false
     t.string "shop_name", null: false
     t.string "shop_name_kana", null: false
     t.string "postal_code", null: false
