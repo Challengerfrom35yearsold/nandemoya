@@ -1,2 +1,75 @@
-<h1>Customer::Orders#show</h1>
-<p>Find me in app/views/customer/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">注文履歴詳細</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7 mb-2 mb-4">
+      注文情報
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="align-middle" style="background-color: #c1c7cd !important;">
+              注文日
+            </td>
+            <td class="align-middle">
+              <%= @order.created_at.strftime('%Y/%m/%d') %> <br />
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle" style="background-color: #c1c7cd !important;">
+              支払方法
+            </td>
+            <td class="align-middle">
+              <%= @order.payment_method_i18n %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mb-2 mb-4">
+      請求情報
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="align-middle" style="background-color: #c1c7cd !important;">
+              ご請求金額
+            </td>
+            <td class="align-middle">
+              <% total = 0 %>
+              <% @order_details.each do |order_detail| %>
+                <% price = (order_detail.price*1.1).floor %>
+                <% amount = order_detail.amount %>
+                <% total = total + price * amount %>
+              <% end %>
+              <%= total.to_s(:delimited) %>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mb-2">
+      注文内容<br />
+      <% @order_details.each do |order_detail| %>
+        <%= image_tag order_detail.item.get_item_image(100,100) %><br />
+        発送状態
+        <%= order_detail.shipping_status_i18n %><br />
+        商品名
+        <%= order_detail.item.name %><br />
+        単価(税込)
+        <%= (order_detail.price*1.1).floor %><br />
+        数量
+        <%= order_detail.amount %><br />
+        小計
+        <%= (order_detail.price*1.1).floor * order_detail.amount %><br />
+      <% end %>
+    </div>
+  </div>
+</div>

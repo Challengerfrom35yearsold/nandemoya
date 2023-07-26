@@ -1,6 +1,10 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <h3 class="col-md-12">商品一覧</h3>
+    <%= link_to "価格が高い順", items_path(price_order: "desc") %><br />
+    <%= link_to "価格が安い順", items_path(price_order: "asc") %><br />
+  </div>
+  <div class="row">
     <% @items.each do |item| %>
     <div class="d-flex col-md-3 mb-3 align-items-center justify-content-center">
       <%= link_to item_path(item.id) do %>
@@ -16,4 +20,5 @@
       <%= paginate @items %>
     </div>
   </div>
+</div>
 </div>

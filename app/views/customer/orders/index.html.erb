@@ -1,2 +1,33 @@
-<h1>Customer::Orders#index</h1>
-<p>Find me in app/views/customer/orders/index.html.erb</p>
+<div class="container px-1">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">注文履歴一覧</h3>
+    </div>
+  </div>
+  <% @orders.each do |order| %>
+    注文日
+    <%= order.created_at.strftime('%Y/%m/%d') %><br />
+    ご請求金額
+    <%= order.total_payment %><br />
+    発送完了状態
+    <% order.order_details.each do |order_detail| %>
+      <% order_detail.shipping_status_i18n %><br />
+    <% end %>
+    <% if order.order_details.count == order.order_details.where(shipping_status: "sent").count %>
+      全ての商品の発送が完了しています。
+    <% else %>
+      未発送の商品があります。
+    <% end %>
+    配送先
+    〒<%= order.postal_code %> <br />
+    <%= order.address %> <br />
+    <%= order.name %> <br />
+    注文商品<br />
+    <% order.items.each do |item| %>
+      <%= image_tag item.get_item_image(100,100) %>
+      <%= item.name %>
+      <%= link_to "レビューを書く", new_review_path, class:"btn btn-primary btn-block" %>
+    <% end %>
+    <%= link_to "詳細を表示する", order_path(order.id), class:"btn btn-primary btn-block" %>
+  <% end %>
+</div>

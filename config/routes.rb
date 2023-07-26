@@ -79,6 +79,8 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:index, :show, :update]
 
+    resources :order_details, only: [:update]
+
     resources :favorite_shops, only: [:index]
 
     resources :reviews, only: [:index]
@@ -107,7 +109,10 @@ Rails.application.routes.draw do
 
     resources :shop_genres, only: [:index, :edit, :create, :update]
 
+    get 'order_customers' => 'orders#order_customers_index'
     resources :orders, only: [:index, :show, :update]
+
+    resources :order_details, only: [:update]
 
     resources :what_you_wants, only: [:index, :destroy]
 
