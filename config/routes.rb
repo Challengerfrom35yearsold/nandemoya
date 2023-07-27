@@ -101,7 +101,7 @@ Rails.application.routes.draw do
     patch 'shop_page/information' => 'shops#shop_page_update'
     resources :shops, only: [:index, :edit, :show, :update]
 
-    get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items'
+    get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items_per_shop'
     resources :items, only: [:index, :edit, :show, :update]
 
     get 'genre_selection' => 'genres#genre_selection'
@@ -109,10 +109,7 @@ Rails.application.routes.draw do
 
     resources :shop_genres, only: [:index, :edit, :create, :update]
 
-    get 'order_customers' => 'orders#order_customers_index'
-    resources :orders, only: [:index, :show, :update]
-
-    resources :order_details, only: [:update]
+    resources :orders, only: [:index, :show]
 
     resources :what_you_wants, only: [:index, :destroy]
 
