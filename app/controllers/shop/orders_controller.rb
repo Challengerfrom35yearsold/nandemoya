@@ -1,12 +1,10 @@
 class Shop::OrdersController < ApplicationController
   def index
-    #@orders = Order.where(shop_id: current_shop.id).page(params[:page])
-    @order_details = OrderDetail.joins(:shop,:item).where(shop_id: current_shop.id)
+    @orders = Order.includes(:items).where(items: {shop_id: current_shop.id}).page(params[:page])
   end
-
 
   def show
     @order = Order.find(params[:id])
-    @order_details = Order.order_details.joins(:shop,:item).where(shop[current_shop.id])
+    @order_details = @order.order_details.where(items: {shop_id: current_shop.id})
   end
 end

@@ -61,6 +61,10 @@
         <%= image_tag order_detail.item.get_item_image(100,100) %><br />
         発送状態
         <%= order_detail.shipping_status_i18n %><br />
+        購入先ショップ
+        <% shop_id = order_detail.item.shop_id %>
+        <% shop = Shop.find(shop_id) %>
+        <%= shop.shop_name %><br />
         商品名
         <%= order_detail.item.name %><br />
         単価(税込)

@@ -19,17 +19,22 @@
       <% @orders.each do |order| %>
       <tr>
         <td style="border: none;">
-          <%= order.created_at.strftime('%Y/%m/%d') %>
+          <%= link_to shop_order_path(order.id) do %>
+            <%= order.created_at.strftime('%Y/%m/%d') %>
+          <% end %>
         </td>
         <td style="border: none;">
           <%= order.customer.last_name+order.customer.first_name %>
         </td>
         <td style="border: none;">
-          <%= item.price.to_s(:delimited) %>
+          <%#= DM %>
         </td>
         <td style="border: none;">
+          <%# order_details = order.order_details %>
+          <%# order_details_shop = order_details.where(items: {shop_id: current_shop.id}) %>
           <%# order.order_details.each do |order_detail| %>
-            <%# order_detail.shipping_status_i18n %><br />
+
+            <%# order_detail.shipping_status_i18n %>
           <%# end %>
           <%# if order.order_details.count == order.order_details.where(shipping_status: "sent").count %>
             発送済み
