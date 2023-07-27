@@ -25,11 +25,7 @@
         <td style="border: none;">
           <%= order.customer.last_name+order.customer.first_name %>
         </td>
-
         <td style="border: none;">
-          <% order.order_details.each do |order_detail| %>
-            <% order_detail.shipping_status_i18n %>
-          <% end %>
           <% if order.order_details.count == order.order_details.where(shipping_status: "sent").count %>
             発送済み
           <% else %>

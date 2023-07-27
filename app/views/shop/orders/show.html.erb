@@ -36,9 +36,11 @@
     <div class="col-md-2 mb-2">
       <% total = 0 %>
       <% @order_details.each do |order_detail| %>
-        <% price = (order_detail.price*1.1).floor %>
-        <% amount = order_detail.amount %>
-        <% total = total + price * amount %>
+        <% if order_detail.item.shop_id == current_shop.id %>
+          <% price = (order_detail.price*1.1).floor %>
+          <% amount = order_detail.amount %>
+          <% total = total + price * amount %>
+        <% end %>
       <% end %>
       <%= total.to_s(:delimited) %>
     </div>
@@ -57,25 +59,27 @@
     <div class="col-md-10 mb-2">
       注文内容<br />
       <% @order_details.each do |order_detail| %>
-        <%= image_tag order_detail.item.get_item_image(100,100) %><br />
-        発送状態
-        <%= form_with model: order_detail, url: shop_order_detail_path(order_detail.id), method: :patch do |f| %>
-          <div class="form-group">
-            <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |k| [t("enums.order_detail.shipping_status.#{k}"), k] } %>
+        <% if order_detail.item.shop_id == current_shop.id %>
+          <%= image_tag order_detail.item.get_item_image(100,100) %><br />
+          発送状態
+          <%= form_with model: order_detail, url: shop_order_detail_path(order_detail.id), method: :patch do |f| %>
+            <div class="form-group">
+              <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |k| [t("enums.order_detail.shipping_status.#{k}"), k] } %>
+            </div>
           </div>
-        </div>
-        <div class="col-md-3 mb-2 offset-md-1">
-         <%= f.submit '更新', class:"btn btn-success btn-block" %>
-        </div>
+          <div class="col-md-3 mb-2 offset-md-1">
+           <%= f.submit '更新', class:"btn btn-success btn-block" %>
+          </div>
+          <% end %>
+          商品名
+          <%= order_detail.item.name %><br />
+          単価(税込)
+          <%= (order_detail.price*1.1).floor %><br />
+          数量
+          <%= order_detail.amount %><br />
+          小計
+          <%= (order_detail.price*1.1).floor * order_detail.amount %><br />
         <% end %>
-        商品名
-        <%= order_detail.item.name %><br />
-        単価(税込)
-        <%= (order_detail.price*1.1).floor %><br />
-        数量
-        <%= order_detail.amount %><br />
-        小計
-        <%= (order_detail.price*1.1).floor * order_detail.amount %><br />
       <% end %>
     </div>
   </div>

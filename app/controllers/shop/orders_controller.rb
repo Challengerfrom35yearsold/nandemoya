@@ -5,6 +5,6 @@ class Shop::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details.where(items: {shop_id: current_shop.id})
+    @order_details = @order.order_details
   end
 end
