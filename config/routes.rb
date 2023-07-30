@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     get 'my_page' => 'shops#show'
     get 'my_page/information/edit' => 'shops#edit'
     patch 'my_page/information' => 'shops#update'
+    get 'shop_page/new' => 'shops#shop_page_new'
     get 'shop_page' => 'shops#shop_page'
     get 'shop_page/information/edit' => 'shops#shop_page_edit'
     patch 'shop_page/information' => 'shops#shop_page_update'

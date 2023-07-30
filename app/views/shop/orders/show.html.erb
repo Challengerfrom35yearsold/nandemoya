@@ -66,7 +66,6 @@
             <div class="form-group">
               <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |k| [t("enums.order_detail.shipping_status.#{k}"), k] } %>
             </div>
-          </div>
           <div class="col-md-3 mb-2 offset-md-1">
            <%= f.submit '更新', class:"btn btn-success btn-block" %>
           </div>

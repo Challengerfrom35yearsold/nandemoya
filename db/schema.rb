@@ -198,10 +198,13 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_deleted", default: false, null: false
-    t.string "about_shipping_cost"
-    t.string "about_personal_information"
-    t.string "about_payment"
-    t.string "about_inquiry"
+    t.text "shipping_carrier"
+    t.text "about_shipping"
+    t.text "personal_information"
+    t.text "settlement"
+    t.text "inquiry"
+    t.string "rogo_arrangement_btn"
+    t.string "introduction_arrangement_btn"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_shops_on_email", unique: true

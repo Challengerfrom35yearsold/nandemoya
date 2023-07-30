@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_many_attached :images
   belongs_to :item_genre
+  belongs_to :shop
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
 

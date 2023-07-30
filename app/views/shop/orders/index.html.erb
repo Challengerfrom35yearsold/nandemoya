@@ -30,21 +30,14 @@
           <%#= DM %>
         </td>
         <td style="border: none;">
-
           <% total_current_shop = 0 %>
           <% order.order_details.each do |order_detail| %>
             <% if order_detail.item.shop_id == current_shop.id %>
               <% total_current_shop = total_current_shop + 1 %>
             <% end %>
           <% end %>
-
-
           <% total_shipping_status_sent = 0 %>
           <% order.order_details.each do |order_detail| %>
-
-            <%# if order_detail.item.shop_id == current_shop.id && order.order_details.where(shipping_status: "sent") %>
-            <!--totalがnillとなる。-->
-
             <% if order_detail.item.shop_id == current_shop.id %>
               <% if order_detail.shipping_status == "sent" %>
                 <% total_shipping_status_sent = total_shipping_status_sent + 1 %>

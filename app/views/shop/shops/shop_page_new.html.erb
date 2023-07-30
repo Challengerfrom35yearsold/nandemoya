@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 mb-4 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">ショップ情報編集</h3>
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">ショップページ新規登録</h3>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-md-2 mb-2">
         ショップ紹介画像<br />
-        (10枚まで登録可能)
+        (12枚まで登録可能)
       </div>
       <div class="col-md-4 mb-2">
         <%= f.file_field :images, accept: "image/*", multiple: true %><br />
@@ -53,7 +53,7 @@
         配送キャリア
       </div>
       <div class="col-md-4 mb-2">
-        <%= f.text_area :shipping_carrier, class: "rounded" %>
+        <%= f.text_area :shipping_carrier, placeholder: "〇〇運輸", class: "form-control" %>
       </div>
     </div>
 
@@ -62,7 +62,7 @@
         発送について
       </div>
       <div class="col-md-4 mb-2">
-        <%= f.text_area :about_shipping, class: "rounded" %>
+        <%= f.text_area :about_shipping, placeholder: "当日12時までのご注文で当日中に出荷\n以降は翌営業日に出荷いたします。", class: "form-control" %>
       </div>
     </div>
 
@@ -71,7 +71,7 @@
         個人情報の取り扱いについて
       </div>
       <div class="col-md-4 mb-2">
-        <%= f.text_area :personal_information, class: "rounded" %>
+        <%= f.text_area :personal_information, placeholder: "取得した個人情報については以下の目的で利用します。\n〇商品の発送、代金の請求のため\n〇お客様へ弊社のキャンペーンやサービスの案内のため\n〇お客様からのご要望やお問い合わせに回答するため", class: "form-control" %>
       </div>
     </div>
 
@@ -80,7 +80,7 @@
         決済について
       </div>
       <div class="col-md-4 mb-2">
-        <%= f.text_area :settlement, class: "rounded" %>
+        <%= f.text_area :settlement, placeholder: "クレジットカード、銀行振り込みがご利用いただけます", class: "form-control" %>
       </div>
     </div>
 
@@ -89,12 +89,12 @@
         お問い合わせについて
       </div>
       <div class="col-md-4 mb-2">
-        <%= f.text_area :inquiry, class: "rounded" %>
+        <%= f.text_area :inquiry, placeholder: "電話番号：00000000000及び、\n問い合わせフォームより問い合わせが可能です。", class: "form-control" %>
       </div>
     </div>
 
     <div class="col-md-4 offset-md-4">
-      <%= f.submit '編集内容を保存', class:"btn btn-success btn-block" %>
+      <%= f.submit '新規登録', class:"btn btn-success btn-block" %>
     </div>
     <% end %>
   </div>

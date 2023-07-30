@@ -1,2 +1,59 @@
-<h1>Shop::Shops#shop_page</h1>
-<p>Find me in app/views/shop/shops/shop_page.html.erb</p>
+<div class="container px-sm-0">
+  <div class="row">
+    <div class="col-md-12 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="col-md-4 px-2" style="background-color: #c1c7cd !important;">ショップページ</h3>
+      <div class="col-md-4"><%= link_to '編集する',  shop_shop_page_information_edit_path, class:"btn btn-success btn-block" %></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <% if @shop.rogo_arrangement_btn == "left_alignment" %>
+    <div class="col-md-3">
+      <%= image_tag @shop.get_shop_image(200,200) %>
+    </div>
+    <% elsif @shop.rogo_arrangement_btn == "center_alignment" %>
+    <div class="d-flex col-md-12 mb-3 align-items-center justify-content-center">
+      <%= image_tag @shop.get_shop_image(200,200) %>
+    </div>
+    <% else %>
+    <div class="d-flex col-md-12 mb-3 align-items-center justify-content-end">
+      <%= image_tag @shop.get_shop_image(200,200) %>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <% if @shop.introduction_arrangement_btn == "side_by_side" %>
+      <% @shop.get_shop_images(200,200).each do |image| %>
+        <div class="col-3 mb-3"><%= image_tag image %></div>
+      <% end %>
+    <% else %>
+      <% @shop.get_shop_images(700,700).each do |image| %>
+        <div class="mx-auto d-block mb-3"><%= image_tag image %></div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="d-flex col-md-12 mb-3 justify-content-center">
+      <div class="col-5">
+        発送について<br />
+        <%= @shop.about_shipping %>
+      </div>
+      <div class="col-md-5">
+        個人情報の取り扱いについて<br />
+      <%= @shop.personal_information %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex col-md-12 mb-3 justify-content-center">
+      <div class="col-md-5">
+        決済について<br />
+        <%= @shop.settlement %>
+      </div>
+      <div class="col-md-5">
+        お問い合わせについて<br />
+        <%= @shop.inquiry %>
+      </div>
+    </div>
+  </div>
+</div>

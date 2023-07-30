@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.where(id: params[:id]).includes(:items).first
     @order_details = @order.order_details
   end
 end
