@@ -7,8 +7,6 @@ class Shop < ApplicationRecord
   has_many_attached :images
   belongs_to :shop_genre
   has_many :items, dependent: :destroy
-  #attr_accessor :rogo_arrangement_btn
-  #attr_accessor :introduction_arrangement_btn
 
   def get_shop_images(width, height)
     unless images.attached?

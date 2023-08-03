@@ -28,7 +28,12 @@ Rails.application.routes.draw do
 
     resources :customer_inquiry_threads, only: [:create]
 
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      get 'item_reviews' => 'reviews#item_reviews'
+      resources :reviews, only: [:new, :index, :edit, :create, :update, :destroy]
+    end
+
+    resources :reviews, only: [:index]
 
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :create, :show, :update ,:destroy]
@@ -49,8 +54,6 @@ Rails.application.routes.draw do
 
     resources :favorite_shops, only: [:index, :create, :update, :destroy]
 
-    get 'item_reviews' => 'reviews#item_reviews'
-    resources :reviews, only: [:new, :index, :edit, :create, :update, :destroy]
   end
 
   scope module: :shop do
@@ -76,7 +79,9 @@ Rails.application.routes.draw do
     get 'unsubscribe' => 'shops#unsubscribe'
     patch 'withdraw' => 'shops#withdraw'
 
-    resources :items, only: [:new, :index, :edit, :create, :show, :update]
+    resources :items, only: [:new, :index, :edit, :create, :show, :update] do
+      resources :reviews, only: [:index]
+    end
 
     resources :orders, only: [:index, :show, :update]
 
@@ -84,7 +89,6 @@ Rails.application.routes.draw do
 
     resources :favorite_shops, only: [:index]
 
-    resources :reviews, only: [:index]
   end
 
 
@@ -103,7 +107,9 @@ Rails.application.routes.draw do
     resources :shops, only: [:index, :edit, :show, :update]
 
     get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items_per_shop'
-    resources :items, only: [:index, :edit, :show, :update]
+    resources :items, only: [:index, :edit, :show, :update] do
+      resources :reviews, only: [:index, :edit, :update, :destroy]
+    end
 
     get 'genre_selection' => 'genres#genre_selection'
     resources :item_genres, only: [:index, :edit, :create, :update]
@@ -115,8 +121,6 @@ Rails.application.routes.draw do
     resources :what_you_wants, only: [:index, :destroy]
 
     resources :favorite_shops, only: [:index, :update, :destroy]
-
-    resources :reviews, only: [:index, :edit, :update, :destroy]
 
   end
 

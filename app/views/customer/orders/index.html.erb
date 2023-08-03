@@ -23,7 +23,7 @@
     <% order.items.each do |item| %>
       <%= image_tag item.get_item_image(100,100) %>
       <%= item.name %>
-      <%= link_to "レビューを書く", new_review_path, class:"btn btn-primary btn-block" %>
+      <%= link_to "レビューを書く", new_item_review_path(item.id), class:"btn btn-primary btn-block" %>
     <% end %>
     <%= link_to "詳細を表示する", order_path(order.id), class:"btn btn-primary btn-block" %>
   <% end %>

@@ -73,7 +73,7 @@
       </div>
       <div class="col-md-5 offset-md-2">
         <%= link_to "編集する", edit_admin_item_path, class:"btn btn-success btn-block" %>
-        <%= link_to "レビューを見る", admin_reviews_path, class:"btn btn-success btn-block" %>
+        <%= link_to "レビューを見る", admin_item_reviews_path(@item.id), class:"btn btn-success btn-block" %>
       </div>
     </div>
   </div>

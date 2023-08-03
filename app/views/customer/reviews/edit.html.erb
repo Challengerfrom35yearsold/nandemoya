@@ -1,2 +1,54 @@
-<h1>Customer::Reviews#edit</h1>
-<p>Find me in app/views/customer/reviews/edit.html.erb</p>
+<div class="container px-sm-0">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">レビュー編集</h3>
+    </div>
+  </div>
+
+  <%= form_with model: @review,url: item_review_path(@item.id),method: :patch  do |f| %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2 mb-2 offset-md-3">
+        総合評価
+      </div>
+      <div class="col-md-4 mb-2">
+        <div id="post_raty"></div>
+        <script>
+          $(document).on('turbolinks:load', function() {
+            let elem = document.querySelector('#post_raty');
+            if (elem == null) return;
+            elem.innerHTML = ""
+            let opt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'review[number_of_stars]',
+            };
+            raty(elem, opt);
+          });
+        </script>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 mb-2 offset-md-3">
+        タイトル
+      </div>
+      <div class="col-md-4 mb-2">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 mb-2 offset-md-3">
+        本文
+      </div>
+      <div class="col-md-4 mb-2">
+        <%= f.text_area :review_content, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-4 offset-md-4">
+      <%= f.submit '編集内容を保存', class:"btn btn-success btn-block" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+

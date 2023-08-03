@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :item_id, null: false
       t.string :title, null: false
       t.text :review_content, null: false
+      t.integer :number_of_stars, null: false
 
       t.timestamps
     end
