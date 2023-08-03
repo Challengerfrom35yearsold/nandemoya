@@ -101,10 +101,11 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:index, :edit, :show, :update]
 
-    get 'shop_page' => 'shops#shop_page'
-    get 'shop_page/information/edit' => 'shops#shop_page_edit'
-    patch 'shop_page/information' => 'shops#shop_page_update'
-    resources :shops, only: [:index, :edit, :show, :update]
+    resources :shops, only: [:index, :edit, :show, :update] do
+      get 'shop_page' => 'shops#shop_page'
+      get 'shop_page/information/edit' => 'shops#shop_page_edit'
+      patch 'shop_page/information' => 'shops#shop_page_update'
+    end
 
     get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items_per_shop'
     resources :items, only: [:index, :edit, :show, :update] do
