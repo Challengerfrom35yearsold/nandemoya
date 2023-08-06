@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
     resources :customer_inquiry_threads, only: [:create]
 
-    resources :shops, only: [:show]
+    resources :customer_shops, only: [:show]
 
     resources :items, only: [:index, :show] do
       get 'item_reviews' => 'reviews#item_reviews'

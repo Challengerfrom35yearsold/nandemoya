@@ -33,7 +33,7 @@
       </div>
       <% end %>
     </div>
-    <%= link_to shop_path(@item.shop.id) do %>
+    <%= link_to customer_shop_path(@item.shop.id) do %>
       <%= @item.shop.shop_name %>
     <% end %>
     <%= link_to "レビューを見る", item_item_reviews_path(@item.id), class:"btn btn-primary btn-block" %>
