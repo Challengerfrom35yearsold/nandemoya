@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :customer do
+    get 'shops/show'
+  end
   namespace :admin do
     get 'favorite_shops/index'
   end
@@ -24,9 +27,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
 
-    resources :customer_inquiries, only: [:new, :index, :create]
+    resources :customer_inquiries, only: [:new, :index, :create, :show]
 
     resources :customer_inquiry_threads, only: [:create]
+
+    resources :shops, only: [:show]
 
     resources :items, only: [:index, :show] do
       get 'item_reviews' => 'reviews#item_reviews'

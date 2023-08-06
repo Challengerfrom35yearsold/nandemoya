@@ -1,2 +1,32 @@
-<h1>Customer::CustomerInquiries#new</h1>
-<p>Find me in app/views/customer/customer_inquiries/new.html.erb</p>
+<div class="container px-sm-0">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">お問い合わせ</h3>
+      <div class="col-md-4"><%= link_to '過去のお問い合わせへ',  customer_inquiries_path, class:"btn btn-success btn-block" %></div>
+    </div>
+  </div>
+
+  <%= form_with model: @customer_inquiry,url: new_customer_inquiry_path,method: :post  do |f| %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2 mb-2 offset-md-3">
+        タイトル
+      </div>
+      <div class="col-md-4 mb-2">
+        <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 mb-2 offset-md-3">
+        本文
+      </div>
+      <div class="col-md-4 mb-2">
+        <%= f.text_area :inquiry, placeholder: "お問い合わせ内容を入力してください。", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-4 offset-md-4">
+      <%= f.submit '問い合わせする', class:"btn btn-success btn-block" %>
+    </div>
+    <% end %>
+  </div>
+</div>

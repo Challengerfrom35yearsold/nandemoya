@@ -8,7 +8,8 @@
     <% @items.each do |item| %>
     <div class="col-3">
       <div class="card" style="width: 18rem;">
-      <%= image_tag item.get_item_image(200,200) %>
+      <%= link_to item_path(item.id) do %>
+        <%= image_tag item.get_item_image(200,200) %>
         <div class="card-body">
           <p class="card-text">
             <%= item.name %> <br />
@@ -16,6 +17,7 @@
           </p>
         </div>
       </div>
+      <% end %>
     </div>
     <% end %>
     <div class="d-flex col-12 justify-content-center">
