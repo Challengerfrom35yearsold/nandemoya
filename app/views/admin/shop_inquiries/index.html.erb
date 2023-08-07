@@ -1,0 +1,28 @@
+<div class="container px-sm-0">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">問い合わせ一覧</h3>
+    </div>
+  </div>
+  <% @shop_inquiries.each do |shop_inquiry| %>
+    問い合わせ日時<br />
+    <%= l shop_inquiry.created_at %><br />
+    <%= "#{shop_inquiry.shop.shop_name}さんからの問い合わせ" %><br />
+    問い合わせ進捗状態<%= shop_inquiry.inquiry_status_i18n %><br />
+    タイトル<br />
+    <%= shop_inquiry.title %><br />
+    お問い合わせ内容<br />
+    <%= shop_inquiry.inquiry %><br />
+    <div class="row">
+    <% shop_inquiry.shop_inquiry_threads.each do |shop_inquiry_thread| %>
+      <% if shop_inquiry_thread.speaker_type == "shop" %>
+        <%= shop_inquiry_thread.message %>
+      <% else shop_inquiry_thread.speaker_type == "admin" %>
+      <div class="col-md-2 offset-md-2 mb-2">
+        <%= shop_inquiry_thread.message %>
+      </div>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
+</div>

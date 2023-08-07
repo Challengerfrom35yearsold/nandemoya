@@ -29,7 +29,6 @@ class Customer::CartItemsController < ApplicationController
     @cart_item_existing = @cart_items.find_by(item_id: params[:cart_item][:item_id])
     if @cart_item_existing
       new_amount = @cart_item_existing.amount+@cart_item.amount
-      #@cart_item_existing.update_attribute(:amount, new_amount)
       @cart_item_existing.update(amount: new_amount)
       @cart_item.delete
     else

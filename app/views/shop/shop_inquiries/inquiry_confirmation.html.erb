@@ -3,7 +3,7 @@
     <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
       <h3 class="px-2" style="background-color: #c1c7cd !important;">問い合わせ中</h3>
       <div class="col-md-4">
-        <%= link_to '過去のお問い合わせへ',  admin_shop_inquiries_path, class:"btn btn-success btn-block" %>
+        <%= link_to '過去のお問い合わせへ',  shop_shop_inquiries_path, class:"btn btn-success btn-block" %>
       </div>
     </div>
   </div>
@@ -11,7 +11,6 @@
     <% if shop_inquiry.inquiry_status == "resolution" %>
       問い合わせ日時<br />
       <%= l shop_inquiry.created_at %><br />
-      <%= "#{shop_inquiry.shop.shop_name}さんからの問い合わせ" %><br />
       問い合わせ進捗状態<%= shop_inquiry.inquiry_status_i18n %><br />
       タイトル<br />
       <%= shop_inquiry.title %><br />
@@ -21,18 +20,21 @@
       <% shop_inquiry.shop_inquiry_threads.each do |shop_inquiry_thread| %>
         <% if shop_inquiry_thread.speaker_type == "shop" %>
           <%= shop_inquiry_thread.message %><br />
-        <% else shop_inquiry_thread.speaker_type == "admin" %>
+        <% else customer_inquiry_thread.speaker_type == "admin" %>
         <div class="col-md-2 offset-md-2 mb-2">
           <%= shop_inquiry_thread.message %>
         </div>
         <% end %>
       <% end %>
       </div>
-      <%= form_with model: @shop_inquiry_thread,url: admin_shop_inquiry_threads_path,method: :post  do |f| %>
+      <div class="col-md-4">
+        <%= link_to '問題が解決した場合はこちらをクリックしてください。',  shop_shop_inquiry_path(shop_inquiry.id), method: :patch, class:"btn btn-success btn-block" %>
+      </div>
+      <%= form_with model: @shop_inquiry_thread,url: shop_shop_inquiry_threads_path,method: :post  do |f| %>
       <div class="form-group">
         <div class="row">
           <div class="col-md-2 mb-2 offset-md-3">
-            <%= f.text_area :message, placeholder: "ショップからの返答に対する回答を入力してください", class: "form-control" %>
+            <%= f.text_area :message, placeholder: "回答に対する返答を入力してください", class: "form-control" %>
           </div>
         </div>
         <%= f.hidden_field :shop_inquiry_id, :value => shop_inquiry.id %>

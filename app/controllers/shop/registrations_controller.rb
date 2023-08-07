@@ -8,7 +8,7 @@ class Shop::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_out_path_for(resource)
-    shop_path
+    shop_about_path
   end
 
   # before_action :configure_sign_up_params, only: [:create]

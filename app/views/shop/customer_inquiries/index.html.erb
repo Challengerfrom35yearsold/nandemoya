@@ -7,9 +7,9 @@
   <% @customer_inquiries.each do |customer_inquiry| %>
     問い合わせ日時<br />
     <%= l customer_inquiry.created_at %><br />
+    <%= "#{customer_inquiry.customer.last_name + customer_inquiry.customer.first_name}さんからの問い合わせ" %><br />
+
     問い合わせ進捗状態<%= customer_inquiry.inquiry_status_i18n %><br />
-    問い合わせショップ名<br />
-    <%= customer_inquiry.shop.shop_name %><br />
     問い合わせ商品/商品番号<br />
     <%= customer_inquiry.item.name %>/<%= customer_inquiry.item.id %><br />
     タイトル<br />

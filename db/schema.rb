@@ -72,9 +72,10 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
   create_table "customer_inquiries", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "shop_id", null: false
+    t.integer "item_id", null: false
     t.string "title", null: false
     t.text "inquiry", null: false
-    t.integer "inquiry_status", null: false
+    t.integer "inquiry_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -173,7 +174,7 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
     t.integer "shop_id", null: false
     t.string "title", null: false
     t.text "inquiry", null: false
-    t.integer "inquiry_status", null: false
+    t.integer "inquiry_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

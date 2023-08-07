@@ -37,6 +37,6 @@
       <%= @item.shop.shop_name %>
     <% end %>
     <%= link_to "レビューを見る", item_item_reviews_path(@item.id), class:"btn btn-primary btn-block" %>
-    <%= link_to "問い合わせする", new_customer_inquiry_path, class:"btn btn-primary btn-block" %>
+    <%= link_to "問い合わせする", new_customer_inquiry_path(:shop_id => @item.shop.id, :item_id => @item.id), class:"btn btn-primary btn-block" %>
   </div>
 </div>

@@ -3,7 +3,7 @@
     <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
       <h3 class="px-2" style="background-color: #c1c7cd !important;">問い合わせ中</h3>
       <div class="col-md-4">
-        <%= link_to '過去のお問い合わせへ',  shop_customer_inquiries_path, class:"btn btn-success btn-block" %>
+        <%= link_to '過去のお問い合わせへ',  customer_inquiries_path, class:"btn btn-success btn-block" %>
       </div>
     </div>
   </div>
@@ -11,8 +11,9 @@
     <% if customer_inquiry.inquiry_status == "resolution" %>
       問い合わせ日時<br />
       <%= l customer_inquiry.created_at %><br />
-      <%= "#{customer_inquiry.customer.last_name + customer_inquiry.customer.first_name}さんからの問い合わせ" %><br />
       問い合わせ進捗状態<%= customer_inquiry.inquiry_status_i18n %><br />
+      問い合わせショップ名<br />
+      <%= customer_inquiry.shop.shop_name %><br />
       問い合わせ商品/商品番号<br />
       <%= customer_inquiry.item.name %>/<%= customer_inquiry.item.id %><br />
       タイトル<br />
@@ -30,11 +31,14 @@
         <% end %>
       <% end %>
       </div>
-      <%= form_with model: @customer_inquiry_thread,url: shop_customer_inquiry_threads_path,method: :post  do |f| %>
+      <div class="col-md-4">
+        <%= link_to '問題が解決した場合はこちらをクリックしてください。',  customer_inquiry_path(customer_inquiry.id), method: :patch, class:"btn btn-success btn-block" %>
+      </div>
+      <%= form_with model: @customer_inquiry_thread,url: customer_inquiry_threads_path,method: :post  do |f| %>
       <div class="form-group">
         <div class="row">
           <div class="col-md-2 mb-2 offset-md-3">
-            <%= f.text_area :message, placeholder: "会員からの返答に対する回答を入力してください", class: "form-control" %>
+            <%= f.text_area :message, placeholder: "回答に対する返答を入力してください", class: "form-control" %>
           </div>
         </div>
         <%= f.hidden_field :customer_inquiry_id, :value => customer_inquiry.id %>
@@ -47,3 +51,4 @@
   <% end %>
   </div>
 </div>
+

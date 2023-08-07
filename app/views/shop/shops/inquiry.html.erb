@@ -1,2 +1,13 @@
-<h1>Shop::Shops#inquiry</h1>
-<p>Find me in app/views/shop/shops/inquiry.html.erb</p>
+<div class="container px-sm-0">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">問い合わせ画面</h3>
+    </div>
+  </div>
+  <%= link_to "会員からの問い合わせを確認する", shop_path, class:"btn btn-success btn-block" %>
+  <h3 class="px-2" style="background-color: #c1c7cd !important;">管理者に問い合わせる</h3>
+  電話で問い合わせる<br />
+  電話番号：00000000000<br />
+
+  問い合わせフォームから問い合わせる<br />
+  <%= link_to "問い合わせフォームへ", new_shop_shop_inquiry_path, class:"btn btn-success btn-block" %>
