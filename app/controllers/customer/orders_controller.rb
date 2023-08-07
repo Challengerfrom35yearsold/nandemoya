@@ -33,7 +33,6 @@ class Customer::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.save
 
-
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -44,6 +43,17 @@ class Customer::OrdersController < ApplicationController
       @order_detail.save
     end
     @cart_items.destroy_all
+
+    @what_you_wants = WhatYouWant.where(customer_id: current_customer.id)
+    @order_details = OrderDetail.where(order_id: @order.id)
+    @what_you_wants.each do |what_you_want|
+      @what_you_want_item_id = what_you_want.item.id
+      @order_details.each do |order_detail|
+        if @what_you_want_item_id == order_detail.item.id
+          what_you_want.destroy
+        end
+      end
+    end
     redirect_to orders_complete_path
   end
 

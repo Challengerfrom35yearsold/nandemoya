@@ -9,4 +9,5 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :customer_inquiries, dependent: :destroy
+  has_many :what_you_wants, dependent: :destroy
 end

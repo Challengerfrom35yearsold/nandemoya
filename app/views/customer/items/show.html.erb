@@ -33,6 +33,16 @@
       </div>
       <% end %>
     </div>
+    <div class="col-md-12 mb-2">
+      <%= form_with model: @what_you_want, url: what_you_wants_path,method: :post  do |f| %>
+      <div class="row">
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <div class="col-md-5">
+          <%= f.submit 'ほしいものリストに追加する', class:"btn btn-success btn-block" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
     <%= link_to customer_shop_path(@item.shop.id) do %>
       <%= @item.shop.shop_name %>
     <% end %>
