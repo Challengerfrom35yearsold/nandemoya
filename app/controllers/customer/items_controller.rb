@@ -7,6 +7,17 @@ class Customer::ItemsController < ApplicationController
     else
       @items = Item.all
     end
+
+    if params[:price_order] == "desc"
+      @items = @items.order(price: "DESC")
+    else params[:price_order] == "asc"
+      @items = @items.order(price: "ASC")
+    end
+    @items = @items.page(params[:page]).per(8)
+  end
+
+  def items_per_shop
+    @items = Item.where(shop_id: params[:id]).page(params[:page])
     if params[:price_order] == "desc"
       @items = @items.order(price: "DESC")
     else params[:price_order] == "asc"
@@ -19,5 +30,6 @@ class Customer::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
     @what_you_want = WhatYouWant.new
+    @favorite_shop = FavoriteShop.new
   end
 end

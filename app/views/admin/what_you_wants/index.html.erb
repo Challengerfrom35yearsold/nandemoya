@@ -1,2 +1,34 @@
-<h1>Admin::WhatYouWants#index</h1>
-<p>Find me in app/views/admin/what_you_wants/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
+      <h3 class="px-2" style="background-color: #c1c7cd !important;">ほしいもの一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <% @what_you_wants.each do |what_you_want| %>
+    <div class="col-md-3">
+      <%= image_tag what_you_want.item.get_item_image(200,200) %>
+    </div>
+    <div class="col-md-12 mb-2">
+      <h3>
+        <%= "#{l what_you_want.created_at}に追加されました" %>
+      </h3>
+    </div>
+    <div class="col-md-12 mb-5">
+      <h4>
+        <%= what_you_want.item.shop.shop_name %>
+      </h4>
+    </div>
+    <div class="col-md-12 mb-2">
+      <h3>
+        <%= what_you_want.item.name %>
+      </h3>
+    </div>
+    <div class="col-md-12 mb-4 d-flex align-items-center">
+      <h4>
+        ￥<%= what_you_want.item.with_tax_price.to_s(:delimited) %><span style="font-size:70%">(税込)</span>
+      </h4>
+    </div>
+    <% end %>
+  </div>
+</div>

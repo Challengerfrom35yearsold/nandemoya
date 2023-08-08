@@ -27,9 +27,6 @@
           <%= order.customer.last_name+order.customer.first_name %>
         </td>
         <td style="border: none;">
-          <%#= DM %>
-        </td>
-        <td style="border: none;">
           <% total_current_shop = 0 %>
           <% order.order_details.each do |order_detail| %>
             <% if order_detail.item.shop_id == current_shop.id %>

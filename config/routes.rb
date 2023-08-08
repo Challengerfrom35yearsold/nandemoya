@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     resources :customer_shops, only: [:show]
 
+    get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items_per_shop'
     resources :items, only: [:index, :show] do
       get 'item_reviews' => 'reviews#item_reviews'
       resources :reviews, only: [:new, :index, :edit, :create, :update, :destroy]
@@ -58,7 +59,9 @@ Rails.application.routes.draw do
 
     resources :what_you_wants, only: [:index, :create, :destroy]
 
-    resources :favorite_shops, only: [:index, :create, :update, :destroy]
+    patch 'favorite_shops_receive/:id' => 'favorite_shops#receive', as: 'favorite_shop_receive'
+    patch 'favorite_shops_unlock/:id' => 'favorite_shops#unlock', as: 'favorite_shop_unlock'
+    resources :favorite_shops, only: [:index, :create, :destroy]
 
   end
 

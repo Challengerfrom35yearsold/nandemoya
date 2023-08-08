@@ -8,6 +8,7 @@ class Shop < ApplicationRecord
   belongs_to :shop_genre
   has_many :items, dependent: :destroy
   has_many :customer_inquiries, dependent: :destroy
+  has_many :favorite_shops, dependent: :destroy
 
   def get_shop_images(width, height)
     unless images.attached?

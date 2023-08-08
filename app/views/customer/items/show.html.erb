@@ -46,6 +46,10 @@
     <%= link_to customer_shop_path(@item.shop.id) do %>
       <%= @item.shop.shop_name %>
     <% end %>
+    <%= form_with model: @favorite_shop, url: favorite_shops_path,method: :post  do |f| %>
+      <%= f.hidden_field :shop_id, :value => @item.shop.id %>
+      <%= f.submit 'お気に入りショップに追加する', class:"btn btn-success btn-block" %>
+    <% end %>
     <%= link_to "レビューを見る", item_item_reviews_path(@item.id), class:"btn btn-primary btn-block" %>
     <%= link_to "問い合わせする", new_customer_inquiry_path(:shop_id => @item.shop.id, :item_id => @item.id), class:"btn btn-primary btn-block" %>
   </div>
