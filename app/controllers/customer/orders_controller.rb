@@ -5,6 +5,24 @@ class Customer::OrdersController < ApplicationController
   end
 
   def comfirm
+
+    if params[:order]
+      Rails.cache.fetch('order') do
+        params[:order]
+      end
+      Rails.cache.fetch('order_address_btn') do
+        params[:order][:address_btn]
+      end
+    else
+      if Rails.cache.fetch('order')
+        params[:order] = Rails.cache.fetch('order')
+        params[:order][:address_btn] = Rails.cache.fetch('order_address_btn')
+      else
+        redirect_to new_order_path
+        return
+      end
+    end
+
     @order = Order.new(order_params)
 
     if params[:order][:address_btn] == "myself_address"
@@ -47,9 +65,9 @@ class Customer::OrdersController < ApplicationController
     @what_you_wants = WhatYouWant.where(customer_id: current_customer.id)
     @order_details = OrderDetail.where(order_id: @order.id)
     @what_you_wants.each do |what_you_want|
-      @what_you_want_item_id = what_you_want.item.id
+      @what_you_want_item_id = what_you_want.item_id
       @order_details.each do |order_detail|
-        if @what_you_want_item_id == order_detail.item.id
+        if @what_you_want_item_id == order_detail.item_id
           what_you_want.destroy
         end
       end
