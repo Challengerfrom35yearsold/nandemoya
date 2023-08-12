@@ -1,38 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-4 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">配送先編集</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>配送先編集</h2>
     </div>
+    <%= form_with model: @address,url: address_path, method: :patch  do |f| %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :name, "宛先" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :postal_code, class: "form-control"%>
+        </div>
+      </div>
+      <div class="row mb-md-3">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :address, "住所" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-md-3">
+        <div class="col-md-6 mx-auto">
+          <%= f.submit '変更内容を保存', class:"btn btn-success btn-block" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <%= form_with model: @address,url: address_path, method: :patch  do |f| %>
-  <div class="row">
-    <div class="col-md-3 mb-2">
-      宛先
-    </div>
-    <div class="col-md-3 mb-2">
-      <%= f.text_field :name, class: "rounded" %> <br />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 mb-2">
-      郵便番号(ハイフンなし)
-    </div>
-    <div class="col-md-3 mb-2">
-      <%= f.text_field :postal_code, class: "rounded" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 mb-2">
-      住所
-    </div>
-    <div class="col-md-3 mb-2">
-      <%= f.text_field :address, size: "75", class: "rounded" %>
-    </div>
-  </div>
-
-    <div class="col-md-3 offset-md-3">
-      <%= f.submit '変更内容を保存', class:"btn btn-success btn-block" %>
-    </div>
-  </div>
-<% end %>
+</div>

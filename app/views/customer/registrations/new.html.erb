@@ -80,7 +80,7 @@
           <%= f.password_field :password, class: "form-control" %>
         </div>
       </div>
-      <div class="row mb-md-2">
+      <div class="row mb-md-3">
         <div class="col-md-4 font-weight-bold">
           <%= f.label :password_confirmation, "パスワード(確認用)" %>
         </div>
@@ -88,10 +88,8 @@
           <%= f.password_field :password_confirmation, class: "form-control" %>
         </div>
       </div>
-      <div class="row mb-md-3">
-        <div class="col-md-6 mx-auto">
-          <%= f.submit "新規登録", class:"btn btn-success btn-block" %>
-        </div>
+      <div class="col-md-6 mb-md-3 mx-auto">
+        <%= f.submit "新規登録", class:"btn btn-success btn-block" %>
       </div>
     <% end %>
   </div>
