@@ -1,101 +1,97 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-4 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">ショップ情報編集</h3>
+<div class="container px-md-0">
+  <div class="col-md-10 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>登録情報編集</h2>
     </div>
-  </div>
+    <%= form_with model: @shop,url: shop_shop_page_information_path,method: :patch  do |f| %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :image, "ショップロゴ画像" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.file_field :image, accept: "image/*" %><br />
+        </div>
+      </div>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          表示位置
+        </div>
+        <div class="col-md-8">
+          <%= f.radio_button :rogo_arrangement_btn, "left_alignment" %>
+          <%= f.label :rogo_arrangement_btn, '左寄せ', value: "left_alignment", class: "mr-md-2" %>
 
-  <%= form_with model: @shop,url: shop_shop_page_information_path,method: :patch  do |f| %>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        ショップロゴ画像
-      </div>
-      <div class="col-md-4 mb-2">
-        <%= f.file_field :image, accept: "image/*" %><br />
-      </div>
-      表示位置
-      <div class="col-md-4 mb-2">
-        <%= f.radio_button :rogo_arrangement_btn, "left_alignment" %>
-        <%= f.label :rogo_arrangement_btn, '左寄せ', value: "left_alignment" %>
-      </div>
-      <div class="col-md-4 mb-2">
-        <%= f.radio_button :rogo_arrangement_btn, "center_alignment" %>
-        <%= f.label :rogo_arrangement_btn, '中央寄せ', value: "center_alignment" %>
-      </div>
-      <div class="col-md-4 mb-2">
-        <%= f.radio_button :rogo_arrangement_btn, "right_alignment" %>
-        <%= f.label :rogo_arrangement_btn, '右寄せ', value: "right_alignment" %>
-      </div>
-    </div>
+          <%= f.radio_button :rogo_arrangement_btn, "center_alignment" %>
+          <%= f.label :rogo_arrangement_btn, '中央寄せ', value: "center_alignment", class: "mr-md-2" %>
 
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        ショップ紹介画像<br />
-        (10枚まで登録可能)
+          <%= f.radio_button :rogo_arrangement_btn, "right_alignment" %>
+          <%= f.label :rogo_arrangement_btn, '右寄せ', value: "right_alignment" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.file_field :images, accept: "image/*", multiple: true %><br />
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :images, "ショップ紹介画像(12枚まで登録可能)" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.file_field :images, accept: "image/*", multiple: true %><br />
+        </div>
       </div>
-      表示位置
-      <div class="col-md-4 mb-2">
-        <%= f.radio_button :introduction_arrangement_btn, "side_by_side" %>
-        <%= f.label :introduction_arrangement_btn, '横並び', value: "side_by_side" %>
-      </div>
-      <div class="col-md-4 mb-2">
-        <%= f.radio_button :introduction_arrangement_btn, "tandem" %>
-        <%= f.label :introduction_arrangement_btn, '縦並び', value: "tandem" %>
-      </div>
-    </div>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          表示位置
+        </div>
+        <div class="col-md-8">
+          <%= f.radio_button :introduction_arrangement_btn, "side_by_side" %>
+          <%= f.label :introduction_arrangement_btn, '横並び', value: "side_by_side", class: "mr-md-2" %>
 
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        配送キャリア
+          <%= f.radio_button :introduction_arrangement_btn, "tandem" %>
+          <%= f.label :introduction_arrangement_btn, '縦並び', value: "tandem" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :shipping_carrier, class: "rounded" %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :shipping_carrier, "配送キャリア" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :shipping_carrier, class: "rounded" %>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        発送について
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :about_shipping, "発送について" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :about_shipping, class: "rounded" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :about_shipping, class: "rounded" %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :personal_information, "個人情報の取り扱いについて" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :personal_information, class: "rounded" %>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        個人情報の取り扱いについて
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :settlement, "決済について" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :settlement, class: "rounded" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :personal_information, class: "rounded" %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :inquiry, "お問い合わせについて" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :inquiry, class: "rounded" %>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        決済について
+      <div class="row mb-md-3">
+        <div class="col-md-5 mx-auto">
+          <%= f.submit '編集内容を保存', class:"btn btn-success btn-block" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :settlement, class: "rounded" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 mb-2">
-        お問い合わせについて
-      </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :inquiry, class: "rounded" %>
-      </div>
-    </div>
-
-    <div class="col-md-4 offset-md-4">
-      <%= f.submit '編集内容を保存', class:"btn btn-success btn-block" %>
-    </div>
     <% end %>
   </div>
 </div>

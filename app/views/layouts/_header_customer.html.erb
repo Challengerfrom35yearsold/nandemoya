@@ -1,63 +1,60 @@
-<nav class="navbar navbar-light">
-  <a class="navbar-brand p-3" href="/">LOGO</a>
-  <ul class="nav justify-content-end p-3">
+<nav class="navbar border-bottom pb-md-3 mb-md-5">
+  <div class="col-md-3 text-center">
+    <a class="navbar-brand" href="/">なんでもや</a>
+  </div>
+  <div class="col-md-9">
+    <div class="col-md-12 mb-md-3">
+      <%= form_with url: items_path, method: :get do |f| %>
+        <div class="row justify-content-end">
+          <div class="col-md-4 pr-md-0">
+            <%= f.text_field :item_name, placeholder: "キーワード検索", class: "form-control" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit '検索', class:"btn btn-success btn-block" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
     <% if customer_signed_in? %>
-      <div class="pr-5">
-      こんにちは<%= current_customer.last_name %>さん！
+      <div class="col-md-12">
+        <div class="row justify-content-end text-right">
+          <div class="mr-md-5">
+            <%= "こんにちは#{current_customer.last_name}さん！" %>
+          </div>
+          <div class="ml-md-5 mr-md-3">
+            <%= link_to "マイページ", customers_my_page_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "商品一覧", items_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "カート", cart_items_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "お問い合わせ", customer_inquiry_confirmation_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "text-dark" %>
+          </div>
+        </div>
       </div>
-      <li class="nav-item pr-3">
-        <%= link_to(customers_my_page_path) do %>
-          マイページ
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(items_path) do %>
-          商品一覧
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(cart_items_path) do %>
-          カート
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(customer_inquiry_confirmation_path) do %>
-          お問い合わせ
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(destroy_customer_session_path, method: :delete) do %>
-          ログアウト
-        <% end %>
-      </li>
     <% else %>
-      <li class="nav-item pr-3">
-        <%= link_to(about_path) do %>
-          About
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(items_path) do %>
-          商品一覧
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(new_customer_registration_path) do %>
-          新規登録
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(new_customer_session_path) do %>
-          ログイン
-        <% end %>
-      </li>
+      <div class="col-md-12">
+        <div class="row justify-content-end text-right">
+          <div class="mr-md-3">
+            <%= link_to "About", about_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "商品一覧", items_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "新規登録", new_customer_registration_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ログイン", new_customer_session_path, class: "text-dark" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </nav>
-<div class="d-flex justify-content-end pr-5">
-  <%= form_with url: items_path, method: :get do |f| %>
-    キーワード検索
-    <%= f.text_field :item_name %>
-    <%= f.submit '検索', class:"btn btn-success btn-block" %>
-  <% end %>
-</div>

@@ -1,52 +1,49 @@
-<nav class="navbar navbar-light">
-  <a class="navbar-brand p-3" href="/">LOGO</a>
-  <ul class="nav justify-content-end p-3">
+<nav class="navbar border-bottom pb-md-3 mb-md-5">
+  <div class="col-md-3 text-center">
     <% if shop_signed_in? %>
-      <div class="pr-5">
-      こんにちは<%= current_shop.shop_name %>さん！
-      </div>
-      <li class="nav-item pr-3">
-        <%= link_to(shop_my_page_path) do %>
-          マイページ
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(shop_items_path) do %>
-          商品一覧
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(shop_orders_path) do %>
-          注文履歴一覧
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(shop_inquiries_selection_path) do %>
-          お問い合わせ
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(destroy_shop_session_path, method: :delete) do %>
-          ログアウト
-        <% end %>
-      </li>
+      <%= link_to "なんでもや", shop_path, class: "text-dark" %>
     <% else %>
-      <li class="nav-item pr-3">
-        <%= link_to(shop_about_path) do %>
-          About
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(new_shop_registration_path) do %>
-          新規登録
-        <% end %>
-      </li>
-      <li class="nav-item pr-3">
-        <%= link_to(new_shop_session_path) do %>
-          ログイン
-        <% end %>
-      </li>
+      <%= link_to "なんでもや", shop_about_path, class: "text-dark" %>
     <% end %>
-  </ul>
+  </div>
+  <div class="col-md-9">
+    <% if shop_signed_in? %>
+      <div class="col-md-12">
+        <div class="row justify-content-end text-right">
+          <div class="mr-md-5">
+            <%= "こんにちは#{current_shop.shop_name}さん！"%>
+          </div>
+          <div class="ml-md-5 mr-md-3">
+            <%= link_to "マイページ", shop_my_page_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "商品一覧", shop_items_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "注文履歴一覧", shop_orders_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "お問い合わせ", shop_inquiries_selection_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ログアウト", destroy_shop_session_path, method: :delete, class: "text-dark" %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="col-md-12">
+        <div class="row justify-content-end text-right">
+          <div class="mr-md-3">
+            <%= link_to "About", shop_about_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "新規登録", new_shop_registration_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ログイン", new_shop_session_path, class: "text-dark" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </nav>
-<div class="d-flex justify-content-end pr-5">キーワード検索</div>

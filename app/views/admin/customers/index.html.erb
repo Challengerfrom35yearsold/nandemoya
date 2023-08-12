@@ -1,51 +1,61 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">会員一覧</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>会員一覧</h2>
     </div>
-  </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th style="background-color: #c1c7cd !important;">会員ID</th>
-        <th style="background-color: #c1c7cd !important;">氏名</th>
-        <th style="background-color: #c1c7cd !important;">メールアドレス</th>
-        <th style="background-color: #c1c7cd !important;">ステータス</th>
-        <th style="background-color: #c1c7cd !important;">お気に入り</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @customers.each do |customer| %>
-      <tr>
-        <td>
-          <%= customer.id %>
-        </td>
-        <td>
-          <%= link_to admin_customer_path(customer.id) do %>
+    <% @customers.each do |customer| %>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+        <div class="row my-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            会員ID:
+          </div>
+          <div class="col-md-9">
+            <%= customer.id %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            氏名:
+          </div>
+          <div class="col-md-9">
             <%= customer.last_name + customer.first_name %>
-          <% end %>
-        </td>
-        <td>
-          <%= customer.email %>
-        </td>
-        <td>
-          <% if customer.is_deleted == false %>
-            <p class="text-success">有効</p>
-          <% else %>
-            <p class="text-secondary">退会</p>
-          <% end %>
-        </td>
-        <td>
-          <!--<div class="col-md-2 pb-1">-->
-            <%= link_to "ショップ", admin_favorite_shops_path(:customer_id => customer.id), class:"btn btn-primary btn-block" %>
-            <%= link_to "商品", admin_what_you_wants_path(:customer_id => customer.id), class:"btn btn-primary btn-block" %>
-          <!--</div>-->
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            メールアドレス:
+          </div>
+          <div class="col-md-9">
+            <%= customer.email %>
+          </div>
+        </div>
+        <div class="row mb-md-3 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            ステータス:
+          </div>
+          <div class="col-md-9">
+            <% if customer.is_deleted == false %>
+              <div class="text-success">有効</div>
+            <% else %>
+              <div class="text-secondary">退会</div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "会員情報詳細を見る", admin_customer_path(customer.id), class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "お気に入りショップを見る", admin_favorite_shops_path(:customer_id => customer.id), class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "ほしいものリストを見る", admin_what_you_wants_path(:customer_id => customer.id), class:"btn btn-primary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <div class="col-md-7 mt-4 offset-md-5">
     <%= paginate @customers %>
   </div>

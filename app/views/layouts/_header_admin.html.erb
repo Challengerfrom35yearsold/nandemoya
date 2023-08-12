@@ -1,42 +1,38 @@
-<nav class="navbar navbar-light">
-  <a class="navbar-brand p-3" href="/">LOGO</a>
-  <ul class="nav justify-content-end p-3">
+<nav class="navbar border-bottom pb-md-3 mb-md-5">
+  <div class="col-md-3 text-center">
     <% if admin_signed_in? %>
-    <li class="nav-item pr-3">
-      <%= link_to(admin_path) do %>
-        お問い合わせ
-      <% end %>
-    </li>
-    <li class="nav-item pr-3">
-      <%= link_to(admin_customers_path) do %>
-        会員一覧
-      <% end %>
-    </li>
-    <li class="nav-item pr-3">
-      <%= link_to(admin_shops_path) do %>
-        ショップ一覧
-      <% end %>
-    </li>
-    <li class="nav-item pr-3">
-      <%= link_to(admin_items_path) do %>
-        商品一覧
-      <% end %>
-    </li>
-    <li class="nav-item pr-3">
-      <%= link_to(admin_genre_selection_path) do %>
-        ジャンル一覧
-      <% end %>
-    </li>
-    <li class="nav-item pr-3">
-      <%= link_to(admin_orders_path) do %>
-        注文履歴一覧
-      <% end %>
-    </li>
-    <li class="nav-item pr-3">
-      <%= link_to(destroy_admin_session_path, method: :delete) do %>
-        ログアウト
-      <% end %>
-    </li>
+      <%= link_to "なんでもや", admin_path, class: "text-dark" %>
+    <% else %>
+      なんでもや
     <% end %>
-  </ul>
+  </div>
+  <div class="col-md-9">
+    <% if admin_signed_in? %>
+      <div class="col-md-12">
+        <div class="row justify-content-end text-right">
+          <div class="mr-md-3">
+            <%= link_to "お問い合わせ", admin_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "会員一覧", admin_customers_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ショップ一覧", admin_shops_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "商品一覧", admin_items_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ジャンル一覧", admin_genre_selection_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "注文履歴一覧", admin_orders_path, class: "text-dark" %>
+          </div>
+          <div class="mr-md-3">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-dark" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </nav>

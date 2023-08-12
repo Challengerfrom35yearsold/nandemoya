@@ -1,44 +1,61 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">ショップ一覧</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>ショップ一覧</h2>
     </div>
-  </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th style="background-color: #c1c7cd !important;">ショップID</th>
-        <th style="background-color: #c1c7cd !important;">ショップ名</th>
-        <th style="background-color: #c1c7cd !important;">メールアドレス</th>
-        <th style="background-color: #c1c7cd !important;">ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @shops.each do |shop| %>
-      <tr>
-        <td>
-          <%= shop.id %>
-        </td>
-        <td>
-          <%= link_to admin_shop_path(shop.id) do %>
+    <% @shops.each do |shop| %>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+        <div class="row my-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            ショップID:
+          </div>
+          <div class="col-md-9">
+            <%= shop.id %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            ショップ名:
+          </div>
+          <div class="col-md-9">
             <%= shop.shop_name %>
-          <% end %>
-        </td>
-        <td>
-          <%= shop.email %>
-        </td>
-        <td>
-          <% if shop.is_deleted == false %>
-            <p class="text-success">有効</p>
-          <% else %>
-            <p class="text-secondary">退会</p>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+         </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            メールアドレス:
+          </div>
+          <div class="col-md-9">
+            <%= shop.email %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            ステータス:
+          </div>
+          <div class="col-md-9">
+            <% if shop.is_deleted == false %>
+              <div class="text-success">有効</div>
+            <% else %>
+              <div class="text-secondary">退会</div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "ショップ情報詳細を見る", admin_shop_path(shop.id), class:"btn btn-primary btn-block"  %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "ショップページへ", admin_shop_shop_page_path(shop.id), class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "商品一覧", admin_items_per_shop_path(shop.id), class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <div class="col-md-7 mt-4 offset-md-5">
     <%= paginate @shops %>
   </div>

@@ -1,13 +1,14 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">問い合わせ画面</h3>
+<div class="container px-md-0">
+  <div class="col-md-5 border border-dark rounded mx-auto px-md-4">
+    <h4 class="my-md-3">会員からの問い合わせを確認する</h4>
+    <div class="col-md-7 my-md-3 mx-auto">
+      <%= link_to "会員問い合わせへ", shop_path, class:"btn btn-success btn-block" %>
+    </div>
+    <h4 class="mt-md-5">管理者に問い合わせる</h4>
+    <p class="my-md-3">電話番号：00000000000</p>
+    <p>問い合わせフォームから問い合わせる</p>
+    <div class="col-md-7 mb-md-3 mx-auto">
+      <%= link_to "問い合わせフォームへ", new_shop_shop_inquiry_path, class:"btn btn-success btn-block" %>
     </div>
   </div>
-  <%= link_to "会員からの問い合わせを確認する", shop_path, class:"btn btn-success btn-block" %>
-  <h3 class="px-2" style="background-color: #c1c7cd !important;">管理者に問い合わせる</h3>
-  電話で問い合わせる<br />
-  電話番号：00000000000<br />
-
-  問い合わせフォームから問い合わせる<br />
-  <%= link_to "問い合わせフォームへ", new_shop_shop_inquiry_path, class:"btn btn-success btn-block" %>
+</div>

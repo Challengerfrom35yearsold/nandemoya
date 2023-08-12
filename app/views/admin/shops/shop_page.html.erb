@@ -1,58 +1,70 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-12 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="col-md-4 px-2" style="background-color: #c1c7cd !important;">ショップページ</h3>
-      <div class="col-md-4"><%= link_to '編集する',  admin_shop_shop_page_information_edit_path(@shop.id), class:"btn btn-success btn-block" %></div>
+<div class="container px-md-0">
+  <div class="col-md-12 border border-dark rounded mx-auto mb-md-5 px-md-4">
+    <div class="row my-md-3 border-bottom border-dark">
+      <h2>ショップページ登録情報</h2>
+      <div class="col-md-3 ml-md-5">
+        <%= link_to '編集する',  admin_shop_shop_page_information_edit_path(@shop.id), class:"btn btn-success btn-block" %>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
     <% if @shop.rogo_arrangement_btn == "left_alignment" %>
-    <div class="col-md-3">
-      <%= image_tag @shop.get_shop_image(200,200) %>
-    </div>
+      <div class="col-md-5 mb-md-3">
+        <%= image_tag @shop.get_shop_image(200,200) %>
+      </div>
     <% elsif @shop.rogo_arrangement_btn == "center_alignment" %>
-    <div class="d-flex col-md-12 mb-3 align-items-center justify-content-center">
-      <%= image_tag @shop.get_shop_image(200,200) %>
-    </div>
+      <div class="d-flex mb-md-5 align-items-center justify-content-center">
+        <%= image_tag @shop.get_shop_image(200,200) %>
+      </div>
     <% else %>
-    <div class="d-flex col-md-12 mb-3 align-items-center justify-content-end">
-      <%= image_tag @shop.get_shop_image(200,200) %>
-    </div>
+      <div class="d-flex mb-md-5 align-items-center justify-content-end">
+        <%= image_tag @shop.get_shop_image(200,200) %>
+      </div>
     <% end %>
-  </div>
-  <div class="row">
+
     <% if @shop.introduction_arrangement_btn == "side_by_side" %>
-      <% @shop.get_shop_images(200,200).each do |image| %>
-        <div class="col-3 mb-3"><%= image_tag image %></div>
-      <% end %>
+      <div class="row">
+        <% @shop.get_shop_images(250,250).each do |image| %>
+        <div class="d-flex col-md-3 mb-md-3 p-md-2 align-items-center justify-content-center border border-dark ">
+          <%= image_tag image %>
+        </div>
+        <% end %>
+      </div>
     <% else %>
       <% @shop.get_shop_images(700,700).each do |image| %>
-        <div class="mx-auto d-block mb-3"><%= image_tag image %></div>
+        <div class="d-flex mb-md-3 align-items-center justify-content-center">
+          <%= image_tag image %>
+        </div>
       <% end %>
     <% end %>
-  </div>
-  <div class="row">
-    <div class="d-flex col-md-12 mb-3 justify-content-center">
-      <div class="col-5">
-        発送について<br />
-        <%= @shop.about_shipping %>
+
+    <div class="row mb-md-2 align-items-center justify-content-center">
+      <div class="col-md-5">
+        <p class="font-weight-bold">配送キャリア:</p>
+        <p><%= @shop.shipping_carrier %></p>
       </div>
       <div class="col-md-5">
-        個人情報の取り扱いについて<br />
-      <%= @shop.personal_information %>
+        <p class="font-weight-bold">発送について:</p>
+        <p><%= @shop.about_shipping %></p>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="d-flex col-md-12 mb-3 justify-content-center">
+
+    <div class="row mb-md-2 align-items-center justify-content-center">
       <div class="col-md-5">
-        決済について<br />
-        <%= @shop.settlement %>
+        <p class="font-weight-bold">個人情報の取り扱いについて:</p>
+        <p ><%= @shop.personal_information %></p>
       </div>
       <div class="col-md-5">
-        お問い合わせについて<br />
-        <%= @shop.inquiry %>
+        <p class="font-weight-bold">決済について:</p>
+        <p><%= @shop.settlement %></p>
+      </div>
+    </div>
+
+    <div class="row mb-md-2 align-items-center justify-content-center">
+      <div class="col-md-5">
+        <p class="font-weight-bold">お問い合わせについて:</p>
+        <p><%= @shop.inquiry %></p>
+      </div>
+      <div class="col-md-5">
       </div>
     </div>
   </div>

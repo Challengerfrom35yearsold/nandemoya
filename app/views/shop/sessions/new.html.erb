@@ -1,35 +1,27 @@
 <div class="container px-md-0">
-  <div class="row">
-    <div class="col-md-12 offset-md-4 mt-5 mb-3">
+  <div class="col-md-5 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
       <h2>ログイン</h2>
     </div>
-  </div>
-  <%= form_with model: @shop, url: shop_session_path do |f| %>
-  <div class="row">
-    <div class="col-md-5 offset-md-4 mb-2 font-weight-bold">
+    <%= form_with model: @shop, url: shop_session_path do |f| %>
+    <div class="mb-md-3 font-weight-bold">
       <%= f.label :email, "メールアドレス" %>
       <%= f.email_field :email, autofocus: true, placeholder: "sumple@example.com", class: "form-control" %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-5 offset-md-4 mb-2 font-weight-bold">
+    <div class="mb-md-3 font-weight-bold">
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: "form-control" %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2 offset-md-4 mb-5">
-      <%= f.submit "ログイン", class:"btn btn-primary btn-block" %>
+    <div class="col-md-7 mb-md-3 mx-auto">
+      <%= f.submit "ログイン", class:"btn btn-success btn-block" %>
     </div>
+    <% end %>
   </div>
-  <% end %>
-  <div class="row">
-    <div class="col-md-12 offset-md-4 mt-5 mb-1">
+  <div class="col-md-5 mx-auto mt-md-5 px-md-4">
+    <div class="mb-md-3">
       <h4>初めてご利用の方</h4>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 offset-md-4">
+    <div class="col-md-7">
       <%= render "customer/shared/links" %>
     </div>
   </div>
