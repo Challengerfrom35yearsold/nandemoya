@@ -1,39 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">注文履歴詳細</h3>
+<div class="container px-md-0">
+  <div class="col-md-10 border border-dark rounded mx-auto px-md-4">
+    <div class="row my-md-3 px-md-3">
+      <h2>注文履歴詳細</h2>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2 mb-2">
+    <div class="font-weight-bold">
       注文日
     </div>
-    <div class="col-md-2 mb-2">
-      <%= @order.created_at.strftime('%Y/%m/%d') %> <br />
+    <div class="col-md-3 mb-2">
+      <%= l @order.created_at %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2 mb-2">
+    <div class="font-weight-bold">
       購入者
     </div>
-    <div class="col-md-2 mb-2">
+    <div class="col-md-3 mb-2 text_break">
       <%= @order.customer.last_name+@order.customer.first_name %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2 mb-2">
+    <div class="font-weight-bold">
       支払方法
     </div>
-    <div class="col-md-2 mb-2">
+    <div class="col-md-3 mb-2">
       <%= @order.payment_method_i18n %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2 mb-2">
+    <div class="font-weight-bold">
       ご請求金額
     </div>
-    <div class="col-md-2 mb-2">
+    <div class="col-md-3 mb-2">
       <% total = 0 %>
       <% @order_details.each do |order_detail| %>
         <% if order_detail.item.shop_id == current_shop.id %>
@@ -42,44 +33,93 @@
           <% total = total + price * amount %>
         <% end %>
       <% end %>
-      <%= total.to_s(:delimited) %>
+      <%= "#{total.to_s(:delimited)}円" %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2 mb-2">
+    <div class="font-weight-bold">
       配送先
     </div>
-    <div class="col-md-2 mb-2">
-      〒<%= @order.postal_code %> <br />
-      <%= @order.address %> <br />
-      <%= @order.name %> <br />
+    <div class="col-md-12">
+      <div class="row mb-md-2 border-bottom border-dark">
+        <div class="col-md-2">
+          郵便番号:
+        </div>
+        <div class="col-md-8">
+          <%= @order.postal_code %>
+        </div>
+      </div>
+      <div class="row mb-md-2 border-bottom border-dark">
+        <div class="col-md-2">
+          住所:
+        </div>
+        <div class="col-md-8 text_break">
+          <%= @order.address %>
+        </div>
+      </div>
+      <div class="row mb-md-3 border-bottom border-dark">
+        <div class="col-md-2">
+          氏名:
+        </div>
+        <div class="col-md-8 text_break">
+          <%= @order.name %>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 mb-2">
-      注文内容<br />
-      <% @order_details.each do |order_detail| %>
-        <% if order_detail.item.shop_id == current_shop.id %>
-          <%= image_tag order_detail.item.get_item_image(100,100) %><br />
-          発送状態
-          <%= form_with model: order_detail, url: shop_order_detail_path(order_detail.id), method: :patch do |f| %>
-            <div class="form-group">
-              <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |k| [t("enums.order_detail.shipping_status.#{k}"), k] } %>
-            </div>
-          <div class="col-md-3 mb-2 offset-md-1">
-           <%= f.submit '更新', class:"btn btn-success btn-block" %>
+    <div class="font-weight-bold">
+      注文内容
+    </div>
+    <% @order_details.each do |order_detail| %>
+      <% if order_detail.item.shop_id == current_shop.id %>
+        <div class="row col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
+          <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <%= image_tag order_detail.item.get_item_image(100,100) %>
           </div>
-          <% end %>
-          商品名
-          <%= order_detail.item.name %><br />
-          単価(税込)
-          <%= (order_detail.price*1.1).floor %><br />
-          数量
-          <%= order_detail.amount %><br />
-          小計
-          <%= (order_detail.price*1.1).floor * order_detail.amount %><br />
-        <% end %>
+          <div class="col-md-9">
+            <div class="row mb-md-3  border-bottom border-dark d-flex align-items-center">
+              <div class="col-md-3">
+                発送状態:
+              </div>
+              <div class="col-md-9">
+                <%= form_with model: order_detail, url: shop_order_detail_path(order_detail.id), method: :patch do |f| %>
+                  <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |k| [t("enums.order_detail.shipping_status.#{k}"), k] } %>
+                  <%= f.submit '更新', class:"btn btn-success" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mb-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                商品名:
+              </div>
+              <div class="col-md-9 text_break text_break">
+                <%= order_detail.item.name %>
+              </div>
+            </div>
+            <div class="row mb-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                単価(税込):
+              </div>
+              <div class="col-md-9 text_break">
+                <%= "#{(order_detail.price*1.1).floor.to_s(:delimited)}円" %>
+              </div>
+            </div>
+            <div class="row mb-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                数量:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= order_detail.amount %>
+              </div>
+            </div>
+            <div class="row mb-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                小計:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= "#{((order_detail.price*1.1).floor * order_detail.amount).to_s(:delimited)}円" %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

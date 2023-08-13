@@ -1,56 +1,58 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">注文履歴一覧</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>注文履歴一覧</h2>
     </div>
-    購入日時をクリックで詳細画面へ移行します
-  </div>
-
-  <table class="table" style="border-bottom: solid 2px;">
-    <thead>
-      <tr>
-        <th style="background-color: #c1c7cd !important;">購入日時</th>
-        <th style="background-color: #c1c7cd !important;">購入者</th>
-        <th style="background-color: #c1c7cd !important;">DM受け取り</th>
-        <th style="background-color: #c1c7cd !important;">発送状態</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-      <tr>
-        <td style="border: none;">
-          <%= link_to shop_order_path(order.id) do %>
-            <%= order.created_at.strftime('%Y/%m/%d') %>
-          <% end %>
-        </td>
-        <td style="border: none;">
-          <%= order.customer.last_name+order.customer.first_name %>
-        </td>
-        <td style="border: none;">
-          <% total_current_shop = 0 %>
-          <% order.order_details.each do |order_detail| %>
-            <% if order_detail.item.shop_id == current_shop.id %>
-              <% total_current_shop = total_current_shop + 1 %>
-            <% end %>
-          <% end %>
-          <% total_shipping_status_sent = 0 %>
-          <% order.order_details.each do |order_detail| %>
-            <% if order_detail.item.shop_id == current_shop.id %>
-              <% if order_detail.shipping_status == "sent" %>
-                <% total_shipping_status_sent = total_shipping_status_sent + 1 %>
+    <% @orders.each do |order| %>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+        <div class="row my-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            購入日時:
+          </div>
+          <div class="col-md-9">
+            <%= l order.created_at %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            購入者:
+          </div>
+          <div class="col-md-9 text_break">
+            <%= order.customer.last_name+order.customer.first_name %>
+          </div>
+        </div>
+        <div class="row mb-md-3 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            発送状態:
+          </div>
+          <div class="col-md-9">
+            <% total_current_shop = 0 %>
+            <% order.order_details.each do |order_detail| %>
+              <% if order_detail.item.shop_id == current_shop.id %>
+                <% total_current_shop = total_current_shop + 1 %>
               <% end %>
             <% end %>
-          <% end %>
-          <% if total_current_shop == total_shipping_status_sent %>
-            全ての商品の発送が完了しています。
-          <% else %>
-            未発送の商品があります。
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+            <% total_shipping_status_sent = 0 %>
+            <% order.order_details.each do |order_detail| %>
+              <% if order_detail.item.shop_id == current_shop.id %>
+                <% if order_detail.shipping_status == "sent" %>
+                  <% total_shipping_status_sent = total_shipping_status_sent + 1 %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <% if total_current_shop == total_shipping_status_sent %>
+              全ての商品の発送が完了しています。
+            <% else %>
+              未発送の商品があります。
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "注文履歴一覧を見る", shop_order_path(order.id), class:"btn btn-primary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <div class="col-md-7 mt-4 offset-md-5">
     <%= paginate @orders %>
   </div>

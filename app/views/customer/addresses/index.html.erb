@@ -3,7 +3,7 @@
     <div class="row my-md-3 px-md-3">
       <h3>配送先一覧</h3>
       <div class="col-md-3 ml-md-5">
-        <%= link_to "新規登録", new_address_path, class:"btn btn-success" %>
+        <%= link_to "新規登録", new_address_path, class:"btn btn-success btn-block" %>
       </div>
     </div>
     <% @addresses.each do |address| %>
@@ -28,14 +28,14 @@
           <div class="col-md-3 font-weight-bold">
             住所:
           </div>
-          <div class="col-md-9">
+          <div class="col-md-9 text_break">
             <%= address.address %>
           </div>
         </div>
-        <div class="col-md-6 mb-md-3 mx-auto">
+        <div class="col-md-5 mb-md-3 mx-auto">
           <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-success btn-block" %>
         </div>
-        <div class="col-md-6 mb-md-3 mx-auto">
+        <div class="col-md-5 mb-md-3 mx-auto">
           <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-block" %>
         </div>
       </div>
