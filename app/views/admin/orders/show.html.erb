@@ -84,9 +84,7 @@
               購入先ショップ:
             </div>
             <div class="col-md-9 text_break">
-              <% applicable_shop_id = order_detail.item.shop_id %>
-              <% applicable_shop = Shop.find(applicable_shop_id) %>
-              <%= applicable_shop.shop_name %>
+              <%= order_detail.item.shop.shop_name %>
             </div>
           </div>
           <div class="row mb-md-3 border-bottom border-dark">
