@@ -1,32 +1,63 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">レビュー一覧</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="row my-md-3 px-md-3">
+      <h2>レビュー一覧</h2>
     </div>
+    <% @reviews.each do |review| %>
+      <div class="col-md-12 border border-dark rounded mb-md-3">
+        <div class="font-weight-bold">
+          投稿日時
+        </div>
+        <div class="col-md-12 mb-md-2">
+          <%= l review.created_at %>
+        </div>
+        <div class="font-weight-bold">
+          商品名
+        </div>
+        <div class="col-md-12 mb-md-2">
+          <%= review.item.name %>
+        </div>
+        <div class="font-weight-bold">
+          総合評価
+        </div>
+        <div class="col-md-12 mb-md-2">
+          <div id="post_raty<%= review.id %>">
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#post_raty<%= review.id %>');
+                if (elem == null) return;
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  score: '<%= review.number_of_stars %>',
+                  readOnly: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
+          </div>
+        </div>
+        <div class="font-weight-bold">
+          タイトル
+        </div>
+        <div class="col-md-12 mb-md-2 text_break">
+          <%= review.title %>
+        </div>
+        <div class="font-weight-bold">
+          本文
+        </div>
+        <div class="col-md-12 mb-md-2 text_break">
+          <%= review.review_content %>
+        </div>
+        <div class="col-md-5 mb-md-3 mx-auto">
+          <%= link_to "編集する", edit_item_review_path(review.item_id,review.id), class:"btn btn-success btn-block" %>
+        </div>
+          <div class="col-md-5 mb-md-3 mx-auto">
+          <%= link_to "削除する", item_review_path(review.item_id,review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-block" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <% @reviews.each do |review| %>
-    <%= review.created_at.strftime('%Y/%m/%d') %><br />
-    <div id="post_raty<%= review.id %>"></div>
-    <script>
-      $(document).on('turbolinks:load', function() {
-        let elem = document.querySelector('#post_raty<%= review.id %>');
-        if (elem == null) return;
-        elem.innerHTML = ""
-        let opt = {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: '<%= review.number_of_stars %>',
-          readOnly: true,
-        };
-        raty(elem, opt);
-      });
-    </script>
-    タイトル
-    <%= review.title %><br />
-    本文
-    <%= review.review_content %><br />
-    <%= link_to "編集する", edit_item_review_path(review.item_id,review.id)%>
-    <%= link_to "削除する", item_review_path(review.item_id,review.id), method: :delete %><br />
-  <% end %>
 </div>

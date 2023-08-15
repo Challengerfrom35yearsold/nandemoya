@@ -15,43 +15,43 @@
         <div class="font-weight-bold">
           商品ID
         </div>
-        <div class="mb-md-1 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= @item.id %>
         </div>
         <div class="font-weight-bold">
           商品名
         </div>
-        <div class="mb-md-2 pl-md-2 text_break">
+        <div class="col-md-12 mb-md-2 text_break">
           <%= @item.name %>
         </div>
         <div class="font-weight-bold">
           ジャンル
         </div>
-        <div class="mb-md-2 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= @item_genre.name %>
         </div>
         <div class="font-weight-bold">
           商品説明
         </div>
-        <div class="mb-md-2 pl-md-2 text_break">
+        <div class="col-md-12 mb-md-2 text_break">
           <%= @item.introduction %>
         </div>
         <div class="font-weight-bold">
           税抜価格
         </div>
-        <div class="mb-md-2 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= @item.price.to_s(:delimited) %>円
         </div>
         <div class="font-weight-bold">
           税込価格
         </div>
-        <div class="mb-md-2 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= @item.with_tax_price.to_s(:delimited) %>円
         </div>
         <div class="font-weight-bold">
           販売ステータス
         </div>
-        <div class="mb-md-3 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <% if @item.is_active = true %>
             <div class="text-success">販売中</div>
           <% else %>

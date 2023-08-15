@@ -15,31 +15,31 @@
         <div class="font-weight-bold">
           商品名
         </div>
-        <div class="mb-md-2 pl-md-2 text_break">
+        <div class="col-md-12 mb-md-2 text_break">
           <%= @item.name %>
         </div>
         <div class="font-weight-bold">
           販売ショップ
         </div>
-        <div class="mb-md-2 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= @item.shop.shop_name %>
         </div>
         <div class="font-weight-bold">
           商品説明
         </div>
-        <div class="mb-md-2 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= @item.introduction %>
         </div>
         <div class="font-weight-bold">
           価格(税込)
         </div>
-        <div class="mb-md-2 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= "#{@item.with_tax_price.to_s(:delimited)}円" %>
         </div>
         <div class="font-weight-bold">
           数量
         </div>
-        <div class="mb-md-3 pl-md-2">
+        <div class="col-md-12 mb-md-2">
           <%= form_with model: @cart_item, url: cart_items_path,method: :post  do |f| %>
             <div class="row">
               <div class="col-md-3">

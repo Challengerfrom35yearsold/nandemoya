@@ -1,53 +1,53 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">レビュー新規登録</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>レビュー新規登録</h2>
     </div>
-  </div>
-
-  <%= form_with model: @review,url: item_reviews_path(@item.id),method: :post  do |f| %>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-2 mb-2 offset-md-3">
-        総合評価
+    <%= form_with model: @review,url: item_reviews_path(@item.id),method: :post  do |f| %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          総合評価
+        </div>
+        <div class="col-md-8">
+          <div id="post_raty">
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#post_raty');
+                if (elem == null) return;
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'review[number_of_stars]',
+                };
+                raty(elem, opt);
+              });
+            </script>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-      <div id="post_raty"></div>
-        <script>
-          $(document).on('turbolinks:load', function() {
-            let elem = document.querySelector('#post_raty');
-            if (elem == null) return;
-            elem.innerHTML = ""
-            let opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'review[number_of_stars]',
-            };
-            raty(elem, opt);
-          });
-        </script>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :title, "タイトル" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "form-control" %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 mb-2 offset-md-3">
-        タイトル
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :review_content, "本文" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :review_content, placeholder: "気に入った点、お気に召さなかった点などの記載をお願します。", class: "form-control" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "form-control" %>
+      <div class="row mb-md-3">
+        <div class="col-md-5 mx-auto">
+          <%= f.submit '投稿する', class:"btn btn-success btn-block" %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 mb-2 offset-md-3">
-        本文
-      </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :review_content, placeholder: "気に入った点、お気に召さなかった点などの記載をお願します。", class: "form-control" %>
-      </div>
-    </div>
-    <div class="col-md-4 offset-md-4">
-      <%= f.submit '投稿する', class:"btn btn-success btn-block" %>
-    </div>
     <% end %>
   </div>
 </div>
