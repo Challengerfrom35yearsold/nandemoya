@@ -1,80 +1,67 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-5 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">商品詳細</h3>
+<div class="container px-md-0">
+  <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+    <div class="row my-md-3 px-md-3 border-bottom border-dark">
+      <h2>商品情報詳細</h2>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <% @item.get_item_images(200,200).each do |image| %>
-        <div class="mb-2"><%= image_tag image %></div>
-      <% end %>
-    </div>
-    <div class="col-md-9">
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>商品ID</h5>
-        </div>
-        <div class="col-md-3">
-          <h5><%= @item.id %></h5>
-        </div>
+    <div class="row mt-md-4 mb-md-2">
+      <div class="col-md-6">
+        <% @item.get_item_images(500,500).each do |image| %>
+          <div class="d-flex align-items-center justify-content-center mb-md-2 py-md-3  border border-dark rounded">
+            <%= image_tag image %>
+          </div>
+        <% end %>
       </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>商品名</h5>
+      <div class="col-md-6 mb-md-2">
+        <div class="font-weight-bold">
+          商品ID
         </div>
-        <div class="col-md-3">
-          <h5><%= @item.name %></h5>
+        <div class="mb-md-1 pl-md-2">
+          <%= @item.id %>
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>ジャンル</h5>
+        <div class="font-weight-bold">
+          商品名
         </div>
-        <div class="col-md-3">
-          <h5><%= @item_genre.name %></h5>
+        <div class="mb-md-2 pl-md-2 text_break">
+          <%= @item.name %>
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>商品説明</h5>
+        <div class="font-weight-bold">
+          ジャンル
         </div>
-        <div class="col-md-3">
-          <h5><%= @item.introduction %></h5>
+        <div class="mb-md-2 pl-md-2">
+          <%= @item_genre.name %>
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>税抜価格</h5>
+        <div class="font-weight-bold">
+          商品説明
         </div>
-        <div class="col-md-3">
-          <h5><%= @item.price.to_s(:delimited) %>円</h5>
+        <div class="mb-md-2 pl-md-2 text_break">
+          <%= @item.introduction %>
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>税込価格</h5>
+        <div class="font-weight-bold">
+          税抜価格
         </div>
-        <div class="col-md-3">
-          <h5><%= @item.with_tax_price.to_s(:delimited) %>円</h5>
+        <div class="mb-md-2 pl-md-2">
+          <%= @item.price.to_s(:delimited) %>円
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <h5>販売ステータス</h5>
+        <div class="font-weight-bold">
+          税込価格
         </div>
-        <div class="col-md-3">
+        <div class="mb-md-2 pl-md-2">
+          <%= @item.with_tax_price.to_s(:delimited) %>円
+        </div>
+        <div class="font-weight-bold">
+          販売ステータス
+        </div>
+        <div class="mb-md-3 pl-md-2">
           <% if @item.is_active = true %>
-            <h5 class="text-success">販売中</h5>
+            <div class="text-success">販売中</div>
           <% else %>
-            <h5 class="text-secondary">販売停止中</h5>
+            <div class="text-secondary">販売停止中</div>
           <% end %>
         </div>
-      </div>
-      <div class="col-md-5 offset-md-2">
-        <%= link_to "編集する", edit_shop_item_path, class:"btn btn-success btn-block" %>
-        <%= link_to "レビューを見る", shop_item_reviews_path(@item.id), class:"btn btn-success btn-block" %>
+        <div class="col-md-8 mb-md-2">
+          <%= link_to "編集する", edit_shop_item_path, class:"btn btn-success btn-block" %>
+          <%= link_to "レビューを見る", shop_item_reviews_path(@item.id), class:"btn btn-success btn-block" %>
+        </div>
       </div>
     </div>
   </div>
-</div>

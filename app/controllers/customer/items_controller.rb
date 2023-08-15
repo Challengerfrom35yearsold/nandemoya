@@ -20,7 +20,7 @@ class Customer::ItemsController < ApplicationController
     @items = Item.where(shop_id: params[:id]).page(params[:page])
     if params[:price_order] == "desc"
       @items = @items.order(price: "DESC")
-    else params[:price_order] == "asc"
+    elsif params[:price_order] == "asc"
       @items = @items.order(price: "ASC")
     end
     @items = @items.page(params[:page]).per(8)

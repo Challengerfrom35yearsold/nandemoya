@@ -1,56 +1,79 @@
-<div class="container px-5 px-sm-0">
-  <div class="row">
-    <div class="col-md-3">
-      <% @item.get_item_images(500,500).each do |image| %>
-        <div class="mb-2"><%= image_tag image %></div>
-      <% end %>
+<div class="container px-md-0">
+  <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+    <div class="row my-md-3 px-md-3 border-bottom border-dark">
+      <h2>商品情報詳細</h2>
     </div>
-    <div class="col-md-12 mb-2">
-      <h3>
-        <%= @item.name %>
-      </h3>
-    </div>
-    <div class="col-md-12 mb-5">
-      <h4>
-        <%= @item.introduction %>
-      </h4>
-    </div>
-    <div class="col-md-12 mb-4 d-flex align-items-center">
-      <h4>
-        ￥<%= @item.with_tax_price.to_s(:delimited) %><span style="font-size:70%">(税込)</span>
-      </h4>
-    </div>
-    <div class="col-md-12 mb-2">
-      <%= form_with model: @cart_item, url: cart_items_path,method: :post  do |f| %>
-      <div class="row">
-        <div class="col-md-5">
-          個数選択<%= f.select :amount, *[1..10], { include_blank: '選択してください'}, {class: "form-control w-55"} %>
+    <div class="row mt-md-4">
+      <div class="col-md-6">
+        <% @item.get_item_images(500,500).each do |image| %>
+          <div class="d-flex align-items-center justify-content-center mb-md-2 py-md-3  border border-dark rounded">
+            <%= image_tag image %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <div class="font-weight-bold">
+          商品名
         </div>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <div class="col-md-5">
-          <%= f.submit 'カートに入れる', class:"btn btn-success btn-block" %>
+        <div class="mb-md-2 pl-md-2 text_break">
+          <%= @item.name %>
+        </div>
+        <div class="font-weight-bold">
+          販売ショップ
+        </div>
+        <div class="mb-md-2 pl-md-2">
+          <%= @item.shop.shop_name %>
+        </div>
+        <div class="font-weight-bold">
+          商品説明
+        </div>
+        <div class="mb-md-2 pl-md-2">
+          <%= @item.introduction %>
+        </div>
+        <div class="font-weight-bold">
+          価格(税込)
+        </div>
+        <div class="mb-md-2 pl-md-2">
+          <%= "#{@item.with_tax_price.to_s(:delimited)}円" %>
+        </div>
+        <div class="font-weight-bold">
+          数量
+        </div>
+        <div class="mb-md-3 pl-md-2">
+          <%= form_with model: @cart_item, url: cart_items_path,method: :post  do |f| %>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.select :amount, *[1..10], {}, {class: "form-control"} %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+              </div>
+              <div class="col-md-2">
+                <%= f.submit 'カートに入れる', class:"btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-8 mb-md-2">
+          <%= form_with model: @what_you_want, url: what_you_wants_path,method: :post  do |f| %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.submit 'ほしいものリストに追加する', class:"btn btn-primary btn-block" %>
+          <% end %>
+        </div>
+        <div class="col-md-8 mb-md-2">
+          <%= link_to "ショップページへ", customer_shop_path(@item.shop.id), class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-8 mb-md-2">
+          <%= form_with model: @favorite_shop, url: favorite_shops_path,method: :post  do |f| %>
+            <%= f.hidden_field :shop_id, :value => @item.shop.id %>
+            <%= f.submit 'お気に入りショップに追加する', class:"btn btn-primary btn-block" %>
+          <% end %>
+        </div>
+        <div class="col-md-8 mb-md-2">
+          <%= link_to "レビューを見る", item_item_reviews_path(@item.id), class:"btn btn-primary btn-block" %>
+        </div>
+        <div class="col-md-8 mb-md-3">
+          <%= link_to "問い合わせする", new_customer_inquiry_path(:shop_id => @item.shop.id, :item_id => @item.id), class:"btn btn-primary btn-block" %>
         </div>
       </div>
-      <% end %>
     </div>
-    <div class="col-md-12 mb-2">
-      <%= form_with model: @what_you_want, url: what_you_wants_path,method: :post  do |f| %>
-      <div class="row">
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <div class="col-md-5">
-          <%= f.submit 'ほしいものリストに追加する', class:"btn btn-success btn-block" %>
-        </div>
-      </div>
-      <% end %>
-    </div>
-    <%= link_to customer_shop_path(@item.shop.id) do %>
-      <%= @item.shop.shop_name %>
-    <% end %>
-    <%= form_with model: @favorite_shop, url: favorite_shops_path,method: :post  do |f| %>
-      <%= f.hidden_field :shop_id, :value => @item.shop.id %>
-      <%= f.submit 'お気に入りショップに追加する', class:"btn btn-success btn-block" %>
-    <% end %>
-    <%= link_to "レビューを見る", item_item_reviews_path(@item.id), class:"btn btn-primary btn-block" %>
-    <%= link_to "問い合わせする", new_customer_inquiry_path(:shop_id => @item.shop.id, :item_id => @item.id), class:"btn btn-primary btn-block" %>
   </div>
 </div>
