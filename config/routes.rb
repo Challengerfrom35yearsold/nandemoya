@@ -135,9 +135,9 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:index, :show]
 
-    resources :what_you_wants, only: [:index, :destroy]
+    resources :what_you_wants, only: [:index]
 
-    resources :favorite_shops, only: [:index, :update, :destroy]
+    resources :favorite_shops, only: [:index]
 
   end
 
