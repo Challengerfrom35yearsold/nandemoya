@@ -1,34 +1,37 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">DM登録会員一覧</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>DM登録会員一覧</h2>
     </div>
-  </div>
-  <% @favorite_shops.each do |favorite_shop| %>
-  <div class="row">
-    <div class="col-md-4 mb-2">
-      名前(氏名)
-    </div>
-    <div class="col-md-2 mb-2">
-      <%= favorite_shop.customer.last_name + favorite_shop.customer.first_name %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 mb-2">
-      フリガナ(セイ)(メイ)
-    </div>
-    <div class="col-md-2 mb-2">
-      <%= favorite_shop.customer.last_name_kana + favorite_shop.customer.first_name_kana %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 mb-2">
-      メールアドレス
-    </div>
-    <div class="col-md-2 mb-2">
-      <%= favorite_shop.customer.email %>
-    </div>
-  </div>
-  <% end %>
+    <% @favorite_shops.each do |favorite_shop| %>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+        <div class="row my-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            氏名:
+          </div>
+          <div class="col-md-2 mb-2">
+            <%= favorite_shop.customer.last_name %>
+            <%= favorite_shop.customer.first_name %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            フリガナ
+          </div>
+          <div class="col-md-9">
+            <%= favorite_shop.customer.last_name_kana %>
+            <%= favorite_shop.customer.first_name_kana %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            メールアドレス
+          </div>
+          <div class="col-md-9 text_break">
+            <%= favorite_shop.customer.email %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

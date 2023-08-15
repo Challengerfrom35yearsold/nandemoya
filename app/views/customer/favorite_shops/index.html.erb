@@ -1,34 +1,48 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">お気に入りショップ一覧</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto mb-md-3 px-md-4">
+    <div class="row my-md-3 px-md-3">
+      <h2>お気に入りショップ一覧</h2>
     </div>
-  </div>
-  <div class="row">
     <% @favorite_shops.each do |favorite_shop| %>
-    <div class="col-md-12 mb-2">
-      <h3>
-        <%= "#{l favorite_shop.created_at}に追加されました" %>
-      </h3>
-    </div>
-    <div class="col-md-12 mb-5">
-      <h4>
-        <%= favorite_shop.shop.shop_name %>
-      </h4>
-    </div>
-    <div class="col-md-12 mb-5">
-      <h4>
-        <%= link_to(items_per_shop_path(favorite_shop.shop.id)) do %>
-          <%= "#{favorite_shop.shop.shop_name}の商品を見に行く" %>
-        <% end %>
-      </h4>
-    </div>
-    ショップからのDMを受け取りますか？<br />
-    <%= link_to "DMを受け取る", favorite_shop_receive_path(favorite_shop.id), method: :patch, class:"btn btn-danger" %>
-    <% if favorite_shop.is_deleted == true %>
-      <%= link_to "解除する", favorite_shop_unlock_path(favorite_shop.id), method: :patch, class:"btn btn-danger" %>
-    <% end %>
-    <%= link_to "削除する", favorite_shop_path(favorite_shop.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+        <div class="row my-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            登録日時:
+          </div>
+          <div class="col-md-9">
+            <%= l favorite_shop.created_at %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark">
+          <div class="col-md-3 font-weight-bold">
+            ショップ名:
+          </div>
+          <div class="col-md-9 text_break">
+            <%= favorite_shop.shop.shop_name %>
+          </div>
+        </div>
+        <div class="row mb-md-2 border-bottom border-dark d-flex align-items-center">
+          <div class="col-md-7 font-weight-bold">
+            ショップからのDMを受け取りますか？
+          </div>
+          <div class="col-md-5 mb-md-2">
+            <div class="col-md-12">
+              <%= link_to "DMを受け取る", favorite_shop_receive_path(favorite_shop.id), method: :patch, class:"btn btn-success" %>
+            </div>
+            <% if favorite_shop.is_deleted == true %>
+              <div class="col-md-12 mt-md-2">
+                <%= link_to "解除する", favorite_shop_unlock_path(favorite_shop.id), method: :patch, class:"btn btn-danger" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "商品を見に行く", items_per_shop_path(favorite_shop.shop.id), class:"btn btn-primary" %>
+        </div>
+        <div class="col-md-6 mb-md-3 mx-auto">
+          <%= link_to "お気に入りから削除する", favorite_shop_path(favorite_shop.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
