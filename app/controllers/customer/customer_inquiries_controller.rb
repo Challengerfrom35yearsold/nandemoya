@@ -23,7 +23,7 @@ class Customer::CustomerInquiriesController < ApplicationController
 
   def update
     @customer_inquiry = CustomerInquiry.find(params[:id])
-    @customer_inquiry.update(inquiry_status: "unsolved")
+    @customer_inquiry.update(inquiry_status: "resolution")
     redirect_to customer_inquiries_path
   end
 

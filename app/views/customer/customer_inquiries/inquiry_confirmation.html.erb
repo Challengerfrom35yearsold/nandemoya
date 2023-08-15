@@ -1,54 +1,93 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center pb-3">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">問い合わせ中</h3>
-      <div class="col-md-4">
+<div class="container px-md-0">
+  <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+    <div class="row my-md-3 px-md-3">
+      <h2>問い合わせ中一覧</h2>
+      <div class="col-md-3 ml-md-5">
         <%= link_to '過去のお問い合わせへ',  customer_inquiries_path, class:"btn btn-success btn-block" %>
       </div>
     </div>
-  </div>
-  <% @customer_inquiries.each do |customer_inquiry| %>
-    <% if customer_inquiry.inquiry_status == "resolution" %>
-      問い合わせ日時<br />
-      <%= l customer_inquiry.created_at %><br />
-      問い合わせ進捗状態<%= customer_inquiry.inquiry_status_i18n %><br />
-      問い合わせショップ名<br />
-      <%= customer_inquiry.shop.shop_name %><br />
-      問い合わせ商品/商品番号<br />
-      <%= customer_inquiry.item.name %>/<%= customer_inquiry.item.id %><br />
-      タイトル<br />
-      <%= customer_inquiry.title %><br />
-      お問い合わせ内容<br />
-      <%= customer_inquiry.inquiry %><br />
-      <div class="row">
-      <% customer_inquiry.customer_inquiry_threads.each do |customer_inquiry_thread| %>
-        <% if customer_inquiry_thread.speaker_type == "customer" %>
-          <%= customer_inquiry_thread.message %><br />
-        <% else customer_inquiry_thread.speaker_type == "shop" %>
-        <div class="col-md-2 offset-md-2 mb-2">
-          <%= customer_inquiry_thread.message %>
-        </div>
-        <% end %>
-      <% end %>
-      </div>
-      <div class="col-md-4">
-        <%= link_to '問題が解決した場合はこちらをクリックしてください。',  customer_inquiry_path(customer_inquiry.id), method: :patch, class:"btn btn-success btn-block" %>
-      </div>
-      <%= form_with model: @customer_inquiry_thread,url: customer_inquiry_threads_path,method: :post  do |f| %>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2 mb-2 offset-md-3">
-            <%= f.text_area :message, placeholder: "回答に対する返答を入力してください", class: "form-control" %>
+    <% @customer_inquiries.each do |customer_inquiry| %>
+      <% if customer_inquiry.inquiry_status == "unsolved" %>
+        <div class="col-md-12 border border-dark rounded mb-md-3">
+          <div class="font-weight-bold mt-md-2">
+            問い合わせ日時
+          </div>
+          <div class="col-md-12 mb-md-2">
+            <%= l customer_inquiry.created_at %>
+          </div>
+          <div class="font-weight-bold">
+            問い合わせ進捗状態
+          </div>
+          <div class="col-md-12 mb-md-2">
+            <%= customer_inquiry.inquiry_status_i18n %>
+          </div>
+          <div class="font-weight-bold">
+            問い合わせショップ名
+          </div>
+          <div class="col-md-12 mb-md-2 text_break">
+            <%= customer_inquiry.shop.shop_name %>
+          </div>
+          <div class="font-weight-bold">
+            問い合わせ商品
+          </div>
+          <div class="col-md-12 mb-md-2 text_break">
+            <%= customer_inquiry.item.name %>
+          </div>
+          <div class="font-weight-bold">
+            タイトル
+          </div>
+          <div class="col-md-12 mb-md-2 text_break">
+            <%= customer_inquiry.title %>
+          </div>
+          <div class="font-weight-bold">
+            お問い合わせ内容
+          </div>
+          <div class="col-md-12 mb-md-2 text_break">
+            <%= customer_inquiry.inquiry %>
+          </div>
+          <div class="font-weight-bold">
+            回答(左側:会員の返答,右側:ショップからの回答)
+          </div>
+          <div class="row col-md-12 mx-auto mb-md-3">
+            <div class="col-md-7 border border-dark m-md-2">
+              <% customer_inquiry.customer_inquiry_threads.each do |customer_inquiry_thread| %>
+                <% if customer_inquiry_thread.speaker_type == "customer" %>
+                  <div class="row col-md-6 border border-primary rounded  ml-md-1 my-md-2 text_break">
+                    <%= customer_inquiry_thread.message %>
+                  </div>
+                <% else customer_inquiry_thread.speaker_type == "shop" %>
+                  <div class="row col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
+                    <%= customer_inquiry_thread.message %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-4 m-md-2">
+              <%= form_with model: @customer_inquiry_thread,url: customer_inquiry_threads_path,method: :post  do |f| %>
+                <div class="col-md-12 font-weight-bold">
+                  <%= f.label :message, "返答" %>
+                </div>
+                <div class="col-md-12 mb-md-2">
+                  <%= f.text_area :message, placeholder: "回答に対する返答を入力してください", class: "form-control" %>
+                  <%= f.hidden_field :customer_inquiry_id, :value => customer_inquiry.id %>
+                </div>
+                <div class="col-md-7 mb-md-3 mx-auto">
+                  <%= f.submit '返答する', class:"btn btn-success btn-block" %>
+                </div>
+              <% end %>
+              <div class="col-md-12">
+                <div class="font-weight-bold mb-md-2">
+                  解決した場合は以下をクリックしてください。
+                </div>
+                <div class="col-md-7 mb-md-3 mx-auto">
+                  <%= link_to '解決',  customer_inquiry_path(customer_inquiry.id), method: :patch, class:"btn btn-success btn-block" %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <%= f.hidden_field :customer_inquiry_id, :value => customer_inquiry.id %>
-        <div class="col-md-4 offset-md-4">
-          <%= f.submit '返答する', class:"btn btn-success btn-block" %>
-        </div>
-      </div>
       <% end %>
     <% end %>
-  <% end %>
   </div>
 </div>
 

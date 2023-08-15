@@ -19,7 +19,7 @@
                   starOn: "<%= asset_path('star-on.png') %>",
                   starOff: "<%= asset_path('star-off.png') %>",
                   starHalf: "<%= asset_path('star-half.png') %>",
-                  scoreName: 'review[number_of_stars]',
+                  score: '<%= @review.number_of_stars %>',
                 };
                 raty(elem, opt);
               });

@@ -11,12 +11,12 @@ ja:
         sent: "発送済み"
     customer_inquiry:
       inquiry_status:
-        resolution: "未解決"
-        unsolved: "解決"
+        unsolved: "未解決"
+        resolution: "解決"
     shop_inquiry:
       inquiry_status:
-        resolution: "未解決"
-        unsolved: "解決"
+        unsolved: "未解決"
+        resolution: "解決"
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

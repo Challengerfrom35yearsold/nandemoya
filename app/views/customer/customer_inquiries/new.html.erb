@@ -1,33 +1,32 @@
-<div class="container px-sm-0">
-  <div class="row">
-    <div class="col-md-4 mb-2 d-flex align-items-center justify-content-center">
-      <h3 class="px-2" style="background-color: #c1c7cd !important;">お問い合わせ</h3>
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>お問い合わせ</h2>
     </div>
-  </div>
-
-  <%= form_with model: @customer_inquiry,url: customer_inquiries_path,method: :post  do |f| %>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-2 mb-2 offset-md-3">
-        タイトル
+    <%= form_with model: @customer_inquiry,url: customer_inquiries_path,method: :post  do |f| %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :title, "タイトル" %>
+        </div>
+        <div class="col-md-8 mb-2">
+          <%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力してください", class: "form-control" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "form-control" %>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :inquiry, "お問い合わせ内容" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :inquiry, placeholder: "お問い合わせ内容を入力してください。", class: "form-control" %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 mb-2 offset-md-3">
-        本文
+      <%= f.hidden_field :shop_id, :value => @shop_id %>
+      <%= f.hidden_field :item_id, :value => @item_id %>
+      <div class="row mb-md-3">
+        <div class="col-md-5 mx-auto">
+          <%= f.submit '問い合わせする', class:"btn btn-success btn-block" %>
+        </div>
       </div>
-      <div class="col-md-4 mb-2">
-        <%= f.text_area :inquiry, placeholder: "お問い合わせ内容を入力してください。", class: "form-control" %>
-      </div>
-    </div>
-    <%= f.hidden_field :shop_id, :value => @shop_id %>
-    <%= f.hidden_field :item_id, :value => @item_id %>
-    <div class="col-md-4 offset-md-4">
-      <%= f.submit '問い合わせする', class:"btn btn-success btn-block" %>
-    </div>
     <% end %>
   </div>
 </div>
