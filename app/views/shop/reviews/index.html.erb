@@ -43,7 +43,7 @@
           本文
         </div>
         <div class="col-md-12 mb-md-2 text_break">
-          <%= item_review.review_content %>
+          <%= safe_join(item_review.review_content.split("\n"),tag(:br)) %>
         </div>
       </div>
     <% end %>

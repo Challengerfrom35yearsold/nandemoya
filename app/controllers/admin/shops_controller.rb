@@ -38,6 +38,6 @@ class Admin::ShopsController < ApplicationController
   end
 
   def shop_page_params
-    params.require(:shop).permit(:shipping_carrier, :about_shipping, :personal_information, :settlement, :inquiry, :rogo_arrangement_btn, :introduction_arrangement_btn, :rogo_arrangement_btn, :introduction_arrangement_btn, :image, images: [] )
+    params.require(:shop).permit(:free_space, :shipping_carrier, :about_shipping, :personal_information, :settlement, :inquiry, :rogo_arrangement_btn, :introduction_arrangement_btn, :rogo_arrangement_btn, :introduction_arrangement_btn, :image, images: [] )
   end
 end

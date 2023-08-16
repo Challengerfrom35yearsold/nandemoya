@@ -8,6 +8,10 @@ class Item < ApplicationRecord
   has_many :customer_inquiries, dependent: :destroy
   has_many :what_you_wants, dependent: :destroy
 
+  FILE_NUMBER_LIMIT = 3
+
+  validate :validate_number_of_files
+
   def with_tax_price
     (price*1.1).floor
   end
@@ -35,5 +39,12 @@ class Item < ApplicationRecord
       images.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     images[0].variant(resize_to_limit: [width, height]).processed
+  end
+
+  private
+
+  def validate_number_of_files
+    return if images.length <= FILE_NUMBER_LIMIT
+    errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです。")
   end
 end

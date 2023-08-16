@@ -6,7 +6,7 @@
     <%= form_with model: @shop,url: admin_shop_shop_page_information_path(@shop.id),method: :patch  do |f| %>
       <div class="row mb-md-2">
         <div class="col-md-4 font-weight-bold">
-          <%= f.label :image, "ショップロゴ画像" %>
+          ショップロゴ画像
         </div>
         <div class="col-md-8">
           <%= f.file_field :image, accept: "image/*" %><br />
@@ -29,7 +29,7 @@
       </div>
       <div class="row mb-md-2">
         <div class="col-md-4 font-weight-bold">
-          <%= f.label :images, "ショップ紹介画像(12枚まで登録可能)" %>
+          ショップ紹介画像<br />(6枚まで登録可能)
         </div>
         <div class="col-md-8">
           <%= f.file_field :images, accept: "image/*", multiple: true %><br />
@@ -49,10 +49,18 @@
       </div>
       <div class="row mb-md-2">
         <div class="col-md-4 font-weight-bold">
+          <%= f.label :free_space, "ショップ紹介" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :free_space, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
           <%= f.label :shipping_carrier, "配送キャリア" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_area :shipping_carrier, class: "rounded" %>
+          <%= f.text_area :shipping_carrier, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-2">
@@ -60,7 +68,7 @@
           <%= f.label :about_shipping, "発送について" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_area :about_shipping, class: "rounded" %>
+          <%= f.text_area :about_shipping, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-2">
@@ -68,7 +76,7 @@
           <%= f.label :personal_information, "個人情報の取り扱いについて" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_area :personal_information, class: "rounded" %>
+          <%= f.text_area :personal_information, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-2">
@@ -76,7 +84,7 @@
           <%= f.label :settlement, "決済について" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_area :settlement, class: "rounded" %>
+          <%= f.text_area :settlement, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-2">
@@ -84,7 +92,7 @@
           <%= f.label :inquiry, "お問い合わせについて" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_area :inquiry, class: "rounded" %>
+          <%= f.text_area :inquiry, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-3">

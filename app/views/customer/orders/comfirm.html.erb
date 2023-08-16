@@ -4,42 +4,44 @@
       <h2>注文情報確認</h2>
     </div>
     <% @cart_items.each do |cart_item| %>
-      <div class="row col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
-        <div class="col-md-3 d-flex align-items-center justify-content-center">
-          <%= image_tag cart_item.item.get_item_image(100,100) %>
-        </div>
-        <div class="col-md-9">
-          <div class="row my-md-2 border-bottom border-dark">
-            <div class="col-md-3 font-weight-bold">
-              商品名:
-            </div>
-            <div class="col-md-9 text_break">
-              <%= cart_item.item.name %>
-            </div>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+        <div class="row">
+          <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <%= image_tag cart_item.item.get_item_image(100,100) %>
           </div>
-          <div class="row mb-md-2 border-bottom border-dark">
-            <div class="col-md-3 font-weight-bold">
-              単価(税込):
+          <div class="col-md-9">
+            <div class="row my-md-2 border-bottom border-dark">
+              <div class="col-md-3 font-weight-bold">
+                商品名:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= cart_item.item.name %>
+              </div>
             </div>
-            <div class="col-md-9">
-              <%= cart_item.item.with_tax_price.to_s(:delimited) %>
+            <div class="row mb-md-2 border-bottom border-dark">
+              <div class="col-md-3 font-weight-bold">
+                単価(税込):
+              </div>
+              <div class="col-md-9">
+                <%= cart_item.item.with_tax_price.to_s(:delimited) %>
+              </div>
             </div>
-          </div>
-          <div class="row mb-md-2 border-bottom border-dark">
-            <div class="col-md-3 font-weight-bold">
-              数量:
+            <div class="row mb-md-2 border-bottom border-dark">
+              <div class="col-md-3 font-weight-bold">
+                数量:
+              </div>
+              <div class="col-md-9">
+                <%= cart_item.amount %>
+              </div>
             </div>
-            <div class="col-md-9">
-              <%= cart_item.amount %>
-            </div>
-          </div>
-          <div class="row mb-md-2 border-bottom border-dark">
-            <div class="col-md-3 font-weight-bold">
-              小計:
-            </div>
-            <div class="col-md-9">
-              <%= cart_item.subtotal.to_s(:delimited) %>
-              <% @total = @total + (cart_item.item.with_tax_price*cart_item.amount) %>
+            <div class="row mb-md-2 border-bottom border-dark">
+              <div class="col-md-3 font-weight-bold">
+                小計:
+              </div>
+              <div class="col-md-9">
+                <%= cart_item.subtotal.to_s(:delimited) %>
+                <% @total = @total + (cart_item.item.with_tax_price*cart_item.amount) %>
+              </div>
             </div>
           </div>
         </div>

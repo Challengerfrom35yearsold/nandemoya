@@ -8,7 +8,7 @@
     </div>
 
     <% if @shop.rogo_arrangement_btn == "left_alignment" %>
-      <div class="col-md-5 mb-md-3">
+      <div class="col-md-5 mb-md-5">
         <%= image_tag @shop.get_shop_image(200,200) %>
       </div>
     <% elsif @shop.rogo_arrangement_btn == "center_alignment" %>
@@ -21,48 +21,75 @@
       </div>
     <% end %>
 
+    <div class="col-md-7 mb-md-5">
+      <div class="font-weight-bold">
+        ショップ紹介:
+      </div>
+      <div class="p-md-2 border border-dark rounded text_break">
+        <%= safe_join(@shop.free_space.split("\n"),tag(:br)) %>
+      </div>
+    </div>
+
     <% if @shop.introduction_arrangement_btn == "side_by_side" %>
       <div class="row">
-        <% @shop.get_shop_images(250,250).each do |image| %>
-        <div class="d-flex col-md-3 mb-md-3 p-md-2 align-items-center justify-content-center border border-dark ">
+        <% @shop.get_shop_images(350,350).each do |image| %>
+        <div class="d-flex col-md-4 mb-md-3 p-md-2 align-items-center justify-content-center border border-dark">
           <%= image_tag image %>
         </div>
         <% end %>
       </div>
     <% else %>
       <% @shop.get_shop_images(700,700).each do |image| %>
-        <div class="d-flex mb-md-3 align-items-center justify-content-center">
+        <div class="d-flex col-md-8 mb-md-3 p-md-2 mx-auto align-items-center justify-content-center border border-dark">
           <%= image_tag image %>
         </div>
       <% end %>
     <% end %>
 
-    <div class="row mb-md-2 align-items-center justify-content-center">
+    <div class="row mb-md-2 mt-md-5 align-items-center justify-content-center border-top border-dark rounded">
       <div class="col-md-5">
-        <div class="font-weight-bold">配送キャリア:</div>
-        <div class="text_break"><%= @shop.shipping_carrier %></div>
+        <div class="pt-md-2 font-weight-bold">
+          配送キャリア:
+        </div>
+        <div class="p-md-2 text_break">
+          <%= safe_join(@shop.shipping_carrier.split("\n"),tag(:br)) %>
+        </div>
       </div>
       <div class="col-md-5">
-        <div class="font-weight-bold">発送について:</div>
-        <div class="text_break"><%= @shop.about_shipping %></div>
-      </div>
-    </div>
-
-    <div class="row mb-md-2 align-items-center justify-content-center">
-      <div class="col-md-5">
-        <div class="font-weight-bold">個人情報の取り扱いについて:</div>
-        <div class="text_break"><%= @shop.personal_information %></div>
-      </div>
-      <div class="col-md-5">
-        <div class="font-weight-bold">決済について:</div>
-        <div class="text_break"><%= @shop.settlement %></div>
+        <div class="pt-md-2 font-weight-bold">
+          発送について:
+        </div>
+        <div class="p-md-2 text_breakk">
+          <%= safe_join(@shop.about_shipping.split("\n"),tag(:br)) %>
+        </div>
       </div>
     </div>
-
     <div class="row mb-md-2 align-items-center justify-content-center">
       <div class="col-md-5">
-        <div class="font-weight-bold">お問い合わせについて:</div>
-        <div class="text_break"><%= @shop.inquiry %></div>
+        <div class="pt-md-2 font-weight-bold">
+          個人情報の取り扱いについて:
+        </div>
+        <div class="p-md-2 text_break">
+          <%= safe_join(@shop.personal_information.split("\n"),tag(:br)) %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="pt-md-2 font-weight-bold">
+          決済について:
+        </div>
+        <div class="p-md-2 text_break">
+          <%= safe_join(@shop.settlement.split("\n"),tag(:br)) %>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-md-2 align-items-center justify-content-center">
+      <div class="col-md-5">
+        <div class="pt-md-2 font-weight-bold">
+          お問い合わせについて:
+        </div>
+        <div class="p-md-2 text_break">
+          <%= safe_join(@shop.inquiry.split("\n"),tag(:br)) %>
+        </div>
       </div>
       <div class="col-md-5">
       </div>

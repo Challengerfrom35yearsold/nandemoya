@@ -49,7 +49,7 @@
           本文
         </div>
         <div class="col-md-12 mb-md-2 text_break">
-          <%= review.review_content %>
+          <%= safe_join(review.review_content.split("\n"),tag(:br)) %>
         </div>
         <div class="col-md-5 mb-md-3 mx-auto">
           <%= link_to "編集する", edit_item_review_path(review.item_id,review.id), class:"btn btn-success btn-block" %>

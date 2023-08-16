@@ -67,57 +67,59 @@
       注文内容
     </div>
     <% @order_details.each do |order_detail| %>
-      <div class="row col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
-        <div class="col-md-3 d-flex align-items-center justify-content-center">
-          <%= image_tag order_detail.item.get_item_image(200,200) %>
-        </div>
-        <div class="col-md-9">
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              発送状態:
-            </div>
-            <div class="col-md-9">
-              <%= order_detail.shipping_status_i18n %>
-            </div>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
+        <div class="row">
+          <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <%= image_tag order_detail.item.get_item_image(200,200) %>
           </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              購入先ショップ:
+          <div class="col-md-9">
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                発送状態:
+              </div>
+              <div class="col-md-9">
+                <%= order_detail.shipping_status_i18n %>
+              </div>
             </div>
-            <div class="col-md-9 text_break">
-              <%= order_detail.item.shop.shop_name %>
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                購入先ショップ:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= order_detail.item.shop.shop_name %>
+              </div>
             </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              商品名:
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                商品名:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= order_detail.item.name %>
+              </div>
             </div>
-            <div class="col-md-9 text_break">
-              <%= order_detail.item.name %>
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                単価(税込):
+              </div>
+              <div class="col-md-9">
+                <%= "#{(order_detail.price*1.1).floor.to_s(:delimited)}円" %>
+              </div>
             </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              単価(税込):
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                数量:
+              </div>
+              <div class="col-md-9">
+                <%= order_detail.amount %>
+              </div>
             </div>
-            <div class="col-md-9">
-              <%= "#{(order_detail.price*1.1).floor.to_s(:delimited)}円" %>
-            </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              数量:
-            </div>
-            <div class="col-md-9">
-              <%= order_detail.amount %>
-            </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              小計:
-            </div>
-            <div class="col-md-9">
-              <%= "#{((order_detail.price*1.1).floor * order_detail.amount).to_s(:delimited)}円" %>
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                小計:
+              </div>
+              <div class="col-md-9">
+                <%= "#{((order_detail.price*1.1).floor * order_detail.amount).to_s(:delimited)}円" %>
+              </div>
             </div>
           </div>
         </div>

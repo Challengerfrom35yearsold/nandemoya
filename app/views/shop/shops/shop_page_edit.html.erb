@@ -29,7 +29,7 @@
       </div>
       <div class="row mb-md-2">
         <div class="col-md-4 font-weight-bold">
-          ショップ紹介画像(12枚まで登録可能)
+          ショップ紹介画像<br />(6枚まで登録可能)
         </div>
         <div class="col-md-8">
           <%= f.file_field :images, accept: "image/*", multiple: true %><br />
@@ -45,6 +45,14 @@
 
           <%= f.radio_button :introduction_arrangement_btn, "tandem" %>
           <%= f.label :introduction_arrangement_btn, '縦並び', value: "tandem" %>
+        </div>
+      </div>
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :free_space, "ショップ紹介" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :free_space, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-2">

@@ -44,36 +44,36 @@
             お問い合わせ内容
           </div>
           <div class="col-md-12 mb-md-2 text_break">
-            <%= customer_inquiry.inquiry %>
+            <%= safe_join(customer_inquiry.inquiry.split("\n"),tag(:br)) %>
           </div>
           <div class="font-weight-bold">
             回答(左側:会員の返答,右側:ショップからの回答)
           </div>
-          <div class="row col-md-12 mx-auto mb-md-3">
+          <div class="row">
             <div class="col-md-7 border border-dark m-md-2">
-            <% customer_inquiry.customer_inquiry_threads.each do |customer_inquiry_thread| %>
-              <% if customer_inquiry_thread.speaker_type == "customer" %>
-                <div class="row col-md-6 border border-primary rounded  ml-md-1 my-md-2 text_break">
-                  <%= customer_inquiry_thread.message %>
-                </div>
-              <% else customer_inquiry_thread.speaker_type == "shop" %>
-                <div class="row col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
-                  <%= customer_inquiry_thread.message %>
-                </div>
+              <% customer_inquiry.customer_inquiry_threads.each do |customer_inquiry_thread| %>
+                <% if customer_inquiry_thread.speaker_type == "customer" %>
+                  <div class="col-md-6 border border-primary rounded  ml-md-1 my-md-2 text_break">
+                    <%= safe_join(customer_inquiry_thread.message.split("\n"),tag(:br)) %>
+                  </div>
+                <% else customer_inquiry_thread.speaker_type == "shop" %>
+                  <div class="col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
+                    <%= safe_join(customer_inquiry_thread.message.split("\n"),tag(:br)) %>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
-          <div class="col-md-4 m-md-2">
-            <%= form_with model: @customer_inquiry_thread,url: shop_customer_inquiry_threads_path,method: :post  do |f| %>
-              <div class="col-md-12 font-weight-bold">
-                <%= f.label :message, "返答" %>
-              </div>
-              <div class="col-md-12 mb-md-2">
-                <%= f.text_area :message, placeholder: "会員からの返答に対する回答を入力してください", class: "form-control" %>
-                <%= f.hidden_field :customer_inquiry_id, :value => customer_inquiry.id %>
-              </div>
+            </div>
+            <div class="col-md-4 m-md-2">
+              <%= form_with model: @customer_inquiry_thread,url: shop_customer_inquiry_threads_path,method: :post  do |f| %>
+                <div class="col-md-12 font-weight-bold">
+                  <%= f.label :message, "返答" %>
+                </div>
+                <div class="col-md-12 mb-md-2">
+                  <%= f.text_area :message, placeholder: "会員からの返答に対する回答を入力してください", class: "form-control" %>
+                  <%= f.hidden_field :customer_inquiry_id, :value => customer_inquiry.id %>
+                </div>
                 <div class="col-md-7 mb-md-3 mx-auto">
-                  <%= f.submit '返答する', class:"btn btn-success btn-block" %>
+                    <%= f.submit '返答する', class:"btn btn-success btn-block" %>
                 </div>
               </div>
             <% end %>

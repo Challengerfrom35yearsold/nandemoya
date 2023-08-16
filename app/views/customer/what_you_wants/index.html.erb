@@ -4,62 +4,64 @@
       <h2>ほしいもの一覧</h2>
     </div>
     <% @what_you_wants.each do |what_you_want| %>
-      <div class="row col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
-        <div class="col-md-3 d-flex align-items-center justify-content-center">
-          <%= image_tag what_you_want.item.get_item_image(200,200) %>
-        </div>
-        <div class="col-md-9">
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              登録日時
-            </div>
-            <div class="col-md-9">
-              <%= l what_you_want.created_at %>
-            </div>
+      <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
+        <div class="row">
+          <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <%= image_tag what_you_want.item.get_item_image(200,200) %>
           </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              商品名:
+          <div class="col-md-9">
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                登録日時
+              </div>
+              <div class="col-md-9">
+                <%= l what_you_want.created_at %>
+              </div>
             </div>
-            <div class="col-md-9 text_break">
-              <%= what_you_want.item.name %>
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                商品名:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= what_you_want.item.name %>
+              </div>
             </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              ショップ名:
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                ショップ名:
+              </div>
+              <div class="col-md-9 text_break">
+                <%= what_you_want.item.shop.shop_name %>
+              </div>
             </div>
-            <div class="col-md-9 text_break">
-              <%= what_you_want.item.shop.shop_name %>
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                単価(税込):
+              </div>
+              <div class="col-md-9">
+                <%= "#{what_you_want.item.with_tax_price.to_s(:delimited)}円" %>
+              </div>
             </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              単価(税込):
-            </div>
-            <div class="col-md-9">
-              <%= "#{what_you_want.item.with_tax_price.to_s(:delimited)}円" %>
-            </div>
-          </div>
-          <div class="row mb-md-3 border-bottom border-dark">
-            <div class="col-md-3">
-              数量:
-            </div>
-            <div class="col-md-9 mb-md-2">
-              <%= form_with model: @cart_item, url: cart_items_path,method: :post  do |f| %>
-                <div class="row">
-                  <div class="col-md-3">
-                    <%= f.select :amount, *[1..10], {}, {class: "form-control"} %>
-                    <%= f.hidden_field :item_id, :value => what_you_want.item.id %>
+            <div class="row mb-md-3 mr-md-3 border-bottom border-dark">
+              <div class="col-md-3">
+                数量:
+              </div>
+              <div class="col-md-9 mb-md-2">
+                <%= form_with model: @cart_item, url: cart_items_path,method: :post  do |f| %>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= f.select :amount, *[1..10], {}, {class: "form-control"} %>
+                      <%= f.hidden_field :item_id, :value => what_you_want.item.id %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= f.submit 'カートに入れる', class:"btn btn-success btn-block" %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= link_to "削除する", what_you_want_path(what_you_want.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <%= f.submit 'カートに入れる', class:"btn btn-success btn-block" %>
-                  </div>
-                  <div class="col-md-3">
-                    <%= link_to "削除する", what_you_want_path(what_you_want.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
-                  </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

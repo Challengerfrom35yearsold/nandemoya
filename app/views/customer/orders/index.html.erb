@@ -31,21 +31,23 @@
           注文商品
         </div>
         <% order.items.each do |item| %>
-          <div class="row col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
-            <div class="col-md-3 d-flex align-items-center justify-content-center">
-              <%= image_tag item.get_item_image(100,100) %>
-            </div>
-            <div class="col-md-9">
-              <div class="row mb-md-3 border-bottom border-dark">
-                <div class="col-md-3">
-                  商品名:
-                </div>
-                <div class="col-md-9 text_break">
-                  <%= item.name %>
-                </div>
+          <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
+            <div class="row">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <%= image_tag item.get_item_image(100,100) %>
               </div>
-              <div class="col-md-5">
-                <%= link_to "レビューを書く", new_item_review_path(item.id), class:"btn btn-primary btn-block" %>
+              <div class="col-md-9">
+                <div class="row mb-md-3 mr-md-2 border-bottom border-dark">
+                  <div class="col-md-3">
+                    商品名:
+                  </div>
+                  <div class="col-md-9 text_break">
+                    <%= item.name %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <%= link_to "レビューを書く", new_item_review_path(item.id), class:"btn btn-primary btn-block" %>
+                </div>
               </div>
             </div>
           </div>

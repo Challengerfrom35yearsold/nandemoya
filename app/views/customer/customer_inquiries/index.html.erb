@@ -40,21 +40,21 @@
             お問い合わせ内容
           </div>
           <div class="col-md-12 mb-md-2 text_break">
-            <%= customer_inquiry.inquiry %>
+            <%= safe_join(customer_inquiry.inquiry.split("\n"),tag(:br)) %>
           </div>
           <div class="font-weight-bold">
             回答(左側:会員の返答,右側:ショップからの回答)
           </div>
-          <div class="row col-md-12 mx-auto mb-md-3">
-            <div class="col-md-12 border border-dark m-md-2">
+          <div class="row mx-auto mb-md-3">
+            <div class="col-md-12 border border-dark mr-md-2">
               <% customer_inquiry.customer_inquiry_threads.each do |customer_inquiry_thread| %>
                 <% if customer_inquiry_thread.speaker_type == "customer" %>
-                  <div class="row col-md-6 border border-primary rounded  ml-md-1 my-md-2 text_break">
-                    <%= customer_inquiry_thread.message %>
+                  <div class="col-md-6 border border-primary rounded  my-md-2 text_break">
+                    <%= safe_join(customer_inquiry_thread.message.split("\n"),tag(:br)) %>
                   </div>
                 <% else customer_inquiry_thread.speaker_type == "shop" %>
-                  <div class="row col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
-                    <%= customer_inquiry_thread.message %>
+                  <div class="col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
+                    <%= safe_join(customer_inquiry_thread.message.split("\n"),tag(:br)) %>
                   </div>
                 <% end %>
               <% end %>

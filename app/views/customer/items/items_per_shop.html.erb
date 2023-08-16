@@ -4,7 +4,7 @@
       <div class="col-md-3">
         <h2>商品一覧</h2>
       </div>
-      <div class="row col-md-9 d-flex align-items-center justify-content-end">
+      <div class="col-md-9 d-flex align-items-center justify-content-end">
         <div class="col-md-3">
           <%= link_to "価格が高い順", items_path(price_order: "desc"), class:"btn btn-success btn-block" %>
         </div>
@@ -14,25 +14,25 @@
       </div>
     </div>
     <div class="row">
-    <% @items.each do |item| %>
-      <div class="col-3 mb-md-4">
+      <% @items.each do |item| %>
+        <div class="col-3 mb-md-4">
           <div class="card">
             <%= link_to item_path(item.id) do %>
               <div class="d-flex align-items-center justify-content-center pt-md-4">
                 <%= image_tag item.get_item_image(200,200), :size => '200x200' %>
               </div>
-                <div class="card-body">
-                  <div class="card-text text-dark">
-                    <div class="row">
-                      <div class="col-md-12">
-                        商品名:
-                      </div>
+              <div class="card-body">
+                <div class="card-text text-dark">
+                  <div class="row">
+                    <div class="col-md-12">
+                      商品名:
                     </div>
-                    <div class="row mb-md-2 border-bottom border-dark">
-                      <div class="col-md-12 text-truncate">
-                        <%= item.name %>
-                      </div>
+                  </div>
+                  <div class="row mb-md-2 border-bottom border-dark">
+                    <div class="col-md-12 text_break">
+                      <%= item.name %>
                     </div>
+                  </div>
                   <div class="row border-bottom border-dark">
                     <div class="col-md-6">
                       価格(税込):

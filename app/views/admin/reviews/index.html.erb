@@ -43,7 +43,7 @@
           本文
         </div>
         <div class="col-md-12 mb-md-2 text_break">
-          <%= item_review.review_content %>
+          <%= safe_join(item_review.review_content.split("\n"),tag(:br)) %>
         </div>
         <div class="col-md-5 mb-md-3 mx-auto">
           <%= link_to "編集する", edit_admin_item_review_path(item_review.item_id,item_review.id), class:"btn btn-success btn-block" %>

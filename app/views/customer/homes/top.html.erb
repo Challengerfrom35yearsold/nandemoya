@@ -1,52 +1,58 @@
 <div class="container px-md-0">
-  <div class="row col-md-12 border border-dark rounded mx-auto mb-md-3">
-
-    <div class="row col-md-3 border border-dark rounded my-md-3 mx-auto">
-      <div class="col-md-12 font-weight-bold border-bottom border-dark">
-        ジャンル検索
-      </div>
-      <% @item_genres.each do |item_genre| %>
-        <div class="col-md-12 text-center">
-          <%= link_to item_genre.name, items_path(item_genre_id: item_genre.id), class: "text-dark" %>
+  <div class="row">
+    <div class="col-md-12 border border-dark rounded mx-auto mb-md-3">
+      <div class="row">
+        <div class="col-md-2 border border-dark rounded my-md-3 mx-auto">
+          <div class="font-weight-bold border-bottom border-dark">
+            ジャンル検索
+          </div>
+          <% @item_genres.each do |item_genre| %>
+            <div class="col-md-12">
+              <%= link_to item_genre.name, items_path(item_genre_id: item_genre.id), class: "text-dark" %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="row col-md-9 mt-md-3 mx-auto">
-      <% @items.each do |item| %>
-        <div class="col-4 mb-md-3">
-          <div class="card">
-            <%= link_to item_path(item.id) do %>
-              <div class="d-flex align-items-center justify-content-center pt-md-4">
-                <%= image_tag item.get_item_image(200,200), :size => '200x200' %>
-              </div>
-              <div class="card-body">
-                <div class="card-text text-dark">
-                  <div class="row">
-                    <div class="col-md-12">
-                      商品名:
+        <div class="col-md-9 mt-md-3 mx-auto">
+          <div class="row">
+            <div class="col-12 mb-md-2">
+              <h4>新着商品</h4>
+            </div>
+            <% @items.each do |item| %>
+              <div class="col-4 mb-md-3">
+                <div class="card">
+                  <%= link_to item_path(item.id) do %>
+                    <div class="d-flex align-items-center justify-content-center pt-md-4">
+                      <%= image_tag item.get_item_image(200,200), :size => '200x200' %>
                     </div>
-                  </div>
-                  <div class="row mb-md-2 border-bottom border-dark">
-                    <div class="col-md-12 text-truncate">
-                      <%= item.name %>
+                    <div class="card-body">
+                      <div class="card-text text-dark">
+                        <div class="row">
+                          <div class="col-md-12">
+                            商品名:
+                          </div>
+                        </div>
+                        <div class="row mb-md-2 border-bottom border-dark">
+                          <div class="col-md-12 text-truncate">
+                            <%= item.name %>
+                          </div>
+                        </div>
+                        <div class="row border-bottom border-dark">
+                          <div class="col-md-6">
+                            価格(税込):
+                          </div>
+                          <div class="col-md-6">
+                            <%= "#{item.price.to_s(:delimited)}円" %>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row border-bottom border-dark">
-                    <div class="col-md-6">
-                      価格(税込):
-                    </div>
-                    <div class="col-md-6">
-                      <%= "#{item.price.to_s(:delimited)}円" %>
-                    </div>
-                  </div>
+                  <% end %>
                 </div>
               </div>
             <% end %>
           </div>
         </div>
-      <% end %>
+      </div>
     </div>
-
   </div>
 </div>

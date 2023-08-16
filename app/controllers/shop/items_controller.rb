@@ -10,8 +10,12 @@ class Shop::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shop_id = current_shop.id
-    @item.save
-    redirect_to shop_item_path(@item.id)
+    if @item.save
+      redirect_to shop_item_path(@item.id)
+    else
+      @item = Item.new
+      render :new
+    end
   end
 
   def show

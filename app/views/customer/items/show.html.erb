@@ -27,8 +27,8 @@
         <div class="font-weight-bold">
           商品説明
         </div>
-        <div class="col-md-12 mb-md-2">
-          <%= @item.introduction %>
+        <div class="col-md-12 mb-md-2 text_break">
+          <%= safe_join(@item.introduction.split("\n"),tag(:br)) %>
         </div>
         <div class="font-weight-bold">
           価格(税込)

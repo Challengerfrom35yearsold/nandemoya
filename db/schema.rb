@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_deleted", default: false, null: false
+    t.text "free_space"
     t.text "shipping_carrier"
     t.text "about_shipping"
     t.text "personal_information"
