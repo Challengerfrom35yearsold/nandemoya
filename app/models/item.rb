@@ -9,7 +9,6 @@ class Item < ApplicationRecord
   has_many :what_you_wants, dependent: :destroy
 
   FILE_NUMBER_LIMIT = 3
-
   validate :validate_number_of_files
 
   def with_tax_price

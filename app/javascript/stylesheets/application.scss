@@ -13,3 +13,11 @@ footer {
 .text_break {
   overflow-wrap: anywhere;
 }
+
+.error_message {
+  color: red;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-color: red;
+}

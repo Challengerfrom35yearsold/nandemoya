@@ -2,11 +2,19 @@
   <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
     <div class="my-md-3">
       <h2>商品編集</h2>
+      <% if @item.errors.any? %>
+        <div class="error_message">
+          <h4 class="text-center">
+            入力内容に誤りがあります。</br>
+            入力内容を確認してください。
+          </h4>
+        </div>
+      <% end %>
     </div>
     <%= form_with model: @item,url: shop_item_path, method: :patch  do |f| %>
       <div class="row mb-md-2">
         <div class="col-md-4 font-weight-bold">
-          商品画像
+          商品画像<br />(3枚まで登録可能)
         </div>
         <div class="col-md-8">
         <%= f.file_field :images, accept: "image/*", multiple: true %>

@@ -1,4 +1,8 @@
 class Customer::ItemsController < ApplicationController
+  before_action :aaaa, except: [:index]
+
+  before_action :authenticate_customer!, except: [:index]
+
   def index
     if params[:item_name]
       @items = Item.item_name_looks(params[:item_name])
@@ -31,5 +35,13 @@ class Customer::ItemsController < ApplicationController
     @cart_item = CartItem.new
     @what_you_want = WhatYouWant.new
     @favorite_shop = FavoriteShop.new
+  end
+
+  private
+
+  def aaaa
+    if !customer_signed_in?
+      flash[:notice] = "ログインしてください"
+    end
   end
 end

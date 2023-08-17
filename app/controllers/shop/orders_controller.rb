@@ -4,7 +4,7 @@ class Shop::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.where(id: params[:id]).includes(:items).first
-    @order_details = @order.order_details
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.includes(:item).where(items: {shop_id: current_shop.id})
   end
 end

@@ -10,6 +10,9 @@ class Shop < ApplicationRecord
   has_many :customer_inquiries, dependent: :destroy
   has_many :favorite_shops, dependent: :destroy
 
+  FILE_NUMBER_LIMIT = 3
+  validate :validate_number_of_files
+
   def get_shop_images(width, height)
     unless images.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -24,6 +27,13 @@ class Shop < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  private
+
+  def validate_number_of_files
+    return if images.length <= FILE_NUMBER_LIMIT
+    errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです。")
   end
 
 end

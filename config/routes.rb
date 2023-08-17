@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: 'about'
 
     get 'customer_inquiry_confirmation' => 'customer_inquiries#inquiry_confirmation'
-    resources :customer_inquiries, only: [:new, :index, :create, :show, :update]
+    resources :customer_inquiries, only: [:new, :index, :create, :update]
 
     resources :customer_inquiry_threads, only: [:create]
 
@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     get 'shop_page/new' => 'shops#shop_page_new'
     get 'shop_page' => 'shops#shop_page'
     get 'shop_page/information/edit' => 'shops#shop_page_edit'
+    patch 'shop_page/information/new' => 'shops#shop_page_new_update'
     patch 'shop_page/information' => 'shops#shop_page_update'
     get 'unsubscribe' => 'shops#unsubscribe'
     patch 'withdraw' => 'shops#withdraw'

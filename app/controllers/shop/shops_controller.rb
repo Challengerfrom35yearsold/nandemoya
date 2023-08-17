@@ -14,10 +14,37 @@ class Shop::ShopsController < ApplicationController
   end
 
   def withdraw
-    @shop = current_shop
-    @shop.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
+    @orders = Order.includes(:items, :order_details).where(items: {shop_id: current_shop.id})
+    total_orders_shipping_status_sent = 0
+    @orders.each do |order|
+      total_current_shop = 0
+      order.order_details.each do |order_detail|
+        if order_detail.item.shop_id == current_shop.id
+          total_current_shop = total_current_shop + 1
+        end
+      end
+      total_shipping_status_sent = 0
+      order.order_details.each do |order_detail|
+        if order_detail.item.shop_id == current_shop.id
+          if order_detail.shipping_status == "sent"
+            total_shipping_status_sent = total_shipping_status_sent + 1
+          end
+        end
+      end
+      if total_current_shop == total_shipping_status_sent
+        total_orders_shipping_status_sent = total_orders_shipping_status_sent + 1
+      end
+    end
+
+    if @orders.count == total_orders_shipping_status_sent
+      @shop = current_shop
+      @shop.update(is_deleted: true)
+      reset_session
+      redirect_to root_path
+    else
+      flash[:notice] = "未配送の商品があります。配送を完了させてください。"
+      render :unsubscribe
+    end
   end
 
   def inquiry
@@ -27,10 +54,22 @@ class Shop::ShopsController < ApplicationController
     @shop = current_shop
   end
 
+  def shop_page_new_update
+    @shop = current_shop
+    if @shop.update(shop_page_params)
+      redirect_to shop_shop_page_path
+    else
+      render :shop_page_new
+    end
+  end
+
   def shop_page_update
     @shop = current_shop
-    @shop.update(shop_page_params)
-    redirect_to shop_shop_page_path
+    if @shop.update(shop_page_params)
+      redirect_to shop_shop_page_path
+    else
+      render :shop_page_edit
+    end
   end
 
   def shop_page

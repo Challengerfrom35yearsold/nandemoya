@@ -3,6 +3,11 @@
     <div class="row my-md-3 px-md-3">
       <h2><%= "#{@item.name}のレビュー一覧" %></h2>
     </div>
+    <% if @item_reviews.blank? %>
+      <div class="col-md-12 border border-dark rounded mx-auto text-center mb-md-3 py-md-3">
+        登録情報はありません。
+      </div>
+    <% end %>
     <% @item_reviews.each do |item_review| %>
       <div class="col-md-12 border border-dark rounded mb-md-3">
         <div class="font-weight-bold">

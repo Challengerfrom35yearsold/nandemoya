@@ -3,6 +3,11 @@
     <div class="row my-md-3 px-md-3">
       <h2>ほしいもの一覧</h2>
     </div>
+    <% if @what_you_wants.blank? %>
+      <div class="col-md-12 border border-dark rounded mx-auto text-center mb-md-3 py-md-3">
+        登録情報はありません。
+      </div>
+    <% end %>
     <% @what_you_wants.each do |what_you_want| %>
       <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
         <div class="row">
