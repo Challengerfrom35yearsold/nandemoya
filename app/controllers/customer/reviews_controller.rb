@@ -31,7 +31,7 @@ class Customer::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.where(customer_id: current_customer.id).page(params[:page])
+    @reviews = Review.includes(:item).where(customer_id: current_customer.id).page(params[:page])
   end
 
   def item_reviews

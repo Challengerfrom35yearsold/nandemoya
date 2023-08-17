@@ -28,11 +28,9 @@
     <div class="col-md-12 mb-2">
       <% total = 0 %>
       <% @order_details.each do |order_detail| %>
-        <% if order_detail.item.shop_id == current_shop.id %>
-          <% price = (order_detail.price*1.1).floor %>
-          <% amount = order_detail.amount %>
-          <% total = total + price * amount %>
-        <% end %>
+        <% price = (order_detail.price*1.1).floor %>
+        <% amount = order_detail.amount %>
+        <% total = total + price * amount %>
       <% end %>
       <%= "#{total.to_s(:delimited)}円" %>
     </div>
@@ -69,7 +67,6 @@
       注文内容
     </div>
     <% @order_details.each do |order_detail| %>
-      <%# if order_detail.item.shop_id == current_shop.id %>
         <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 py-md-2">
           <div class="row">
             <div class="col-md-3 d-flex align-items-center justify-content-center">
@@ -122,7 +119,6 @@
             </div>
           </div>
         </div>
-      <%# end %>
     <% end %>
   </div>
 </div>

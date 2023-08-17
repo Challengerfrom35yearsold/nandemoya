@@ -1,10 +1,10 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.page(params[:page])
+    @orders = Order.includes(:customer, :order_details).page(params[:page])
   end
 
   def show
-    @order = Order.where(id: params[:id]).includes(:items).first
-    @order_details = @order.order_details
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.includes(:item)
   end
 end

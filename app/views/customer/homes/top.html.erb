@@ -18,7 +18,6 @@
               <h4>新着商品</h4>
             </div>
             <% @items.each do |item| %>
-
                 <div class="col-4 mb-md-3">
                   <div class="card">
                     <%= link_to item_path(item.id) do %>
@@ -50,7 +49,6 @@
                     <% end %>
                   </div>
                 </div>
-
             <% end %>
           </div>
         </div>

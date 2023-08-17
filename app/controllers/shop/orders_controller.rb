@@ -1,6 +1,6 @@
 class Shop::OrdersController < ApplicationController
   def index
-    @orders = Order.includes(:items).where(items: {shop_id: current_shop.id}).page(params[:page])
+    @orders = Order.includes(:customer, :items, :order_details).where(items: {shop_id: current_shop.id}).page(params[:page])
   end
 
   def show

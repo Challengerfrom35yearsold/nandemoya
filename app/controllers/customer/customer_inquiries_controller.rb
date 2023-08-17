@@ -13,11 +13,11 @@ class Customer::CustomerInquiriesController < ApplicationController
   end
 
   def index
-    @customer_inquiries = CustomerInquiry.where(customer_id: current_customer.id).includes(:customer_inquiry_threads)
+    @customer_inquiries = CustomerInquiry.where(customer_id: current_customer.id).includes(:shop, :item, :customer_inquiry_threads)
   end
 
   def inquiry_confirmation
-    @customer_inquiries = CustomerInquiry.where(customer_id: current_customer.id).includes(:customer_inquiry_threads)
+    @customer_inquiries = CustomerInquiry.where(customer_id: current_customer.id).includes(:shop, :item, :customer_inquiry_threads)
     @customer_inquiry_thread = CustomerInquiryThread.new
   end
 

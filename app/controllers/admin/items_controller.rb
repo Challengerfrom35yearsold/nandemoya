@@ -1,10 +1,10 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.page(params[:page])
+    @items = Item.includes(:item_genre).page(params[:page])
   end
 
   def items_per_shop
-    @items = Item.where(shop_id: params[:id]).page(params[:page])
+    @items = Item.includes(:item_genre).where(shop_id: params[:id]).page(params[:page])
   end
 
   def show

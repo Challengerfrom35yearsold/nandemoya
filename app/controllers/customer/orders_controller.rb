@@ -5,7 +5,6 @@ class Customer::OrdersController < ApplicationController
   end
 
   def comfirm
-
     if params[:order]
       Rails.cache.fetch('order') do
         params[:order]
@@ -38,7 +37,7 @@ class Customer::OrdersController < ApplicationController
       @order.name = @address.name
     end
 
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.includes(:item)
     @total = 0
 
   end
@@ -81,7 +80,7 @@ class Customer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_details = @order.order_details.includes(:item)
   end
 
   private

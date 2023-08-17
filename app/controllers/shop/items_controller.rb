@@ -1,6 +1,6 @@
 class Shop::ItemsController < ApplicationController
   def index
-    @items = Item.where(shop_id: current_shop.id).page(params[:page])
+    @items = Item.includes(:item_genre).where(shop_id: current_shop.id).page(params[:page])
   end
 
   def new

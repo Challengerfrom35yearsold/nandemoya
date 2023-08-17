@@ -1,6 +1,6 @@
 class Customer::WhatYouWantsController < ApplicationController
   def index
-    @what_you_wants = WhatYouWant.where(customer_id: current_customer.id)
+    @what_you_wants = WhatYouWant.includes(:item).where(customer_id: current_customer.id)
     @cart_item = CartItem.new
   end
 

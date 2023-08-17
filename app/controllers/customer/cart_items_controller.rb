@@ -1,6 +1,6 @@
 class Customer::CartItemsController < ApplicationController
   def index
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.includes(:item)
     @total = 0
   end
 

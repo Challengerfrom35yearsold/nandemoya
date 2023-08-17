@@ -1,6 +1,6 @@
 class Customer::FavoriteShopsController < ApplicationController
   def index
-    @favorite_shops = FavoriteShop.where(customer_id: current_customer.id)
+    @favorite_shops = FavoriteShop.includes(:shop).where(customer_id: current_customer.id)
   end
 
   def create
