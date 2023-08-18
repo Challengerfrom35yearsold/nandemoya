@@ -81,6 +81,9 @@ class Customer::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details.includes(:item)
+    unless @order.customer.id == current_customer.id
+      redirect_to orders_path
+    end
   end
 
   private

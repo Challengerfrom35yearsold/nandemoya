@@ -23,8 +23,12 @@ class Customer::CustomerInquiriesController < ApplicationController
 
   def update
     @customer_inquiry = CustomerInquiry.find(params[:id])
-    @customer_inquiry.update(inquiry_status: "resolution")
-    redirect_to customer_inquiries_path
+    if @customer_inquiry.customer.id == current_customer.id
+      @customer_inquiry.update(inquiry_status: "resolution")
+      redirect_to customer_inquiries_path
+    else
+      redirect_to customer_inquiry_confirmation_path
+    end
   end
 
   private

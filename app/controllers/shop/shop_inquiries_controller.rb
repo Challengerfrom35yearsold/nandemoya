@@ -21,8 +21,13 @@ class Shop::ShopInquiriesController < ApplicationController
 
   def update
     @shop_inquiry = ShopInquiry.find(params[:id])
-    @shop_inquiry.update(inquiry_status: "resolution")
-    redirect_to shop_shop_inquiries_path
+    if  @shop_inquiry.shop.id == current_shop.id
+      @shop_inquiry.update(inquiry_status: "resolution")
+      redirect_to shop_shop_inquiries_path
+    else
+      redirect_to shop_shop_inquiry_confirmation_path
+    end
+
   end
 
   private

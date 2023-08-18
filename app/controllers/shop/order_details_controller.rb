@@ -5,7 +5,7 @@ class Shop::OrderDetailsController < ApplicationController
       @order_detail.update(order_detail_params)
       redirect_to shop_order_path(@order_detail.order_id)
     else
-      render template: "orders/show"
+      redirect_to shop_orders_path
     end
   end
 

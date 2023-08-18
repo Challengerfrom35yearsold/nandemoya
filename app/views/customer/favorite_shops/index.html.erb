@@ -31,12 +31,13 @@
             ショップからのDMを受け取りますか？
           </div>
           <div class="col-md-5 mb-md-2">
-            <div class="col-md-12">
-              <%= link_to "DMを受け取る", favorite_shop_receive_path(favorite_shop.id), method: :patch, class:"btn btn-success" %>
-            </div>
-            <% if favorite_shop.is_deleted == true %>
+            <% if favorite_shop.is_deleted == false %>
+              <div class="col-md-12">
+                <%= link_to "DMを受け取る", favorite_shop_receive_path(favorite_shop.id), method: :patch, class:"btn btn-success" %>
+              </div>
+            <% else %>
               <div class="col-md-12 mt-md-2">
-                <%= link_to "解除する", favorite_shop_unlock_path(favorite_shop.id), method: :patch, class:"btn btn-danger" %>
+                <%= link_to "解除する", favorite_shop_unlock_path(favorite_shop.id), method: :patch, "data-confirm" => "本当に解除しますか？", class:"btn btn-danger" %>
               </div>
             <% end %>
           </div>
