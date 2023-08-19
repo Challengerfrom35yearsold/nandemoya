@@ -1,6 +1,4 @@
 class Customer::ItemsController < ApplicationController
-  before_action :aaaa, except: [:index]
-
   before_action :authenticate_customer!, except: [:index]
 
   def index
@@ -37,11 +35,4 @@ class Customer::ItemsController < ApplicationController
     @favorite_shop = FavoriteShop.new
   end
 
-  private
-
-  def aaaa
-    if !customer_signed_in?
-      flash[:notice] = "ログインしてください"
-    end
-  end
 end

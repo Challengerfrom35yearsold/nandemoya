@@ -56,18 +56,9 @@
               <% end %>
             </div>
             <div class="col-md-4 m-md-2">
-              <%= form_with model: @shop_inquiry_thread,url: shop_shop_inquiry_threads_path,method: :post  do |f| %>
-                <div class="col-md-12 font-weight-bold">
-                  <%= f.label :message, "返答" %>
-                </div>
-                <div class="col-md-12 mb-md-2">
-                  <%= f.text_area :message, placeholder: "回答に対する返答を入力してください", class: "form-control" %>
-                  <%= f.hidden_field :shop_inquiry_id, :value => shop_inquiry.id %>
-                </div>
-                <div class="col-md-7 mb-md-3 mx-auto">
-                  <%= f.submit '返答する', class:"btn btn-success btn-block" %>
-                </div>
-              <% end %>
+              <div class="col-md-7 mx-auto mb-md-2">
+                <%= link_to '返答する',  shop_shop_inquiry_path(shop_inquiry.id), class:"btn btn-success btn-block" %>
+              </div>
               <div class="col-md-12">
                 <div class="font-weight-bold mb-md-2">
                   解決した場合は以下をクリックしてください。

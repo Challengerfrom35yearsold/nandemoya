@@ -5,6 +5,9 @@
       <div class="col-md-3 ml-md-5">
         <%= link_to "買い物を続ける", root_path, class:"btn btn-primary btn-block" %>
       </div>
+      <div class="col-md-3 ml-md-2">
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, "data-confirm" => "本当にカート内を空にしますか？", class:"btn btn-danger btn-block" %>
+    </div>
     </div>
     <% @cart_items.each do |cart_item| %>
       <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
@@ -69,6 +72,9 @@
       <% if @total != 0 %>
         <%= link_to "情報入力に進む", new_order_path, class:"btn btn-success btn-block" %>
       <% end %>
+    </div>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @cart_items %></h4>
     </div>
   </div>
 </div>

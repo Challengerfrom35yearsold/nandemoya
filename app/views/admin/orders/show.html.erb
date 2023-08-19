@@ -26,13 +26,7 @@
       ご請求金額
     </div>
     <div class="col-md-12 mb-2">
-      <% total = 0 %>
-      <% @order_details.each do |order_detail| %>
-          <% price = (order_detail.price*1.1).floor %>
-          <% amount = order_detail.amount %>
-          <% total = total + price * amount %>
-       <% end %>
-      <%= "#{total.to_s(:delimited)}円" %>
+      <%= "#{@total_price}円" %>
     </div>
     <div class="font-weight-bold">
       配送先

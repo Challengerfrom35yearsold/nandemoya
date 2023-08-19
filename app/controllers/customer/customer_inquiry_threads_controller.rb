@@ -3,8 +3,12 @@ class Customer::CustomerInquiryThreadsController < ApplicationController
   def create
     @customer_inquiry_thread = CustomerInquiryThread.new(customer_inquiry_thread_params)
     @customer_inquiry_thread.speaker_type = "customer"
-    @customer_inquiry_thread.save
-    redirect_to customer_inquiry_confirmation_path
+    if @customer_inquiry_thread.save
+      redirect_to customer_inquiry_confirmation_path
+    else
+      @customer_inquiry = @customer_inquiry_thread.customer_inquiry
+      render template: "customer/customer_inquiries/show"
+    end
   end
 
   private

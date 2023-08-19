@@ -21,14 +21,14 @@ class DeviseCreateShops < ActiveRecord::Migration[6.1]
       t.string :address, null: false
       t.string :telephone_number, null: false
       t.boolean :is_deleted, null: false, default: false
-      t.text :free_space
-      t.text :shipping_carrier
-      t.text :about_shipping
-      t.text :personal_information
-      t.text :settlement
-      t.text :inquiry
-      t.string :rogo_arrangement_btn
-      t.string :introduction_arrangement_btn
+      t.text :free_space, null: false
+      t.text :shipping_carrier, null: false
+      t.text :about_shipping, null: false
+      t.text :personal_information, null: false
+      t.text :settlement, null: false
+      t.text :inquiry, null: false
+      t.string :rogo_arrangement_btn, null: false
+      t.string :introduction_arrangement_btn, null: false
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

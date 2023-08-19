@@ -25,10 +25,9 @@ Rails.application.routes.draw do
 
   scope module: :customer do
     root to: 'homes#top'
-    get 'about' => 'homes#about', as: 'about'
 
     get 'customer_inquiry_confirmation' => 'customer_inquiries#inquiry_confirmation'
-    resources :customer_inquiries, only: [:new, :index, :create, :update]
+    resources :customer_inquiries, only: [:new, :show, :index, :create, :update]
 
     resources :customer_inquiry_threads, only: [:create]
 
@@ -68,16 +67,15 @@ Rails.application.routes.draw do
 
   scope module: :shop do
     get 'shop' => 'homes#top'
-    get 'shop/about' => 'homes#about', as: 'shop/about'
   end
 
   namespace :shop do
-    resources :customer_inquiries, only: [:index]
+    resources :customer_inquiries, only: [:index, :show]
 
     resources :customer_inquiry_threads, only: [:create]
 
     get 'shop_inquiry_confirmation' => 'shop_inquiries#inquiry_confirmation'
-    resources :shop_inquiries, only: [:new, :index, :create, :update]
+    resources :shop_inquiries, only: [:new, :show, :index, :create, :update]
 
     resources :shop_inquiry_threads, only: [:create]
 
@@ -112,7 +110,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    resources :shop_inquiries, only: [:index]
+    resources :shop_inquiries, only: [:index, :show]
 
     resources :shop_inquiry_threads, only: [:create]
 

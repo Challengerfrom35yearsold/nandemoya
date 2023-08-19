@@ -4,7 +4,7 @@ class Shop::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_up_path_for(resource)
-    shop_shop_page_new_path
+    shop_path
   end
 
   def after_sign_in_path_for(resource)
@@ -12,7 +12,7 @@ class Shop::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_out_path_for(resource)
-    shop_about_path
+    new_shop_session_path
   end
 
   # before_action :configure_sign_up_params, only: [:create]
@@ -77,6 +77,6 @@ class Shop::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:shop_name, :shop_name_kana, :shop_genre_id, :postal_code, :address, :telephone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:shop_name, :shop_name_kana, :shop_genre_id, :postal_code, :address, :telephone_number, :free_space, :shipping_carrier, :about_shipping, :personal_information, :settlement, :inquiry, :rogo_arrangement_btn, :introduction_arrangement_btn, :image, images: []])
   end
 end

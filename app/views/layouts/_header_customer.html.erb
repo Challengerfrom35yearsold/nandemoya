@@ -1,6 +1,8 @@
 <nav class="navbar border-bottom pb-md-3 mb-md-5">
   <div class="col-md-3 text-center">
-    <a class="navbar-brand" href="/">なんでもや</a>
+    <a class="navbar-brand" href="/">
+      <%= image_tag 'logo', size: "250x80" %>
+    </a>
   </div>
   <div class="col-md-9">
     <div class="col-md-12 mb-md-3">
@@ -41,9 +43,6 @@
     <% else %>
       <div class="col-md-12">
         <div class="row justify-content-end text-right">
-          <div class="mr-md-3">
-            <%= link_to "About", about_path, class: "text-dark" %>
-          </div>
           <div class="mr-md-3">
             <%= link_to "商品一覧", items_path, class: "text-dark" %>
           </div>

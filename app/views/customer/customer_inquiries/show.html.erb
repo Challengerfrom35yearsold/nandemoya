@@ -1,0 +1,24 @@
+<div class="container px-md-0">
+  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+    <div class="my-md-3">
+      <h2>返答フォーム</h2>
+      <% if @customer_inquiry_thread.errors.any? %>
+        <div class="error_message">
+          <h4 class="text-center">
+            入力内容に誤りがあります。</br>
+            入力内容を確認してください。
+          </h4>
+        </div>
+      <% end %>
+    </div>
+    <%= form_with model: @customer_inquiry_thread,url: customer_inquiry_threads_path,method: :post  do |f| %>
+      <div class="col-md-12 mb-md-3">
+        <%= f.text_area :message, placeholder: "回答に対する返答を入力してください", class: "form-control" %>
+        <%= f.hidden_field :customer_inquiry_id, :value => @customer_inquiry.id %>
+      </div>
+      <div class="col-md-7 mb-md-3 mx-auto">
+        <%= f.submit '返答する', class:"btn btn-success btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

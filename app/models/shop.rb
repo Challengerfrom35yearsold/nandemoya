@@ -10,6 +10,21 @@ class Shop < ApplicationRecord
   has_many :customer_inquiries, dependent: :destroy
   has_many :favorite_shops, dependent: :destroy
 
+  validates :shop_name, presence: true
+  validates :shop_name_kana, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
+  validates :telephone_number, presence: true
+  validates :shop_genre_id, presence: true
+  validates :free_space, presence: true
+  validates :shipping_carrier, presence: true
+  validates :about_shipping, presence: true
+  validates :personal_information, presence: true
+  validates :settlement, presence: true
+  validates :inquiry, presence: true
+  validates :rogo_arrangement_btn, presence: true
+  validates :introduction_arrangement_btn, presence: true
+
   FILE_NUMBER_LIMIT = 3
   validate :validate_number_of_files
 

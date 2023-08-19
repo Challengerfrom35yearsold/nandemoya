@@ -9,7 +9,7 @@ class Shop::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    shop_about_path
+    new_shop_session_path
   end
 
   # before_action :configure_sign_in_params, only: [:create]

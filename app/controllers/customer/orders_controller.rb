@@ -37,7 +37,7 @@ class Customer::OrdersController < ApplicationController
       @order.name = @address.name
     end
 
-    @cart_items = current_customer.cart_items.includes(:item)
+    @cart_items = current_customer.cart_items.includes(:item).page(params[:page]).per(10)
     @total = 0
 
   end
@@ -48,39 +48,50 @@ class Customer::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.save
+    if @order.save
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        @order_detail = OrderDetail.new
+        @order_detail.order_id = @order.id
+        @order_detail.item_id = cart_item.item.id
+        @order_detail.price = cart_item.item.price
+        @order_detail.amount = cart_item.amount
+        @order_detail.save
+      end
+      @cart_items.destroy_all
 
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new
-      @order_detail.order_id = @order.id
-      @order_detail.item_id = cart_item.item.id
-      @order_detail.price = cart_item.item.price
-      @order_detail.amount = cart_item.amount
-      @order_detail.save
-    end
-    @cart_items.destroy_all
-
-    @what_you_wants = WhatYouWant.where(customer_id: current_customer.id)
-    @order_details = OrderDetail.where(order_id: @order.id)
-    @what_you_wants.each do |what_you_want|
-      @what_you_want_item_id = what_you_want.item_id
-      @order_details.each do |order_detail|
-        if @what_you_want_item_id == order_detail.item_id
-          what_you_want.destroy
+      @what_you_wants = WhatYouWant.where(customer_id: current_customer.id)
+      @order_details = OrderDetail.where(order_id: @order.id)
+      @what_you_wants.each do |what_you_want|
+        @what_you_want_item_id = what_you_want.item_id
+        @order_details.each do |order_detail|
+          if @what_you_want_item_id == order_detail.item_id
+            what_you_want.destroy
+          end
         end
       end
+      redirect_to orders_complete_path
+    else
+      @customer = current_customer
+      render :new
     end
-    redirect_to orders_complete_path
   end
 
   def index
-    @orders = current_customer.orders.includes(:order_details, :items)
+    @orders = current_customer.orders.includes(:order_details, :items).page(params[:page])
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details.includes(:item)
+    #@total_price = @order.order_details.sum(:price)*1.1.floor.to_s(:delimited)
+    @total_price = 0
+    @order.order_details.each do |order_detail|
+      price = (order_detail.price*1.1).floor
+      amount = order_detail.amount
+      @total_price = @total_price + price * amount
+    end
+
+    @order_details = @order.order_details.includes(:item).page(params[:page]).per(5)
     unless @order.customer.id == current_customer.id
       redirect_to orders_path
     end

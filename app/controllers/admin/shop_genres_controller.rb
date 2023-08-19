@@ -6,8 +6,12 @@ class Admin::ShopGenresController < ApplicationController
 
   def create
     @shop_genre = ShopGenre.new(shop_genre_params)
-    @shop_genre.save
-    redirect_to admin_shop_genres_path
+    if @shop_genre.save
+      redirect_to admin_shop_genres_path
+    else
+      @shop_genres = ShopGenre.all
+      render :index
+    end
   end
 
   def edit

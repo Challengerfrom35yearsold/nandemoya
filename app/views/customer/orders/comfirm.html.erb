@@ -1,5 +1,5 @@
 <div class="container px-md-0">
-  <div class="col-md-10 border border-dark rounded mx-auto px-md-4">
+  <div class="col-md-10 border border-dark rounded mx-auto mb-md-3 px-md-4">
     <div class="row my-md-3 px-md-3">
       <h2>注文情報確認</h2>
     </div>
@@ -47,16 +47,21 @@
         </div>
       </div>
     <% end %>
+
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @cart_items %></h4>
+    </div>
+
     <div class="col-md-5 mx-auto mb-md-3 text-center font-weight-bold border border-dark rounded">
       <%= "請求金額: #{@total.to_s(:delimited)}円" %>
     </div>
+
     <div class="font-weight-bold">
       支払い方法
     </div>
     <div class="col-md-3 mb-2">
       <%= @order.payment_method_i18n %>
     </div>
-
     <div class="font-weight-bold">
       お届け先
     </div>

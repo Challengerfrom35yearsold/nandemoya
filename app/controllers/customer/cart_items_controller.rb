@@ -1,6 +1,6 @@
 class Customer::CartItemsController < ApplicationController
   def index
-    @cart_items = current_customer.cart_items.includes(:item)
+    @cart_items = current_customer.cart_items.includes(:item).page(params[:page]).per(10)
     @total = 0
   end
 

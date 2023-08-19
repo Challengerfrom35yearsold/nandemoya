@@ -24,4 +24,7 @@ ja:
   errors:
     messages:
       record_invalid: "バリデーションに失敗しました: %{errors}"
-      
+  views:
+      pagination:
+        next: "Next &rsaquo;"
+        last: "Last &raquo;"

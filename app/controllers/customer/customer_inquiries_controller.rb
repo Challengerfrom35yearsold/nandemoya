@@ -8,16 +8,25 @@ class Customer::CustomerInquiriesController < ApplicationController
   def create
     @customer_inquiry = CustomerInquiry.new(customer_inquiry_params)
     @customer_inquiry.customer_id = current_customer.id
-    @customer_inquiry.save
-    redirect_to customer_inquiry_confirmation_path
+    if @customer_inquiry.save
+      redirect_to customer_inquiry_confirmation_path
+    else
+      @shop_id = @customer_inquiry.shop.id
+      @item_id = @customer_inquiry.item.id
+      render :new
+    end
   end
 
   def index
-    @customer_inquiries = CustomerInquiry.where(customer_id: current_customer.id).includes(:shop, :item, :customer_inquiry_threads)
+    @customer_inquiries = CustomerInquiry.includes(:shop, :item, :customer_inquiry_threads).where(customer_id: current_customer.id, inquiry_status: "resolution").page(params[:page]).per(5)
   end
 
   def inquiry_confirmation
-    @customer_inquiries = CustomerInquiry.where(customer_id: current_customer.id).includes(:shop, :item, :customer_inquiry_threads)
+    @customer_inquiries = CustomerInquiry.includes(:shop, :item, :customer_inquiry_threads).where(customer_id: current_customer.id, inquiry_status: "unsolved").page(params[:page]).per(5)
+  end
+
+  def show
+    @customer_inquiry = CustomerInquiry.find(params[:id])
     @customer_inquiry_thread = CustomerInquiryThread.new
   end
 

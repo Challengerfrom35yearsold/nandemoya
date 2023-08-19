@@ -3,7 +3,4 @@ class Customer::HomesController < ApplicationController
     @item_genres = ItemGenre.all
     @items = Item.where(is_active: true).last(6)
   end
-
-  def about
-  end
 end

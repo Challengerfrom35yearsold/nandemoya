@@ -4,6 +4,4 @@ class Shop::HomesController < ApplicationController
     @customer_inquiry_thread = CustomerInquiryThread.new
   end
 
-  def about
-  end
 end

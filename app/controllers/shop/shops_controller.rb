@@ -50,18 +50,18 @@ class Shop::ShopsController < ApplicationController
   def inquiry
   end
 
-  def shop_page_new
-    @shop = current_shop
-  end
+  # def shop_page_new
+  #   @shop = current_shop
+  # end
 
-  def shop_page_new_update
-    @shop = current_shop
-    if @shop.update(shop_page_params)
-      redirect_to shop_shop_page_path
-    else
-      render :shop_page_new
-    end
-  end
+  # def shop_page_new_update
+  #   @shop = current_shop
+  #   if @shop.update(shop_page_params)
+  #     redirect_to shop_shop_page_path
+  #   else
+  #     render :shop_page_new
+  #   end
+  # end
 
   def shop_page_update
     @shop = current_shop
@@ -90,6 +90,6 @@ class Shop::ShopsController < ApplicationController
   end
 
   def shop_page_params
-    params.require(:shop).permit(:free_space, :shipping_carrier, :about_shipping, :personal_information, :settlement, :inquiry, :rogo_arrangement_btn, :introduction_arrangement_btn, :rogo_arrangement_btn, :introduction_arrangement_btn, :image, images: [] )
+    params.require(:shop).permit(:free_space, :shipping_carrier, :about_shipping, :personal_information, :settlement, :inquiry, :rogo_arrangement_btn, :introduction_arrangement_btn, :image, images: [] )
   end
 end

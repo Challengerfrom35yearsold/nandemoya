@@ -200,14 +200,14 @@ ActiveRecord::Schema.define(version: 2023_07_16_061335) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_deleted", default: false, null: false
-    t.text "free_space"
-    t.text "shipping_carrier"
-    t.text "about_shipping"
-    t.text "personal_information"
-    t.text "settlement"
-    t.text "inquiry"
-    t.string "rogo_arrangement_btn"
-    t.string "introduction_arrangement_btn"
+    t.text "free_space", null: false
+    t.text "shipping_carrier", null: false
+    t.text "about_shipping", null: false
+    t.text "personal_information", null: false
+    t.text "settlement", null: false
+    t.text "inquiry", null: false
+    t.string "rogo_arrangement_btn", null: false
+    t.string "introduction_arrangement_btn", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_shops_on_email", unique: true

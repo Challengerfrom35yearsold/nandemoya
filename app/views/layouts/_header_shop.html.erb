@@ -1,9 +1,11 @@
 <nav class="navbar border-bottom pb-md-3 mb-md-5">
   <div class="col-md-3 text-center">
     <% if shop_signed_in? %>
-      <%= link_to "なんでもや", shop_path, class: "text-dark" %>
+      <%= link_to shop_path do %>
+        <%= image_tag 'logo', size: "250x80" %>
+      <% end %>
     <% else %>
-      <%= link_to "なんでもや", shop_about_path, class: "text-dark" %>
+      <%= image_tag 'logo', size: "250x80" %>
     <% end %>
   </div>
   <div class="col-md-9">
@@ -33,9 +35,6 @@
     <% else %>
       <div class="col-md-12">
         <div class="row justify-content-end text-right">
-          <div class="mr-md-3">
-            <%= link_to "About", shop_about_path, class: "text-dark" %>
-          </div>
           <div class="mr-md-3">
             <%= link_to "新規登録", new_shop_registration_path, class: "text-dark" %>
           </div>

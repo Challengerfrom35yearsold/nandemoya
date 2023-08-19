@@ -2,6 +2,14 @@
   <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
     <div class="my-md-3">
       <h2>お問い合わせ</h2>
+      <% if @shop_inquiry.errors.any? %>
+        <div class="error_message">
+          <h4 class="text-center">
+            入力内容に誤りがあります。</br>
+            入力内容を確認してください。
+          </h4>
+        </div>
+      <% end %>
     </div>
     <%= form_with model: @shop_inquiry,url: shop_shop_inquiries_path,method: :post  do |f| %>
       <div class="row mb-md-2">

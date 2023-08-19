@@ -24,9 +24,6 @@ class Shop::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    unless @item.shop.id == current_shop.id
-      redirect_to shop_item_path(@item.id)
-    end
   end
 
   def update

@@ -6,8 +6,11 @@ class Shop::ShopInquiriesController < ApplicationController
   def create
     @shop_inquiry = ShopInquiry.new(shop_inquiry_params)
     @shop_inquiry.shop_id = current_shop.id
-    @shop_inquiry.save
-    redirect_to shop_shop_inquiry_confirmation_path
+    if @shop_inquiry.save
+      redirect_to shop_shop_inquiry_confirmation_path
+    else
+      render :new
+    end
   end
 
   def index
@@ -16,6 +19,11 @@ class Shop::ShopInquiriesController < ApplicationController
 
   def inquiry_confirmation
     @shop_inquiries = ShopInquiry.where(shop_id: current_shop.id).includes(:shop_inquiry_threads)
+    @shop_inquiry_thread = ShopInquiryThread.new
+  end
+
+  def show
+    @shop_inquiry = ShopInquiry.find(params[:id])
     @shop_inquiry_thread = ShopInquiryThread.new
   end
 

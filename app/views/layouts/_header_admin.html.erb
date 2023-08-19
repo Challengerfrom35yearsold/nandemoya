@@ -1,9 +1,11 @@
 <nav class="navbar border-bottom pb-md-3 mb-md-5">
   <div class="col-md-3 text-center">
     <% if admin_signed_in? %>
-      <%= link_to "なんでもや", admin_path, class: "text-dark" %>
+      <%= link_to admin_path do %>
+        <%= image_tag 'logo', size: "250x80" %>
+      <% end %>
     <% else %>
-      なんでもや
+      <%= image_tag 'logo', size: "250x80" %>
     <% end %>
   </div>
   <div class="col-md-9">

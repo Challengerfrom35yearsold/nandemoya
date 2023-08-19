@@ -9,8 +9,12 @@ class Customer::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
     @review.item_id = @item.id
-    @review.save
-    redirect_to item_item_reviews_path(@item.id)
+    if @review.save
+      redirect_to item_item_reviews_path(@item.id)
+    else
+      @item = Item.find(params[:item_id])
+      render :new
+    end
   end
 
   def update
@@ -32,9 +36,6 @@ class Customer::ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     @item = Item.find(params[:item_id])
-    unless @review.customer.id == current_customer.id
-      redirect_to item_item_reviews_path(params[:item_id])
-    end
   end
 
   def index

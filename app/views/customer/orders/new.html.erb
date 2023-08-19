@@ -2,6 +2,14 @@
   <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
     <div class="my-md-3">
       <h2>注文情報入力</h2>
+      <% if @order.errors.any? %>
+        <div class="error_message">
+          <h4 class="text-center">
+            入力内容に誤りがあります。</br>
+            入力内容を確認してください。
+          </h4>
+        </div>
+      <% end %>
     </div>
     <%= form_with model: @order,url: orders_comfirm_path, method: :post  do |f| %>
       <div class="font-weight-bold">
@@ -22,7 +30,7 @@
       </div>
       <div class="mb-md-3 border border-dark rounded">
         <div class="col-md-12 mt-md-2">
-          <%= f.radio_button :address_btn, "myself_address" %>
+          <%= f.radio_button :address_btn, "myself_address", checked: true %>
           <%= f.label :address_btn, 'ご自身の住所', value: "myself_address" %>
         </div>
         <div class="col-md-11 ml-md-4">
