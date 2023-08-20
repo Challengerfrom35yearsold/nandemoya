@@ -20,6 +20,13 @@
         <%= render 'layouts/header_customer' %>
       <% end %>
     </header>
+    <% if flash[:notice] %>
+      <div class="d-flex align-items-center justify-content-center col-md-5 my-md-3 mx-auto border border-danger rounded">
+        <h2 class="text-danger">
+          <%= flash[:notice] %>
+        <h2>
+      </div>
+    <% end %>
     <main>
       <%= yield %>
     </main>

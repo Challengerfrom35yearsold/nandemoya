@@ -1,7 +1,7 @@
 class Admin::ItemGenresController < ApplicationController
   def index
     @item_genre = ItemGenre.new
-    @item_genres = ItemGenre.all
+    @item_genres = ItemGenre.page(params[:page])
   end
 
   def create

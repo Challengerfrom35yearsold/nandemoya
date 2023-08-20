@@ -31,10 +31,10 @@
             ステータス:
           </div>
           <div class="col-md-8">
-            <% if favorite_shop.is_deleted == false %>
-              <div class="text-secondary">無効</div>
-            <% else %>
+            <% if favorite_shop.shop.is_deleted == false %>
               <div class="text-success">有効</div>
+            <% else %>
+              <div class="text-secondary">退会</div>
             <% end %>
           </div>
         </div>
@@ -52,5 +52,8 @@
         </div>
       </div>
     <% end %>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @favorite_shops %></h4>
+    </div>
   </div>
 </div>

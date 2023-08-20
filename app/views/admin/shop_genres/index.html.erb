@@ -1,5 +1,5 @@
 <div class="container px-md-0">
-  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+  <div class="col-md-7 border border-dark rounded mx-auto mb-md-3 px-md-4">
     <div class="my-md-3 px-md-3">
       <h2>ショップジャンル一覧・登録</h2>
       <% if @shop_genre.errors.any? %>
@@ -47,5 +47,8 @@
         </div>
       </div>
     <% end %>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @shop_genres %></h4>
+    </div>
   </div>
 </div>

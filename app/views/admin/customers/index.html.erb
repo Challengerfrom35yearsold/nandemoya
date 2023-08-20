@@ -1,5 +1,5 @@
 <div class="container px-md-0">
-  <div class="col-md-7 border border-dark rounded mx-auto px-md-4">
+  <div class="col-md-7 border border-dark rounded mx-auto mb-md-3 px-md-4">
     <div class="my-md-3">
       <h2>会員一覧</h2>
     </div>
@@ -56,8 +56,8 @@
         </div>
       </div>
     <% end %>
-  </div>
-  <div class="col-md-7 mt-4 offset-md-5">
-    <%= paginate @customers %>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @customers %></h4>
+    </div>
   </div>
 </div>

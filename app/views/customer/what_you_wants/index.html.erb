@@ -2,9 +2,6 @@
   <div class="col-md-10 border border-dark rounded mx-auto mb-md-3 px-md-4">
     <div class="row my-md-3 px-md-3">
       <h2>ほしいもの一覧</h2>
-      <h2 class="offset-md-2 text-danger">
-        <%= flash[:notice] %>
-      <h2>
     </div>
     <% if @what_you_wants.blank? %>
       <div class="col-md-12 border border-dark rounded mx-auto text-center mb-md-3 py-md-3">
@@ -64,7 +61,7 @@
                     <div class="col-md-5">
                       <%= f.submit 'カートに入れる', class:"btn btn-success btn-block" %>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <%= link_to "削除する", what_you_want_path(what_you_want.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
                     </div>
                   </div>

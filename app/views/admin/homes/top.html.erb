@@ -12,63 +12,64 @@
       </div>
     <% end %>
     <% @shop_inquiries.each do |shop_inquiry| %>
-      <% if shop_inquiry.inquiry_status == "unsolved" %>
-        <div class="col-md-12 border border-dark rounded mb-md-3">
-          <div class="font-weight-bold mt-md-2">
-            問い合わせ日時
-          </div>
-          <div class="col-md-12 mb-md-2">
-            <%= l shop_inquiry.created_at %>
-          </div>
-          <div class="font-weight-bold">
-            問い合わせショップ名
-          </div>
-          <div class="col-md-12 mb-md-2 text_break">
-            <%= shop_inquiry.shop.shop_name %>
-          </div>
-          <div class="font-weight-bold">
-            問い合わせ進捗状態
-          </div>
-          <div class="col-md-12 mb-md-2">
-            <%= shop_inquiry.inquiry_status_i18n %>
-          </div>
-          <div class="font-weight-bold">
-            タイトル
-          </div>
-          <div class="col-md-12 mb-md-2 text_break">
-            <%= shop_inquiry.title %>
-          </div>
-          <div class="font-weight-bold">
-            お問い合わせ内容
-          </div>
-          <div class="col-md-12 mb-md-2 text_break">
-            <%= safe_join(shop_inquiry.inquiry.split("\n"),tag(:br)) %>
-          </div>
-          <div class="font-weight-bold">
-            回答(左側:ショップの返答,右側:管理者からの回答)
-          </div>
-          <div class="row">
-            <div class="col-md-8 border border-dark m-md-2">
-              <% shop_inquiry.shop_inquiry_threads.each do |shop_inquiry_thread| %>
-                <% if shop_inquiry_thread.speaker_type == "shop" %>
-                  <div class="col-md-6 border border-primary rounded  ml-md-1 my-md-2 text_break">
-                    <%= safe_join(shop_inquiry_thread.message.split("\n"),tag(:br)) %>
-                  </div>
-                <% else shop_inquiry_thread.speaker_type == "admin" %>
-                  <div class="col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
-                    <%= safe_join(shop_inquiry_thread.message.split("\n"),tag(:br)) %>
-                  </div>
-                <% end %>
+      <div class="col-md-12 border border-dark rounded mb-md-3">
+        <div class="font-weight-bold mt-md-2">
+          問い合わせ日時
+        </div>
+        <div class="col-md-12 mb-md-2">
+          <%= l shop_inquiry.created_at %>
+        </div>
+        <div class="font-weight-bold">
+          問い合わせショップ名
+        </div>
+        <div class="col-md-12 mb-md-2 text_break">
+          <%= shop_inquiry.shop.shop_name %>
+        </div>
+        <div class="font-weight-bold">
+          問い合わせ進捗状態
+        </div>
+        <div class="col-md-12 mb-md-2">
+          <%= shop_inquiry.inquiry_status_i18n %>
+        </div>
+        <div class="font-weight-bold">
+          タイトル
+        </div>
+        <div class="col-md-12 mb-md-2 text_break">
+          <%= shop_inquiry.title %>
+        </div>
+        <div class="font-weight-bold">
+          お問い合わせ内容
+        </div>
+        <div class="col-md-12 mb-md-2 text_break">
+          <%= safe_join(shop_inquiry.inquiry.split("\n"),tag(:br)) %>
+        </div>
+        <div class="font-weight-bold">
+          回答(左側:ショップの返答,右側:管理者からの回答)
+        </div>
+        <div class="row">
+          <div class="col-md-8 border border-dark m-md-2">
+            <% shop_inquiry.shop_inquiry_threads.each do |shop_inquiry_thread| %>
+              <% if shop_inquiry_thread.speaker_type == "shop" %>
+                <div class="col-md-6 border border-primary rounded  ml-md-1 my-md-2 text_break">
+                  <%= safe_join(shop_inquiry_thread.message.split("\n"),tag(:br)) %>
+                </div>
+              <% else shop_inquiry_thread.speaker_type == "admin" %>
+                <div class="col-md-6 border border-success rounded offset-md-6 my-md-2 text_break">
+                  <%= safe_join(shop_inquiry_thread.message.split("\n"),tag(:br)) %>
+                </div>
               <% end %>
-            </div>
-            <div class="col-md-3 m-md-2">
-              <div class="col-md-7 mx-auto">
-                <%= link_to '返答する',  admin_shop_inquiry_path(shop_inquiry.id), class:"btn btn-success btn-block" %>
-              </div>
+            <% end %>
+          </div>
+          <div class="col-md-3 m-md-2">
+            <div class="col-md-7 mx-auto">
+              <%= link_to '返答する',  admin_shop_inquiry_path(shop_inquiry.id), class:"btn btn-success btn-block" %>
             </div>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @shop_inquiries %></h4>
+    </div>
   </div>
 </div>

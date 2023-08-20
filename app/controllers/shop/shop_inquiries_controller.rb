@@ -14,12 +14,11 @@ class Shop::ShopInquiriesController < ApplicationController
   end
 
   def index
-    @shop_inquiries = ShopInquiry.where(shop_id: current_shop.id).includes(:shop_inquiry_threads)
+    @shop_inquiries = ShopInquiry.includes(:shop_inquiry_threads).where(shop_id: current_shop.id, inquiry_status: "resolution").page(params[:page])
   end
 
   def inquiry_confirmation
-    @shop_inquiries = ShopInquiry.where(shop_id: current_shop.id).includes(:shop_inquiry_threads)
-    @shop_inquiry_thread = ShopInquiryThread.new
+    @shop_inquiries = ShopInquiry.includes(:shop_inquiry_threads).where(shop_id: current_shop.id, inquiry_status: "unsolved").page(params[:page])
   end
 
   def show

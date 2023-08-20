@@ -87,8 +87,9 @@ class Customer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_details = @order.order_details.includes(:item)
     @total_price = 0
-    @order.order_details.each do |order_detail|
+    @order_details.each do |order_detail|
       price = (order_detail.price*1.1).floor
       amount = order_detail.amount
       @total_price = @total_price + price * amount
