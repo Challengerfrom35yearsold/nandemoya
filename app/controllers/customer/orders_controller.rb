@@ -37,8 +37,12 @@ class Customer::OrdersController < ApplicationController
       @order.name = @address.name
     end
 
-    @cart_items = current_customer.cart_items.includes(:item).page(params[:page]).per(10)
-    @total = 0
+    @cart_items = current_customer.cart_items.includes(:item)
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price = @total_price + (cart_item.item.with_tax_price*cart_item.amount)
+    end
+    @cart_items = current_customer.cart_items.includes(:item).page(params[:page])
 
   end
 
@@ -83,15 +87,13 @@ class Customer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    #@total_price = @order.order_details.sum(:price)*1.1.floor.to_s(:delimited)
     @total_price = 0
     @order.order_details.each do |order_detail|
       price = (order_detail.price*1.1).floor
       amount = order_detail.amount
       @total_price = @total_price + price * amount
     end
-
-    @order_details = @order.order_details.includes(:item).page(params[:page]).per(5)
+    @order_details = @order.order_details.includes(:item).page(params[:page])
     unless @order.customer.id == current_customer.id
       redirect_to orders_path
     end

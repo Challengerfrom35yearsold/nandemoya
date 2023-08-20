@@ -18,11 +18,11 @@ class Customer::CustomerInquiriesController < ApplicationController
   end
 
   def index
-    @customer_inquiries = CustomerInquiry.includes(:shop, :item, :customer_inquiry_threads).where(customer_id: current_customer.id, inquiry_status: "resolution").page(params[:page]).per(5)
+    @customer_inquiries = CustomerInquiry.includes(:shop, :item, :customer_inquiry_threads).where(customer_id: current_customer.id, inquiry_status: "resolution").page(params[:page])
   end
 
   def inquiry_confirmation
-    @customer_inquiries = CustomerInquiry.includes(:shop, :item, :customer_inquiry_threads).where(customer_id: current_customer.id, inquiry_status: "unsolved").page(params[:page]).per(5)
+    @customer_inquiries = CustomerInquiry.includes(:shop, :item, :customer_inquiry_threads).where(customer_id: current_customer.id, inquiry_status: "unsolved").page(params[:page])
   end
 
   def show

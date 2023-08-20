@@ -15,7 +15,7 @@ class Customer::ItemsController < ApplicationController
     elsif params[:price_order] == "asc"
       @items = @items.order(price: "ASC")
     end
-    @items = @items.page(params[:page]).per(8)
+    @items = @items.where(is_active: true).page(params[:page]).per(8)
   end
 
   def items_per_shop
@@ -25,7 +25,7 @@ class Customer::ItemsController < ApplicationController
     elsif params[:price_order] == "asc"
       @items = @items.order(price: "ASC")
     end
-    @items = @items.page(params[:page]).per(8)
+    @items = @items.where(is_active: true).page(params[:page]).per(8)
   end
 
   def show

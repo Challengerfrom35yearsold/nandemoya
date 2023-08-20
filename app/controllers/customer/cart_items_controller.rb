@@ -1,7 +1,11 @@
 class Customer::CartItemsController < ApplicationController
   def index
-    @cart_items = current_customer.cart_items.includes(:item).page(params[:page]).per(10)
-    @total = 0
+    @cart_items = current_customer.cart_items.includes(:item)
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price = @total_price + (cart_item.item.with_tax_price*cart_item.amount)
+    end
+    @cart_items = current_customer.cart_items.includes(:item).page(params[:page])
   end
 
   def update

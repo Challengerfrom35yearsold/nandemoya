@@ -19,7 +19,7 @@
       ご請求金額
     </div>
     <div class="col-md-12 mb-md-2">
-      <%= "#{@total_price}円" %>
+      <%= "#{@total_price.to_s(:delimited)}円" %>
     </div>
     <div class="font-weight-bold">
       配送先

@@ -1,7 +1,10 @@
 <div class="container px-md-0">
-  <div class="col-md-10 border border-dark rounded mx-auto px-md-4">
+  <div class="col-md-10 border border-dark rounded mx-auto mb-md-3 px-md-4">
     <div class="row my-md-3 px-md-3">
       <h2>ほしいもの一覧</h2>
+      <h2 class="offset-md-2 text-danger">
+        <%= flash[:notice] %>
+      <h2>
     </div>
     <% if @what_you_wants.blank? %>
       <div class="col-md-12 border border-dark rounded mx-auto text-center mb-md-3 py-md-3">
@@ -58,7 +61,7 @@
                       <%= f.select :amount, *[1..10], {}, {class: "form-control"} %>
                       <%= f.hidden_field :item_id, :value => what_you_want.item.id %>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                       <%= f.submit 'カートに入れる', class:"btn btn-success btn-block" %>
                     </div>
                     <div class="col-md-3">
@@ -72,5 +75,8 @@
         </div>
       </div>
     <% end %>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @what_you_wants %></h4>
+    </div>
   </div>
 </div>

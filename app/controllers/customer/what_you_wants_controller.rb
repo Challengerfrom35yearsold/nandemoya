@@ -1,6 +1,6 @@
 class Customer::WhatYouWantsController < ApplicationController
   def index
-    @what_you_wants = WhatYouWant.includes(:item, :shop).where(customer_id: current_customer.id)
+    @what_you_wants = WhatYouWant.includes(:item, :shop).where(customer_id: current_customer.id).page(params[:page])
     @cart_item = CartItem.new
   end
 
@@ -11,8 +11,11 @@ class Customer::WhatYouWantsController < ApplicationController
     unless @what_you_wants_existing
       @what_you_want.customer_id = current_customer.id
       @what_you_want.save
+      redirect_to what_you_wants_path
+    else
+      flash[:notice] = "すでに保存されている商品です。"
+      redirect_to what_you_wants_path
     end
-    redirect_to what_you_wants_path
   end
 
   def destroy

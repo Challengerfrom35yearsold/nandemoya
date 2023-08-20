@@ -58,7 +58,15 @@
           </div>
         <% end %>
         <% if order.items.count >=3 %>
-          aaaaaaa
+          <div class="col-md-12 text-center">
+            ・
+          </div>
+          <div class="col-md-12 text-center">
+            ・
+          </div>
+          <div class="col-md-12 mb-md-2 text-center">
+            ・
+          </div>
         <% end %>
         <div class="col-md-3 mb-md-3 mx-auto">
           <%= link_to "詳細を表示する", order_path(order.id), class:"btn btn-success btn-block" %>

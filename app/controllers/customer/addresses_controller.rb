@@ -4,7 +4,7 @@ class Customer::AddressesController < ApplicationController
   end
 
   def index
-    @addresses = current_customer.addresses
+    @addresses = current_customer.addresses.page(params[:page])
   end
 
   def edit
