@@ -9,7 +9,7 @@ class Admin::ShopGenresController < ApplicationController
     if @shop_genre.save
       redirect_to admin_shop_genres_path
     else
-      @shop_genres = ShopGenre.all
+      @shop_genres = ShopGenre.page(params[:page])
       render :index
     end
   end

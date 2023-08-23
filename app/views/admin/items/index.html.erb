@@ -2,6 +2,11 @@
   <div class="col-md-7 border border-dark rounded mx-auto mb-md-3 px-md-4">
     <div class="my-md-3">
       <h2>商品一覧</h2>
+      <% if @items.blank? %>
+        <div class="col-md-12 border border-dark rounded mx-auto text-center mb-md-3 py-md-3">
+          登録情報はありません。
+        </div>
+      <% end %>
     </div>
     <% @items.each do |item| %>
       <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">

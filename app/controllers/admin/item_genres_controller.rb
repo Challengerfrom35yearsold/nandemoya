@@ -9,7 +9,7 @@ class Admin::ItemGenresController < ApplicationController
     if @item_genre.save
       redirect_to admin_item_genres_path
     else
-      @item_genres = ItemGenre.all
+      @item_genres = ItemGenre.page(params[:page])
       render :index
     end
   end
