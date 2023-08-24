@@ -52,7 +52,7 @@
           販売ステータス
         </div>
         <div class="col-md-12 mb-md-2">
-          <% if @item.is_active = true %>
+          <% if @item.is_active == true %>
             <div class="text-success">販売中</div>
           <% else %>
             <div class="text-secondary">販売停止中</div>
