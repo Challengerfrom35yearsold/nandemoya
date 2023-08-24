@@ -4,16 +4,16 @@
       <h2>ショップジャンル編集</h2>
     </div>
     <%= form_with model: @shop_genre,url: admin_shop_genre_path,method: :patch do |f| %>
-     <div class="row mb-md-3">
+      <div class="row mb-md-3">
         <div class="col-md-3 font-weight-bold">
           <%= f.label :name, "ジャンル名" %>
         </div>
         <div class="col-md-6">
           <%= f.text_field :name, class: "form-control" %>
         </div>
-        <div class="col-md-3 mb-md-3 mx-auto">
-          <%= f.submit '変更を保存', class:"btn btn-success btn-block" %>
-        </div>
+      </div>
+      <div class="col-md-4 mb-md-3 mx-auto">
+        <%= f.submit '編集内容を保存', class:"btn btn-success btn-block" %>
       </div>
     <% end %>
   </div>
