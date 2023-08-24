@@ -1,6 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.includes(:customer, :order_details).page(params[:page])
+    @customer_id = params[:customer_id]
+    @orders = Order.includes(:customer, :order_details).where(customer_id: @customer_id).page(params[:page])
   end
 
   def show

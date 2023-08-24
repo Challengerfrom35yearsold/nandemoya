@@ -51,7 +51,7 @@
           <%= link_to "会員情報詳細を見る", admin_customer_path(customer.id), class:"btn btn-primary btn-block" %>
         </div>
         <div class="col-md-6 mb-md-3 mx-auto">
-          <%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary btn-block" %>
+          <%= link_to "注文履歴一覧を見る", admin_orders_path(:customer_id => customer.id), class:"btn btn-primary btn-block" %>
         </div>
         <div class="col-md-6 mb-md-3 mx-auto">
           <%= link_to "お気に入りショップを見る", admin_favorite_shops_path(:customer_id => customer.id), class:"btn btn-primary btn-block" %>
