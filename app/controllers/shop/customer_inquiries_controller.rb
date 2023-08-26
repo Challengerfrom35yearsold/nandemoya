@@ -6,5 +6,8 @@ class Shop::CustomerInquiriesController < ApplicationController
   def show
     @customer_inquiry = CustomerInquiry.find(params[:id])
     @customer_inquiry_thread = CustomerInquiryThread.new
+    unless @customer_inquiry.shop.id == current_shop.id
+      redirect_to shop_customer_inquiries_path
+    end
   end
 end

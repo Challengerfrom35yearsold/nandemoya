@@ -24,6 +24,9 @@ class Shop::ShopInquiriesController < ApplicationController
   def show
     @shop_inquiry = ShopInquiry.find(params[:id])
     @shop_inquiry_thread = ShopInquiryThread.new
+    unless @shop_inquiry.shop.id == current_shop.id
+      redirect_to shop_shop_inquiries_path
+    end
   end
 
   def update
