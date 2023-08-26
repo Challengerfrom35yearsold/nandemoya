@@ -28,16 +28,15 @@ class Customer::CustomerInquiriesController < ApplicationController
   def show
     @customer_inquiry = CustomerInquiry.find(params[:id])
     @customer_inquiry_thread = CustomerInquiryThread.new
+    unless @customer_inquiry.customer.id == current_customer.id
+      redirect_to customer_inquiries_path
+    end
   end
 
   def update
     @customer_inquiry = CustomerInquiry.find(params[:id])
-    if @customer_inquiry.customer.id == current_customer.id
-      @customer_inquiry.update(inquiry_status: "resolution")
-      redirect_to customer_inquiries_path
-    else
-      redirect_to customer_inquiry_confirmation_path
-    end
+    @customer_inquiry.update(inquiry_status: "resolution")
+    redirect_to customer_inquiries_path
   end
 
   private

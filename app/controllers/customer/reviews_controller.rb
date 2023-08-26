@@ -19,17 +19,13 @@ class Customer::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.customer.id == current_customer.id
-      @review.update(review_params)
-    end
-      redirect_to item_item_reviews_path(params[:item_id])
+    @review.update(review_params)
+    redirect_to item_item_reviews_path(params[:item_id])
   end
 
   def destroy
     @review = Review.find(params[:id])
-    if @review.customer.id == current_customer.id
-      @review.destroy
-    end
+    @review.destroy
     redirect_to item_item_reviews_path(params[:item_id])
   end
 

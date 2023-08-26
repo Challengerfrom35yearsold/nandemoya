@@ -42,26 +42,13 @@ class Shop::ShopsController < ApplicationController
       reset_session
       redirect_to root_path
     else
-      flash[:notice] = "未配送の商品があります。配送を完了させてください。"
+      flash[:notice] = "未配送の商品があります。<br>配送を完了させてください。"
       render :unsubscribe
     end
   end
 
   def inquiry
   end
-
-  # def shop_page_new
-  #   @shop = current_shop
-  # end
-
-  # def shop_page_new_update
-  #   @shop = current_shop
-  #   if @shop.update(shop_page_params)
-  #     redirect_to shop_shop_page_path
-  #   else
-  #     render :shop_page_new
-  #   end
-  # end
 
   def shop_page_update
     @shop = current_shop

@@ -20,9 +20,7 @@ class Customer::WhatYouWantsController < ApplicationController
 
   def destroy
     @what_you_want = WhatYouWant.find(params[:id])
-    if @what_you_want.customer.id == current_customer.id
-      @what_you_want.destroy
-    end
+    @what_you_want.destroy
     redirect_to what_you_wants_path
   end
 

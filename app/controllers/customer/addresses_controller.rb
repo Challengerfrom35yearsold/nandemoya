@@ -26,17 +26,13 @@ class Customer::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    if @address.customer.id == current_customer.id
-      @address.update(address_params)
-    end
+    @address.update(address_params)
     redirect_to addresses_path
   end
 
   def destroy
     @address = Address.find(params[:id])
-    if @address.customer.id == current_customer.id
-      @address.destroy
-    end
+    @address.destroy
     redirect_to addresses_path
   end
 

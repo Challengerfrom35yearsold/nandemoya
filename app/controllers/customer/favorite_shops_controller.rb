@@ -18,25 +18,19 @@ class Customer::FavoriteShopsController < ApplicationController
 
   def receive
     @favorite_shop = FavoriteShop.find(params[:id])
-    if @favorite_shop.customer.id == current_customer.id
-      @favorite_shop.update(is_deleted: true)
-    end
+    @favorite_shop.update(is_deleted: true)
     redirect_to favorite_shops_path
   end
 
   def unlock
     @favorite_shop = FavoriteShop.find(params[:id])
-    if @favorite_shop.customer.id == current_customer.id
-      @favorite_shop.update(is_deleted: false)
-    end
+    @favorite_shop.update(is_deleted: false)
     redirect_to favorite_shops_path
   end
 
   def destroy
     @favorite_shop = FavoriteShop.find(params[:id])
-    if @favorite_shop.customer.id == current_customer.id
-      @favorite_shop.destroy
-    end
+    @favorite_shop.destroy
     redirect_to favorite_shops_path
   end
 
