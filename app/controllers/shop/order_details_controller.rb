@@ -1,12 +1,8 @@
 class Shop::OrderDetailsController < ApplicationController
   def update
     @order_detail = OrderDetail.find(params[:id])
-    if  @order_detail.item.shop.id == current_shop.id
-      @order_detail.update(order_detail_params)
-      redirect_to shop_order_path(@order_detail.order_id)
-    else
-      redirect_to shop_orders_path
-    end
+    @order_detail.update(order_detail_params)
+    redirect_to shop_order_path(@order_detail.order_id)
   end
 
   private

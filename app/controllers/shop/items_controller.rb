@@ -24,18 +24,18 @@ class Shop::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    unless @item.shop.id == current_shop.id
+      redirect_to shop_items_path
+    end
+
   end
 
   def update
     @item = Item.find(params[:id])
-    if  @item.shop.id == current_shop.id
-      if @item.update(item_params)
-        redirect_to shop_item_path(@item.id)
-      else
-        render :edit
-      end
-    else
+    if @item.update(item_params)
       redirect_to shop_item_path(@item.id)
+    else
+      render :edit
     end
   end
 
