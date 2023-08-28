@@ -43,7 +43,7 @@
                       価格(税込):
                     </div>
                     <div class="col-md-6">
-                      <%= "#{item.price.to_s(:delimited)}円" %>
+                      <%= "#{item.with_tax_price.to_s(:delimited)}円" %>
                     </div>
                   </div>
                 </div>

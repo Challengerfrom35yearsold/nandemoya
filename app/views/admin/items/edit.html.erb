@@ -25,7 +25,7 @@
           <%= f.label :item_genre_id, "ジャンル" %>
         </div>
         <div class="col-md-8">
-          <%= f.select :item_genre_id, options_from_collection_for_select(ItemGenre.all, :id, :name), {}, class: "form-control" %>
+          <%= f.select :item_genre_id, options_from_collection_for_select(ItemGenre.all, :id, :name, f.object.item_genre_id), {}, class: "form-control" %>
         </div>
       </div>
       <div class="row mb-md-2">

@@ -40,7 +40,7 @@ class Shop::ShopsController < ApplicationController
       @shop = current_shop
       @shop.update(is_deleted: true)
       reset_session
-      redirect_to root_path
+      redirect_to new_shop_session_path
     else
       flash[:notice] = "未配送の商品があります。<br>配送を完了させてください。"
       render :unsubscribe

@@ -20,6 +20,16 @@
           <%= f.text_field :shop_name_kana, class: "form-control" %>
         </div>
       </div>
+
+      <div class="row mb-md-2">
+        <div class="col-md-4 font-weight-bold">
+          <%= f.label :shop_genre_id, "ジャンル名" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.select :shop_genre_id, options_from_collection_for_select(ShopGenre.all, :id, :name, f.object.shop_genre_id), {}, class: "form-control" %>
+       </div>
+      </div>
+
       <div class="row mb-md-2">
         <div class="col-md-4 font-weight-bold">
           <%= f.label :postal_code, "郵便番号" %>
