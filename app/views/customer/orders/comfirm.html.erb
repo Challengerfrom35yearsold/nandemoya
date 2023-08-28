@@ -23,7 +23,7 @@
                 単価(税込):
               </div>
               <div class="col-md-9">
-                <%= cart_item.item.with_tax_price.to_s(:delimited) %>
+                <%= "#{cart_item.item.with_tax_price.to_s(:delimited)}円" %>
               </div>
             </div>
             <div class="row mb-md-2 border-bottom border-dark">
