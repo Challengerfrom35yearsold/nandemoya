@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
     resources :customer_inquiry_threads, only: [:create]
 
-    resources :customer_shops, only: [:show]
+    resources :customer_shops, only: [:index, :show]
 
     get 'items_per_shop/:id' => 'items#items_per_shop', as: 'items_per_shop'
     resources :items, only: [:index, :show] do

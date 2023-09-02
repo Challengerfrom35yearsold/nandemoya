@@ -25,6 +25,10 @@ class Shop < ApplicationRecord
   validates :rogo_arrangement_btn, presence: true
   validates :introduction_arrangement_btn, presence: true
 
+  def self.shop_genre_name_looks(word)
+    where("shop_genre_id LIKE ?", "#{word}")
+  end
+
   FILE_NUMBER_LIMIT = 3
   validate :validate_number_of_files
 

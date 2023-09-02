@@ -18,13 +18,17 @@
       </div>
     <% end %>
 
-    <div class="col-md-7 mb-md-5">
+    <div class="col-md-7 mb-md-2">
       <div class="font-weight-bold">
         ショップ紹介:
       </div>
       <div class="p-md-2 border border-dark rounded text_break">
         <%= safe_join(@shop.free_space.split("\n"),tag(:br)) %>
       </div>
+    </div>
+
+    <div class="col-md-6 mb-md-4">
+      <%= link_to "商品を見に行く", items_per_shop_path(@shop.id), class:"btn btn-primary" %>
     </div>
 
     <% if @shop.introduction_arrangement_btn == "side_by_side" %>

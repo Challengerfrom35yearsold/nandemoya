@@ -1,0 +1,44 @@
+<div class="container px-md-0">
+  <div class="col-md-12 border border-dark rounded mx-auto mb-md-3 px-md-4">
+    <div class="row my-md-3 border-bottom border-dark">
+      <div class="col-md-3">
+        <h2>ショップ一覧</h2>
+      </div>
+    </div>
+    <% if @shops.blank? %>
+      <div class="col-md-12 border border-dark rounded mx-auto text-center mb-md-3 py-md-3">
+        登録情報はありません。
+      </div>
+    <% end %>
+    <div class="row">
+      <% @shops.each do |shop| %>
+        <div class="col-3 mb-md-4">
+          <div class="card">
+            <%= link_to customer_shop_path(shop.id) do %>
+              <div class="d-flex align-items-center justify-content-center pt-md-4">
+                <%= image_tag shop.get_shop_image(200,200), :size => '200x200' %>
+              </div>
+              <div class="card-body">
+                <div class="card-text text-dark">
+                  <div class="row">
+                    <div class="col-md-12">
+                      ショップ名:
+                    </div>
+                  </div>
+                  <div class="row mb-md-2 border-bottom border-dark">
+                    <div class="col-md-12 text_break">
+                      <%= shop.shop_name %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="d-flex col-12 justify-content-center">
+      <h4><%= paginate @shops %></h4>
+    </div>
+  </div>
+</div>
