@@ -3,7 +3,7 @@
     <div class="col-md-12 border border-dark rounded mx-auto mb-md-3">
       <div class="row">
         <div class="col-md-2 border border-dark rounded my-md-3 mx-auto">
-          <div class="font-weight-bold border-bottom border-dark">
+          <div class="font-weight-bold border-bottom border-dark my-md-2">
             商品ジャンル検索
           </div>
           <% @item_genres.each do |item_genre| %>
@@ -11,8 +11,7 @@
               <%= link_to item_genre.name, items_path(item_genre_id: item_genre.id), class: "text-dark" %>
             </div>
           <% end %>
-
-          <div class="font-weight-bold border-bottom border-dark">
+          <div class="font-weight-bold border-bottom border-dark my-md-2">
             ショップジャンル検索
           </div>
           <% @shop_genres.each do |shop_genre| %>
@@ -20,7 +19,6 @@
               <%= link_to shop_genre.name, customer_shops_path(shop_genre_id: shop_genre.id), class: "text-dark" %>
             </div>
           <% end %>
-
         </div>
         <div class="col-md-9 mt-md-3 mx-auto">
           <div class="row">
