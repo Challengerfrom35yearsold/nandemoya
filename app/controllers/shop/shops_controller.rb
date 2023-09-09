@@ -43,7 +43,7 @@ class Shop::ShopsController < ApplicationController
       redirect_to new_shop_session_path
     else
       flash[:notice] = "未配送の商品があります。<br>配送を完了させてください。"
-      render :unsubscribe
+      redirect_to shop_my_page_path
     end
   end
 
