@@ -2,6 +2,7 @@ class Customer::OrdersController < ApplicationController
   def new
     @order = Order.new
     @customer = current_customer
+    @adress = Address.where(customer_id: current_customer.id)
   end
 
   def comfirm
