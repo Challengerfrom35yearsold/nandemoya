@@ -100,6 +100,9 @@
                 <%= "#{((order_detail.price*1.1).floor * order_detail.amount).to_s(:delimited)}円" %>
               </div>
             </div>
+            <div class="col-md-5">
+              <%= link_to "レビューを書く", new_item_review_path(order_detail.item.id), class:"btn btn-primary btn-block" %>
+            </div>
           </div>
         </div>
       </div>
