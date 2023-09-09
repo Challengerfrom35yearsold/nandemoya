@@ -78,6 +78,7 @@ class Customer::OrdersController < ApplicationController
       redirect_to orders_complete_path
     else
       @customer = current_customer
+      @adress = Address.where(customer_id: current_customer.id)
       render :new
     end
   end
