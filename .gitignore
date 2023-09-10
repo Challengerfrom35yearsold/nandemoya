@@ -39,5 +39,7 @@
 yarn-debug.log*
 .yarn-integrity
 
+#for production
 /vendor/bundle
+
 /.env
