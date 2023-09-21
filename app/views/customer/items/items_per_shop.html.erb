@@ -6,10 +6,10 @@
       </div>
       <div class="col-md-9 d-flex align-items-center justify-content-end">
         <div class="col-md-3">
-          <%= link_to "価格が高い順", items_path(price_order: "desc"), class:"btn btn-success btn-block" %>
+          <%= link_to "価格が高い順", items_per_shop_path(price_order: "desc"), class:"btn btn-success btn-block" %>
         </div>
         <div class="col-md-3">
-          <%= link_to "価格が安い順", items_path(price_order: "asc"), class:"btn btn-success btn-block" %>
+          <%= link_to "価格が安い順", items_per_shop_path(price_order: "asc"), class:"btn btn-success btn-block" %>
         </div>
       </div>
     </div>

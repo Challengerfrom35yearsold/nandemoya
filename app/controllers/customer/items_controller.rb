@@ -19,7 +19,7 @@ class Customer::ItemsController < ApplicationController
   end
 
   def items_per_shop
-    @items = Item.where(shop_id: params[:id]).page(params[:page])
+    @items = Item.where(shop_id: params[:id])
     if params[:price_order] == "desc"
       @items = @items.order(price: "DESC")
     elsif params[:price_order] == "asc"
