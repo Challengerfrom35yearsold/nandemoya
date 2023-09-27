@@ -32,6 +32,9 @@ class Customer::ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     @item = Item.find(params[:item_id])
+    unless @review.customer.id == current_customer.id
+      redirect_to item_reviews_path
+    end
   end
 
   def index
