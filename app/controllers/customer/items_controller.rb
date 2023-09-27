@@ -30,6 +30,9 @@ class Customer::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    unless @item.is_active == true
+      redirect_to items_path
+    end
     @cart_item = CartItem.new
     @what_you_want = WhatYouWant.new
     @favorite_shop = FavoriteShop.new

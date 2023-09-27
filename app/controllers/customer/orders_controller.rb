@@ -1,5 +1,10 @@
 class Customer::OrdersController < ApplicationController
   def new
+    @cart_items = current_customer.cart_items
+    if @cart_items.blank?
+      flash[:notice] = "カート内に商品がありません。"
+      redirect_to cart_items_path
+    end
     @order = Order.new
     @customer = current_customer
     @adress = Address.where(customer_id: current_customer.id)
