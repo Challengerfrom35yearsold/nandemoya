@@ -1,3 +1,3 @@
 class Admin::BaseController < ApplicationController
-  #ビフォアーアクション等で絞る
+  before_action :authenticate_admin!
 end
