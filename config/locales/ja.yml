@@ -42,6 +42,7 @@ ja:
         telephone_number: "「電話番号」"
         email: "「メールアドレス」"
         password: "「パスワード」"
+        password_confirmation: "「パスワード確認用」"
       shop:
         shop_name: "「ショップ名」"
         shop_name_kana: "「フリガナ」"
@@ -57,11 +58,13 @@ ja:
         inquiry: "「お問い合わせについて」"
         email: "「メールアドレス」"
         password: "「パスワード」"
+        password_confirmation: "「パスワード確認用」"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         format: "%{attribute}%{message}"
         blank: "が入力されていません。"
+        too_short: "は6文字以上で設定してください。"
   enums:
     order:
       payment_method:

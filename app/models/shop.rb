@@ -17,7 +17,8 @@ class Shop < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  validates :password, presence: true
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true, length: { minimum: 6 }
   validates :free_space, presence: true
   validates :shipping_carrier, presence: true
   validates :about_shipping, presence: true
