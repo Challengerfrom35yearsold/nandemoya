@@ -4,10 +4,13 @@
       <h2>返答フォーム</h2>
       <% if @customer_inquiry_thread.errors.any? %>
         <div class="error_message">
-          <h4 class="text-center">
+          <h4>
             入力内容に誤りがあります。</br>
-            入力内容を確認してください。
+            以下の内容を確認してください。
           </h4>
+          <% @customer_inquiry_thread.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         </div>
       <% end %>
     </div>

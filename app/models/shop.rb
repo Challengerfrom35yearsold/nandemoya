@@ -2,7 +2,7 @@ class Shop < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable
   has_one_attached :image
   has_many_attached :images
   belongs_to :shop_genre
@@ -12,10 +12,12 @@ class Shop < ApplicationRecord
 
   validates :shop_name, presence: true
   validates :shop_name_kana, presence: true
+  validates :shop_genre_id, presence: true
+  validates :email, presence: true
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  validates :shop_genre_id, presence: true
+  validates :password, presence: true
   validates :free_space, presence: true
   validates :shipping_carrier, presence: true
   validates :about_shipping, presence: true

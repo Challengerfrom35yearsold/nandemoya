@@ -2,13 +2,66 @@ ja:
   activerecord:
     attributes:
       address:
-        name: "名前"
-        postal_code: "郵便番号"
-        address: "住所"
+        name: "「宛先」"
+        postal_code: "「郵便番号」"
+        address: "「住所」"
+      customer_inquiry:
+        title: "「タイトル」"
+        inquiry: "「お問い合わせ内容」"
+      customer_inquiry_thread:
+        message: "「返答」"
+      order:
+        postal_code: "「宛先」"
+        address: "「郵便番号」"
+        name: "「住所」"
+      review:
+        number_of_stars: "「総合評価」"
+        title: "「タイトル」"
+        review_content: "「本文」"
+      shop_inquiry:
+        title: "「タイトル」"
+        inquiry: "「お問い合わせ内容」"
+      shop_inquiry_thread:
+        message: "「返答」"
+      item:
+        name: "「商品名」"
+        item_genre_id: "「ジャンル」"
+        introduction: "「商品説明」"
+        price: "「税抜価格」"
+      item_genre:
+        name: "「ジャンル名」"
+      shop_genre:
+        name: "「ジャンル名」"
+      customer:
+        last_name: "「名前(性)」"
+        first_name: "「名前(名)」"
+        last_name_kana: "「フリガナ(セイ)」"
+        first_name_kana: "「フリガナ(メイ)」"
+        postal_code: "「郵便番号(ハイフンなし)」"
+        address: "「住所」"
+        telephone_number: "「電話番号」"
+        email: "「メールアドレス」"
+        password: "「パスワード」"
+      shop:
+        shop_name: "「ショップ名」"
+        shop_name_kana: "「フリガナ」"
+        shop_genre_id: "「ジャンル名」"
+        postal_code: "「郵便番号」"
+        address: "「住所」"
+        telephone_number: "「電話番号」"
+        free_space: "「ショップ紹介」"
+        shipping_carrier: "「配送キャリア」"
+        about_shipping: "「発送について」"
+        personal_information: "「個人情報の取り扱いについて」"
+        settlement: "「決済について」"
+        inquiry: "「お問い合わせについて」"
+        email: "「メールアドレス」"
+        password: "「パスワード」"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
-        blank: "が空です"
+        format: "%{attribute}%{message}"
+        blank: "が入力されていません。"
   enums:
     order:
       payment_method:

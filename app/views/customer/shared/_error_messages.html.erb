@@ -1,11 +1,13 @@
 <% if resource.errors.any? %>
   <div id="error_explanation" data-turbo-cache="false">
-    <h4 class="border border-danger rounded text-center mb-md-3">
-      入力内容に誤りがあります。</br>
-      入力内容を確認してください。
-    </h4>
-    <% resource.errors.full_messages.each do |message| %>
+    <div class="error_message mb-md-3">
+      <h4>
+        入力内容に誤りがあります。</br>
+        以下の内容を確認してください。
+      </h4>
+      <% resource.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
+    </div>
   </div>
 <% end %>

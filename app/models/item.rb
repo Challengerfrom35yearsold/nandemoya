@@ -9,9 +9,9 @@ class Item < ApplicationRecord
   has_many :what_you_wants, dependent: :destroy
 
   validates :name, presence: true
+  validates :item_genre_id, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  validates :item_genre_id, presence: true
 
   FILE_NUMBER_LIMIT = 3
   validate :validate_number_of_files
