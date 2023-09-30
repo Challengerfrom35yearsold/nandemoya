@@ -1,4 +1,4 @@
-class Admin::ItemsController < ApplicationController
+class Admin::ItemsController < Admin::BaseController
   def index
     @items = Item.includes(:item_genre).page(params[:page])
   end

@@ -1,4 +1,4 @@
-class Admin::ShopGenresController < ApplicationController
+class Admin::ShopGenresController < Admin::BaseController
   def index
     @shop_genre = ShopGenre.new
     @shop_genres = ShopGenre.page(params[:page])

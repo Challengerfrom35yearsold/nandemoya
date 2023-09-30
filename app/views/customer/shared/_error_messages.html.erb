@@ -4,5 +4,8 @@
       入力内容に誤りがあります。</br>
       入力内容を確認してください。
     </h4>
+    <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
   </div>
 <% end %>

@@ -1,4 +1,4 @@
-class Admin::ReviewsController < ApplicationController
+class Admin::ReviewsController < Admin::BaseController
 
   def index
     @item = Item.find(params[:item_id])

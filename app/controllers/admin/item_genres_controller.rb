@@ -1,4 +1,4 @@
-class Admin::ItemGenresController < ApplicationController
+class Admin::ItemGenresController < Admin::BaseController
   def index
     @item_genre = ItemGenre.new
     @item_genres = ItemGenre.page(params[:page])

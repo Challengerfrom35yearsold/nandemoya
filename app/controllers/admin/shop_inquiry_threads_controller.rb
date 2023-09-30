@@ -1,4 +1,4 @@
-class Admin::ShopInquiryThreadsController < ApplicationController
+class Admin::ShopInquiryThreadsController < Admin::BaseController
   def create
     @shop_inquiry_thread = ShopInquiryThread.new(shop_inquiry_thread_params)
     @shop_inquiry_thread.speaker_type = "admin"

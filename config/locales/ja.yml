@@ -1,4 +1,14 @@
 ja:
+  activerecord:
+    attributes:
+      address:
+        name: "名前"
+        postal_code: "郵便番号"
+        address: "住所"
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        blank: "が空です"
   enums:
     order:
       payment_method:
@@ -20,11 +30,9 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
-  activerecord:
-  errors:
-    messages:
-      record_invalid: "バリデーションに失敗しました: %{errors}"
+
+
   views:
-      pagination:
-        next: "Next &rsaquo;"
-        last: "Last &raquo;"
+    pagination:
+      next: "Next &rsaquo;"
+      last: "Last &raquo;"

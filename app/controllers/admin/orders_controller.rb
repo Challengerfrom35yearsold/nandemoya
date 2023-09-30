@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < Admin::BaseController
   def index
     @customer_id = params[:customer_id]
     @orders = Order.includes(:customer, :order_details).where(customer_id: @customer_id).page(params[:page])

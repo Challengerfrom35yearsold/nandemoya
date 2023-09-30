@@ -1,4 +1,4 @@
-class Admin::ShopInquiriesController < ApplicationController
+class Admin::ShopInquiriesController < Admin::BaseController
   def index
     @shop_inquiries = ShopInquiry.includes(:shop, :shop_inquiry_threads).where(inquiry_status: "resolution").page(params[:page])
   end
