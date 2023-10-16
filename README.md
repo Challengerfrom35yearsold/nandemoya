@@ -39,13 +39,14 @@ ECモール側・ショップ側双方に利益をもたらすことができ、
 
 
 ## 設計書
-
+- ER図  https://app.diagrams.net/#G1sWFA6bZSOGIjRIL64hX9az7HT8BwPGiF
+- テーブル定義書  https://docs.google.com/spreadsheets/d/1Q-M98BJwUdM5lLtnAlUT-K_7BcOZTum7/edit#gid=1915282850
+- 詳細設計  https://docs.google.com/spreadsheets/d/1oXgaGdOYvkb3iXUsl2oAXC0Mi83YwEnc/edit#gid=549108681
 
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux(AmazonLinux2)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
